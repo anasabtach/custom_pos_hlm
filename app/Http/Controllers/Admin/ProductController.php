@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Services\Admin\ProductService;
 
 class ProductController extends Controller
 {
-    public function __construct(){
+    protected $service;
 
+    public function __construct(ProductService $service)
+    {
+        $this->service = $service;
     }
 
     public function index(){
-        $data = [
-            'title' => 'Products'
-        ];
-        return view('admin.products.index')->with($data);
+        dd('done');
     }
 }

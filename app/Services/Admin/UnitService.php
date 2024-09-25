@@ -3,29 +3,28 @@
 namespace App\Services\Admin;
 
 use App\Helpers\CommonHelper;
-use App\Interfaces\Admin\BrandInterface;
-
+use App\Interfaces\Admin\UnitInterface;
+use App\Repository\ADmin\UnitRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class BrandService{
-    
+class UnitService
+{
     protected $repository;
 
-    public function __construct(BrandInterface $repository){
+    public function __construct(UnitInterface $repository){
         $this->repository = $repository;
     }
 
     public function store(array $data){
-        if(isset($data['brand_id'])){
+        if(isset($data['unit_id'])){
             return $this->repository->update($data);
         }
-        $data['slug'] = CommonHelper::generateUniqueSlug($data['brand_name'], 'brands');
         return $this->repository->store($data);
         
     }
 
-    public function getBrands():Collection{
-        return $this->repository->getBrands();
+    public function getUnits():Collection{
+        return $this->repository->getUnits();
     }
 
     public function edit($brand_id){

@@ -44,17 +44,4 @@ class BrandRepository implements BrandInterface
     {
         return $this->brand->destroy(hashid_decode($brand_id));
     }
-
-    // public function updateList(array $data):bool
-    // {   
-    //     return DB::transaction(function () use ($data):bool {
-    //         collect($data)->each(function ($item) {
-    //             $this->brand->findOrFail($item['id'])->update([
-    //                 'parent_id' => $item['parent_id'] ?? NULL,
-    //                 'order_by' => $item['order'] ?? 0
-    //             ]);
-    //         });
-    //         return true;
-    //     });
-    // }
 }

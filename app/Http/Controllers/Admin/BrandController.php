@@ -47,8 +47,4 @@ class BrandController extends Controller
         $this->service->delete($brand_d);
         return to_route('admin.brands.index')->with('success', __('error_messages.brand_delete_success'));
     }
-
-    // public function updateList(Request $req):bool{
-    //     return $this->service->updateList($req->data);
-    // }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,9 +55,19 @@ Route::name('admin.')->group(function(){
             Route::get('/delete/{brand_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
         });
-        //product routes
-        Route::prefix('/products')->name('products.')->controller(ProductController::class)->group(function(){
+        
+        //unit rotues
+        Route::prefix('/units')->name('units.')->controller(UnitController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{brand_id}', 'edit')->name('edit');
+            Route::get('/delete/{brand_id}', 'delete')->name('delete');
+            Route::get('/update-list', 'updateList')->name('update_list');
+        });
+
+        //product routess
+        Route::prefix('/products')->name('products.')->controller(ProductController::class)->group(function(){
+            Route::get('/', 'index');
         });
     });
 });

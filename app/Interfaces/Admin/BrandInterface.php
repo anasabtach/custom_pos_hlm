@@ -17,7 +17,4 @@ interface BrandInterface
     public function delete(string $category_id):bool;
 
     public function update(array $arr):bool;
-
-
-    // public function updateList(array $data):bool;
 }

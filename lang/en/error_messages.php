@@ -13,6 +13,13 @@ return [
     'brand_add_error'       => 'Some error occured brand can not be add',
     'brand_delete_success'       => 'Brand deleted successfully',
 
+    //unit messages
+    'unit_update_success'       => 'Unit updated successfully',
+    'unit_delete_success'       => 'Unit deleted successfully',
+    'unit_add_success'       => 'Unit added successfully',
+    'unit_add_error'       => 'Some error occured unit can not be add',
+    'unit_delete_success'       => 'Unit deleted successfully',
+
     'admin_update_profile_success'  => 'Profile updated successfully',
     'admin_update_profile_error'    => 'Profile not updated try again',
 ];
