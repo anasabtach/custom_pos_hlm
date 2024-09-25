@@ -1,0 +1,16 @@
+.notify {
+    position: fixed;
+    z-index: 9999; /* Ensure it's on top */
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    margin-bottom: 10px; /* Space between notifications */
+}
+
+/* Optional: Style for different notification types */
+.notify.success {
+    background-color: #28a745; /* Green for success */
+}
+
+.notify.error {
+    background-color: #dc3545; /* Red for error */
+}
