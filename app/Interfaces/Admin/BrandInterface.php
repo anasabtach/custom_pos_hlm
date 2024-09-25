@@ -2,16 +2,17 @@
 
 namespace App\Interfaces\Admin;
 
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
-interface CategoryInterface
+interface BrandInterface
 {   
-    public function getCategories(): Collection;
+    public function getBrands(): Collection;
     
-    public function store(array $data): Category;
+    public function store(array $data): Brand;
 
-    public function edit(string $category_id):Category;
+    public function edit(string $category_id):Brand;
 
     public function delete(string $category_id):bool;
 

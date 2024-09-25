@@ -3,11 +3,12 @@
 namespace App\Helpers;
 
 use App\Models\Media;
+use App\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -64,16 +65,57 @@ class CommonHelper
         return $path . "/{$imageName}";
     }
 
-    public static function getImage($file): string //show image from public directory otherwise return placeholder
-    {
+    public static function getImage($file):string//show image from public directory otherwise return placeholder
+    {   
         if (file_exists(public_path($file)) && !is_null($file)) {
             return asset($file);
         }
-        return asset('images/profile_placeholder.png');
+        return asset('images/image_placeholder.jpg');
     }
 
-    public static function removeImage($file)
-    { //remove the iamge from directory
+    public static function removeImage($file){//remove the iamge from directory
         @unlink(public_path($file));
+    }
+    
+    public static function getBadges($type, $value){
+        // if($type == '1' || $type == true || $type == 'active'){
+        //     return "<span class='badge badge-success'>{$value}</span>";
+        // }else{
+        //     return "<span class='badge badge-danger'>{$value}</span>";
+        // }
+        return "<span class='badge badge-{$type}'>{$value}</span>";
+    }
+
+    public static function getCustomDate($date){
+        return date('d-M-Y', strtotime($date));
+    }
+
+    public static function generateId($table, $column_name, $min=1111111111, $max=9999999999){
+        $id = random_int($min, $max) * time();
+        
+        if(DB::table($table)->where($column_name,$id)->doesntExist()){
+            return $id;
+        }
+        return self::generateId($min, $max, $table, $column_name);
+    }
+
+    public static function rights($right){
+        abort_if(!auth('admin')->user()->can($right),403);
+    }
+
+    public static  function generateUniqueJobId(): string
+    {
+        // Generate a unique ID using a timestamp-based approach
+        $timestamp = (int) (microtime(true) * 1000); // Current time in milliseconds
+        $uniqueId = $timestamp % 2147483647; // Ensure it fits within the integer range
+        return $uniqueId;
+    }
+
+    public static function getDateRange($date){
+        return Carbon::parse($date)->diffForHumans();
+    }
+
+    public static function storeNotification($data){
+        // Notification::create($data);
     }
 }

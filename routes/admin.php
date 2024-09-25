@@ -2,6 +2,7 @@
 
 use App\Helpers\Hashid;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -40,6 +41,17 @@ Route::name('admin.')->group(function(){
         Route::prefix('/categories')->name('categories.')->controller(CategoryController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{category_id}', 'edit')->name('edit');
+            Route::get('/delete/{category_id}', 'delete')->name('delete');
+            Route::get('/update-list', 'updateList')->name('update_list');
+        });
+
+        //brand rotues
+        Route::prefix('/brands')->name('brands.')->controller(BrandController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{brand_id}', 'edit')->name('edit');
+            Route::get('/delete/{brand_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
         });
         //product routes

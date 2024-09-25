@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/backend/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('assets/backend/img/favicon.png') }}">
   <title>
-    Argon Dashboard 2 by Creative Tim
+    {{ $title ?? 'HLM' }} -- {{ config('app.name') }}
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -53,6 +53,7 @@
   <script src="{{ asset('assets/backend/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script src="{{ asset('assets/backend/js/plugins/chartjs.min.js') }}"></script>
   <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 	<script>
     @if($errors->any())

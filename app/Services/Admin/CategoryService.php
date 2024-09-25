@@ -16,15 +16,27 @@ class CategoryService{
     }
 
     public function store(array $data){
-        $data['slug'] = CommonHelper::generateUniqueSlug($data['name'], 'categories');
+        if(isset($data['category_id'])){
+            return $this->categoryRepository->update($data);
+        }
+        $data['slug'] = CommonHelper::generateUniqueSlug($data['category_name'], 'categories');
         return $this->categoryRepository->store($data);
+        
     }
 
     public function getCategories():Collection{
         return $this->categoryRepository->getCategories();
     }
 
-    public function updateList(array $data):bool{
-        return $this->categoryRepository->updateList($data);
+    public function edit($category_id){
+        return $this->categoryRepository->edit($category_id);
     }
+
+    public function delete($category_id){
+        return $this->categoryRepository->delete($category_id);
+    }
+
+    // public function updateList(array $data):bool{
+    //     return $this->categoryRepository->updateList($data);
+    // }
 }

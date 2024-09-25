@@ -33,3 +33,33 @@ if(!function_exists('removeImage')){
         return CommonHelper::removeImage($file);
     }
 }
+
+if(!function_exists('getBadges')){
+    function getBadges($type, $value){
+        return CommonHelper::getBadges($type, $value);
+    }
+}
+
+if(!function_exists('getCustomDate')){
+    function getCustomDate($date){
+        return CommonHelper::getCustomDate($date);
+    }
+}
+
+if(!function_exists('rights')){
+    function rights($right){
+        return CommonHelper::rights($right);
+    }
+}
+if(!function_exists('generateUniqueJobId')){
+    function generateUniqueJobId(){
+        return CommonHelper::generateUniqueJobId();
+    }
+}
+
+if(!function_exists('getDateRange')){
+    function getDateRange($date){
+        return CommonHelper::getDateRange($date);
+    }
+}
+
