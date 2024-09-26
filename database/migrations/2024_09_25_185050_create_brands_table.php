@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('admins');
             $table->string('name',50)->unique();
             $table->string('slug',70);
             $table->enum('status',['1','0'])->default('1')->comment('1 means category is active and 0 means deactive');

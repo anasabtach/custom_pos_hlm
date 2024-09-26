@@ -27,11 +27,11 @@ class UnitService
         return $this->repository->getUnits();
     }
 
-    public function edit($brand_id){
-        return $this->repository->edit($brand_id);
+    public function edit($unit_id){
+        return $this->repository->edit($unit_id);
     }
 
-    public function delete($brand_id){
-        return $this->repository->delete($brand_id);
+    public function delete($unit_id){
+        return $this->repository->delete($unit_id);
     }
 }

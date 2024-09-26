@@ -4,22 +4,29 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UnitRequest;
-use App\Services\Admin\UnitService;
+use App\Services\Admin\SupplierService;
 
-class UnitController extends Controller
+class SupplierController extends Controller
 {
     protected $service;
 
-    public function __construct(UnitService $service){
+    public function __construct(SupplierService $service){
         $this->service = $service;    
     }
 
     public function index(){
         $data = array(
-            'title'         => "Units",
-            'units'    => $this->service->getUnits()
+            'title'         => "Suppliers",
+            'suppliers'    => $this->service->getSuppliers()
         );
-        return view('admin.unit.index')->with($data);
+        return view('admin.supplier.index')->with($data);
+    }
+
+    public function create(){
+        $data = [
+            'title' => 'Create Supplier'
+        ];
+        return view('admin.supplier.add')->with($data);
     }
 
     public function store(UnitRequest $req){

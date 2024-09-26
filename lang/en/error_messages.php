@@ -20,6 +20,13 @@ return [
     'unit_add_error'       => 'Some error occured unit can not be add',
     'unit_delete_success'       => 'Unit deleted successfully',
 
+    //supplier messages
+    'supplier_update_success'       => 'Supplier updated successfully',
+    'supplier_delete_success'       => 'Supplier deleted successfully',
+    'supplier_add_success'       => 'Supplier added successfully',
+    'supplier_add_error'       => 'Some error occured supplier can not be add',
+    'supplier_delete_success'       => 'Supplier deleted successfully',
+
     'admin_update_profile_success'  => 'Profile updated successfully',
     'admin_update_profile_error'    => 'Profile not updated try again',
 ];

@@ -20,7 +20,7 @@
                     <div class="col-md-5">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Short Hand</label>
-                          <input type="text" placeholder="Enter unit short hand" class="form-control form-control-line" value="{{ (isset($is_update)) ? $edit_unit->name : old('short_hand') }}" name="short_hand"> 
+                          <input type="text" placeholder="Enter unit short hand" class="form-control form-control-line" value="{{ (isset($is_update)) ? $edit_unit->short_hand : old('short_hand') }}" name="short_hand"> 
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -40,12 +40,13 @@
             <h6>Categories</h6>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-              <table class="table align-items-center justify-content-center mb-0 text-center">
+            <div class="table-responsive p-3">
+              <table class="table align-items-center justify-content-center mb-0 text-center" id="table">
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Unit Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Short Hand</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Action</th>
                   </tr>
@@ -55,6 +56,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td><p class="text-sm font-weight-bold mb-0">{{ $unit->name }}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ $unit->short_hand }}</p></td>
                         <td class="align-middle text-center text-sm">
                           @if($unit->status)
                             <span class="badge badge-sm bg-gradient-success">Active</span>
@@ -64,8 +66,8 @@
                           @endif
                         </td>
                         <td>
-                          <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('admin.categories.edit',['category_id'=>$unit->hashid]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                          <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ route('admin.categories.delete',['category_id'=>$unit->hashid]) }}"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
+                          <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('admin.units.edit',['unit_id'=>$unit->hashid]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                          <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ route('admin.units.delete',['unit_id'=>$unit->hashid]) }}"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
                         </td>
                     </tr>
                   @empty 

@@ -21,6 +21,7 @@
   <link id="pagestyle" href="{{ asset('assets/backend/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -52,8 +53,9 @@
   <script src="{{ asset('assets/backend/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('assets/backend/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script src="{{ asset('assets/backend/js/plugins/chartjs.min.js') }}"></script>
-  <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+  <script src="https://cdn.datatables.net/2.1.7/js/dataTables.min.js"></script>
+  <script src="{{ asset('assets/backend/js/custom.js') }}"></script>
 
 	<script>
     @if($errors->any())

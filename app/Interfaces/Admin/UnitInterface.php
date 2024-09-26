@@ -11,9 +11,9 @@ interface UnitInterface
     
     public function store(array $data): Unit;
 
-    public function edit(string $brand_id):Unit;
+    public function edit(string $unit_id):Unit;
 
-    public function delete(string $brand_id):bool;
+    public function delete(string $unit_id):bool;
 
     public function update(array $arr):bool;
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UpdateProfileController;
 use Illuminate\Support\Facades\Route;
@@ -60,8 +61,18 @@ Route::name('admin.')->group(function(){
         Route::prefix('/units')->name('units.')->controller(UnitController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
-            Route::get('/edit/{brand_id}', 'edit')->name('edit');
-            Route::get('/delete/{brand_id}', 'delete')->name('delete');
+            Route::get('/edit/{unit_id}', 'edit')->name('edit');
+            Route::get('/delete/{unit_id}', 'delete')->name('delete');
+            Route::get('/update-list', 'updateList')->name('update_list');
+        });
+
+        //supplier rotues
+        Route::prefix('/suppliers')->name('suppliers.')->controller(SupplierController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{supplier_id}', 'edit')->name('edit');
+            Route::get('/delete/{supplier_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
         });
 

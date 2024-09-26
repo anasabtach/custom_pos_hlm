@@ -25,3 +25,11 @@ function singleImagePreview(inputId, previewImage){//image preview funciton
     submitButton.prop('disabled', true);
     submitButton.html('<i class="fa fa-spinner fa-spin"></i>Loading');
 });
+
+
+//datatable initialization
+let table = new DataTable('#table', {
+    columnDefs: [
+        { className: 'text-center', targets: '_all' } // Apply to all columns
+    ]
+});
