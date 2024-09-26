@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class SupplierRequest extends FormRequest
+class CustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,13 @@ class SupplierRequest extends FormRequest
         return [
             'country_id'    => ['required', 'string', 'max:50'],
             'name'          => ['required', 'string', 'max:30'],
-            'email'         => ['required', 'string', 'max:30', Rule::unique('suppliers')->ignore((isset($this->supplier_id) ? hashid_decode($this->supplier_id) : NULL))],
+            'email'         => ['required', 'string', 'max:30', Rule::unique('customers')->ignore((isset($this->customer_id) ? hashid_decode($this->customer_id) : NULL))],
             'phone_no'      => ['required', 'string', 'max:20'],
             'city'          => ['required', 'string', 'max:30'],
             'address'       => ['required', 'string', 'max:500'],
             'note'          => ['nullable','string', 'max:5000'],
-            'supplier_id'   => ['nullable', 'string', 'max:50']
+            'dob'           => ['date'],
+            'customer_id'   => ['nullable', 'string', 'max:50']
         ];
     }
 }

@@ -4,6 +4,7 @@ use App\Helpers\Hashid;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -68,6 +69,16 @@ Route::name('admin.')->group(function(){
 
         //supplier rotues
         Route::prefix('/suppliers')->name('suppliers.')->controller(SupplierController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{supplier_id}', 'edit')->name('edit');
+            Route::get('/delete/{supplier_id}', 'delete')->name('delete');
+            Route::get('/update-list', 'updateList')->name('update_list');
+        });
+
+        //customer rotues
+        Route::prefix('/customers')->name('customers.')->controller(CustomerController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
