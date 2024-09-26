@@ -8,7 +8,7 @@
                         <h6>Add Unit</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
-                        <form action="{{ route('admin.units.store') }}" method="POST">
+                        <form action="{{ route('admin.suppliers.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -43,10 +43,12 @@
                                 <div class="col-md-6">
                                   <div class="form-group">
                                       <label for="example-text-input" class="form-control-label">Country</label>
-                                      <input type="email" placeholder="Enter country name"
-                                          class="form-control form-control-line"
-                                          value="{{ isset($is_update) ? $edit_supplier->country : old('country') }}"
-                                          name="country">
+                                      <select class="form-control" name="country_id" id="country_id">
+                                        <option value="">Select country</option>
+                                        @foreach($countries AS $country)
+                                          <option value="{{ $country->hashid }}" @selected((isset($is_update)) ? $edit_supplier->country_id == $country->id : false)>{{ $country->name }}</option>
+                                        @endforeach
+                                      </select>
                                   </div>
                               </div>
                             </div>
@@ -57,7 +59,7 @@
                                         <input type="text" placeholder="Enter city name"
                                             class="form-control form-control-line"
                                             value="{{ isset($is_update) ? $edit_supplier->city : old('city') }}"
-                                            name="phone_no">
+                                            name="city">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -81,8 +83,8 @@
                             </div>
                             </div>
                             <div class="col-md-12">
-                                <input type="hidden" name="unit_id"
-                                    value="{{ isset($is_update) ? $edit_unit->hashid : '' }}">
+                                <input type="hidden" name="supplier_id"
+                                    value="{{ isset($is_update) ? $edit_supplier->hashid : '' }}">
                                 <input type="submit" class="btn btn-primary mt-4 float-end"
                                     value="{{ isset($is_update) ? 'Update' : 'Add' }}">
                             </div>

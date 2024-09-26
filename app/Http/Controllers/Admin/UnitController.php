@@ -17,7 +17,7 @@ class UnitController extends Controller
     public function index(){
         $data = array(
             'title'         => "Units",
-            'units'    => $this->service->getUnits()
+            'units'    => $this->service->getUnits(),
         );
         return view('admin.unit.index')->with($data);
     }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained();
+            $table->unsignedInteger('country_id');
             $table->string('name', 30);
             $table->string('email', 30)->unique();
             $table->string('phone_no', 20);
-            $table->string('country', 20);
             $table->string('city', 30);
             $table->string('address', 500);
             $table->string('note', 5000)->nullable();
