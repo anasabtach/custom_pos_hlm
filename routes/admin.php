@@ -89,7 +89,11 @@ Route::name('admin.')->group(function(){
 
         //product routess
         Route::prefix('/products')->name('products.')->controller(ProductController::class)->group(function(){
-            Route::get('/', 'index');
+            Route::get('/', 'index')->name('index');
+            Route::get('/add', 'add')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{product_id}', 'edit')->name('edit');
+            Route::get('/delete/{product_id}', 'product_id')->name('delete');
         });
     });
 });

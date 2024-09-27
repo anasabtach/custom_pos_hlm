@@ -34,6 +34,13 @@ return [
     'customer_add_error'            => 'Some error occured customer can not be add',
     'customer_delete_success'       => 'Customer deleted successfully',
 
+    //customer messages
+    'product_update_success'       => 'Product updated successfully',
+    'product_delete_success'       => 'Product deleted successfully',
+    'product_add_success'          => 'Product added successfully',
+    'product_add_error'            => 'Some error occured product can not be add',
+    'product_delete_success'       => 'Product deleted successfully',
+
     'admin_update_profile_success'  => 'Profile updated successfully',
     'admin_update_profile_error'    => 'Profile not updated try again',
 ];
