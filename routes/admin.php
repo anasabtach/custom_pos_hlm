@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UpdateProfileController;
@@ -94,6 +95,14 @@ Route::name('admin.')->group(function(){
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{product_id}', 'edit')->name('edit');
             Route::get('/delete/{product_id}', 'product_id')->name('delete');
+            Route::get('/search', 'searchProducts')->name('search');
+            Route::get('/product-variation-row', 'productAndVariationRow')->name('product_and_variation_row');
+        });
+
+        Route::prefix('/purchases')->name('purchases.')->controller(PurchaseController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/add', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
         });
     });
 });

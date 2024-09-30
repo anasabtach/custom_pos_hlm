@@ -20,5 +20,8 @@ interface ProductInterface
 
     public function deleteProductVariations(Product $product):bool;
 
+    public function searchProducts(string $search):Collection;
+
+    public function productAndVariationRow(string $product_id, string $product_variation_id=null):Product|ProductVariation;
 
 }

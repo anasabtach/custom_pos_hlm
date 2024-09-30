@@ -8,6 +8,7 @@ use App\Services\Admin\CategoryService;
 use App\Services\Admin\ProductService;
 use App\Services\Admin\UnitService;
 use Exception;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -63,5 +64,20 @@ class ProductController extends Controller
             'is_update'     => true
         ];
         return view('admin.product.add')->with($data);
+    }
+
+    public function searchProducts(Request $req){
+        return response()->json([
+            'items' => $this->service->searchProducts($req->search),
+        ]);
+    }
+
+    public function productAndVariationRow(Request $req){
+        return response()->json([
+            'html'  => view('admin.product.product_and_variation_row', [
+                'data' =>  $this->service->productAndVariationRow($req->product_id, $req->product_variation_id),
+            ])->render(),
+        ]);
+        
     }
 }

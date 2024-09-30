@@ -74,5 +74,28 @@ class ProductService
         }
     }
 
+    public function searchProducts($search = null)
+    {
+        if (!is_null($search)) {
+            $products = $this->repository->searchProducts($search);
+            $product_arr = [];
+            foreach ($products as $product) {
+                if ($product->variations && $product->variations->isNotEmpty()) {
+                    foreach ($product->variations as $variation) {
+                        $unitName = $variation->unit->name ?? 'Unknown Unit';
+                        $product_arr[] = ['id' => "{$product->hashid}/{$variation->hashid}", 'text' => "{$product->name} | $unitName"];
+                    }
+                }else{
+                    $product_arr[] = ['id' => $product->hashid, 'text' => $product->name];
+                }
+            }
+            return $product_arr;
+        }
+    }
+
+    public function productAndVariationRow($product_id, $product_variation_id){
+        return $this->repository->productAndVariationRow($product_id, $product_variation_id);
+    }
+
 
 }

@@ -18,7 +18,7 @@ class ProductRepository implements ProductInterface
 
     public function getProducts():Collection
     {
-        return $this->product->with(['category', 'unit'])->get();
+        return $this->product->with(['category', 'unit'])->latest()->get();
     }
 
     public function storeProduct(array $arr):Product
@@ -47,4 +47,16 @@ class ProductRepository implements ProductInterface
     {
         return ($product->variations()->exists()) ? $product->variations()->delete() : NULL;
     }
+
+    public function searchProducts(string $search):Collection
+    {   
+        return Product::with(['variations', 'unit'])->whereAny(['name', 'sku'], 'like', "%{$search}%")->get();
+    }
+
+    public function productAndVariationRow(string $product_id, string $product_variation_id=null):Product|ProductVariation
+    {
+        return (isset($product_variation_id)) 
+            ? ProductVariation::with(['product.category'])->findOrFail(hashid_decode($product_variation_id))
+            :Product::findOrFaiL(hashid_decode($product_id));
+    }   
 }

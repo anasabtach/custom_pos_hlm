@@ -91,8 +91,11 @@ class CommonHelper
     }
 
     public static function generateId($table, $column_name, $min=1111111111, $max=9999999999){
-        $id = random_int($min, $max) * time();
         
+        $id = random_int($min, $max);
+        $id = $id * intdiv(time(), 1);
+        $id = (int) ($id * time());
+
         if(DB::table($table)->where($column_name,$id)->doesntExist()){
             return $id;
         }
