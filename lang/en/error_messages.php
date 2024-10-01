@@ -41,8 +41,9 @@ return [
     'product_add_error'            => 'Some error occured product can not be add',
     'product_delete_success'       => 'Product deleted successfully',
 
-    //customer messages
+    //purchase messages
     'purchase_update_success'       => 'Purchase updated successfully',
+    'purchase_update_error'         => 'Some error occured purchase can not be updated',
     'purchase_delete_success'       => 'Purchase deleted successfully',
     'purchase_add_success'          => 'Purchase added successfully',
     'purchase_add_error'            => 'Some error occured purchase can not be add',

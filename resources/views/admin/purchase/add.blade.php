@@ -15,7 +15,8 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Date</label>
                                         <input type="date" placeholder="Enter product no"
-                                            class="form-control form-control-line" name="date">
+                                            class="form-control form-control-line" name="date"
+                                            value="{{ isset($is_update) ? $edit_purchase->date : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -24,7 +25,8 @@
                                         <select class="form-control" name="supplier_id" id="supplier_id">
                                             <option value="">Select supplier</option>
                                             @foreach ($suppliers as $supplier)
-                                                <option value="{{ $supplier->hashid }}">{{ $supplier->name }}</option>
+                                                <option value="{{ $supplier->hashid }}" @selected(($edit_purchase->supplier_id ?? null) == $supplier->id)>
+                                                    {{ $supplier->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -65,13 +67,15 @@
                 </tr>
             </thead>
             <tbody>
-
+                @if (isset($is_update))
+                    @include('admin.purchase.edit_item_component')
+                @endif
             </tbody>
         </table>
     </div>
     <div class="row">
         <div class="col-md-12">
-            {{-- <input type="hidden" name="product_id" value="{{ isset($is_update) ? $edit_product->hashid : '' }}"> --}}
+            <input type="hidden" name="purchase_id" value="{{ isset($is_update) ? $edit_purchase->hashid : '' }}">
             <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}">
         </div>
     </div>
@@ -106,37 +110,41 @@
                 minimumInputLength: 1
             });
         });
-
-        $('#product_search').on('select2:select', function(e) { //when product get selected then show to row
+        $('#product_search').on('select2:select', function(e) {
             let product_id = e.params.data.id;
             let product_variation_id = '';
 
             if (product_id.includes('/')) {
                 let split_ids = product_id.split('/');
-                product_id = split_ids[0]; //product id
-                product_variation_id = split_ids[
-                    1]; //product variation id (could be empty because not every product has the variation)
+                product_id = split_ids[0].trim(); // product id
+                product_variation_id = split_ids[1].trim(); // product variation id (could be empty)
             }
-            $('tr').each(
-                function() { //check if that product id or variation id already exists then no need to run ajax
-                    if ($(this).attr('id') == product_id || $(this).attr('id') == product_variation_id) {
-                        return;
-                    }
-                });
 
-            $.ajax({
-                url: "{{ route('admin.products.product_and_variation_row') }}",
-                method: "GET",
-                data: {
-                    product_id,
-                    product_variation_id
-                },
-                success: function(res) {
-                    $('tbody').append(res.html);
+            let isAlreadyExists = false;
+
+            $('tr').each(function() {
+                // Check if the row with that product id or variation id already exists
+                if ($(this).attr('id') == product_id || $(this).attr('id') == product_variation_id) {
+                    isAlreadyExists = true; // Set flag if exists
+                    return false; // Exit the loop
                 }
             });
 
+            if (!isAlreadyExists) { // If product or variation doesn't already exist, make the Ajax call
+                $.ajax({
+                    url: "{{ route('admin.products.product_and_variation_row') }}",
+                    method: "GET",
+                    data: {
+                        product_id,
+                        product_variation_id
+                    },
+                    success: function(res) {
+                        $('tbody').append(res.html);
+                    }
+                });
+            }
         });
+
 
         $(document).on('click', '.delete_product_row', function() { //remove the row
             $(this).parent().parent().remove();

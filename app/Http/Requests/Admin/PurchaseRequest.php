@@ -34,6 +34,7 @@ class PurchaseRequest extends FormRequest
             'qty.*'                     => ['required', 'numeric'], // Changed from digits_between to numeric
             'expiration'                => ['array'],
             'expiration.*'              => ['nullable', 'date'],
+            'purchase_id'               => ['nullable', 'string', 'max:50']
         ];
     }
 }

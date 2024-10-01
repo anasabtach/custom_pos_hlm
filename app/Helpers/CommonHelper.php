@@ -94,7 +94,7 @@ class CommonHelper
         
         $id = random_int($min, $max);
         $id = $id * intdiv(time(), 1);
-        $id = (int) ($id * time());
+        $id = (int) abs(($id * time()));
 
         if(DB::table($table)->where($column_name,$id)->doesntExist()){
             return $id;

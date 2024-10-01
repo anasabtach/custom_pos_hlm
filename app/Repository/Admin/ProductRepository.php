@@ -58,5 +58,10 @@ class ProductRepository implements ProductInterface
         return (isset($product_variation_id)) 
             ? ProductVariation::with(['product.category'])->findOrFail(hashid_decode($product_variation_id))
             :Product::findOrFaiL(hashid_decode($product_id));
-    }   
+    }
+    
+    public function getSingleProduct(string $product_id):Product
+    {
+        return Product::with(['variations'])->findOrFail(hashid_decode($product_id));
+    }
 }

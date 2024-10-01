@@ -24,4 +24,7 @@ interface ProductInterface
 
     public function productAndVariationRow(string $product_id, string $product_variation_id=null):Product|ProductVariation;
 
+    public function getSingleProduct(string $product_id):Product;
+
+
 }

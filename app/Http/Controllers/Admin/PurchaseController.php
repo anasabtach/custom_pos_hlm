@@ -21,7 +21,8 @@ class PurchaseController extends Controller
 
     public function index(){
         $data = [
-            'title' => 'Purchases'
+            'title'     => 'Purchases',
+            'purchases' => $this->service->getPurchases(),
         ];
         return view('admin.purchase.index')->with($data);
     }
@@ -35,11 +36,41 @@ class PurchaseController extends Controller
     }
     
     public function store(PurchaseRequest $req){
-        try{
-            $this->service->store($req->validated());
-            return to_route('admin.purchases.index')->with('success',__('error_messages.purchase_add_success'));
-        }catch(Exception $e){
-            return redirect()->back()->with('success',__('error_messages.purchase_add_success'));
+        if(isset($req->purchase_id)){
+            $success_msg = __('error_messages.purchase_update_success');
+            $error_msg = __('error_messages.purchase_update_error');
+        }else{
+            $success_msg = __('error_messages.purchase_add_success');
+            $error_msg = __('error_messages.purchase_add_error');
         }
+        try{
+            (isset($req->purchase_id)) ? $this->service->update($req->validated()) : $this->service->store($req->validated());
+            return to_route('admin.purchases.index')->with('success',$success_msg);
+        }catch(Exception $e){
+            return redirect()->back()->with('error',$error_msg);
+        }
+    }
+
+    public function details($purchase_id){
+        $data = [
+            'title'     => 'Purchase Details',
+            'detail'    => $this->service->details($purchase_id),
+        ];
+        return view('admin.purchase.details')->with($data);
+    }
+
+    public function edit($purchase_id){
+        $data = [
+            'title'            => 'Edit Product',
+            'edit_purchase'    => $this->service->edit($purchase_id),
+            'suppliers'        => $this->supplierService->getSuppliers(),
+            'is_update'        => true
+        ];
+        return view('admin.purchase.add')->with($data);
+    }
+
+    public function delete($purchase_id){
+        $this->service->delete($purchase_id);
+        return to_route('admin.purchases.index')->with('success',__('error_messages.purchase_delete_success'));
     }
 }

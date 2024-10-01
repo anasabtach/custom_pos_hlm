@@ -22,4 +22,12 @@ class PurchaseItem extends Model
         'total',
         'expiration'
     ];
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function productVariation(){
+        return $this->belongsTo(ProductVariation::class, 'product_variation_id', 'id');
+    }
 }

@@ -103,6 +103,9 @@ Route::name('admin.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/add', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
+            Route::get('/details/{purchase_id}', 'details')->name('details');
+            Route::get('/edit/{purchase_id}', 'edit')->name('edit');
+            Route::get('/delete/{purchase_id}', 'delete')->name('delete');
         });
     });
 });
