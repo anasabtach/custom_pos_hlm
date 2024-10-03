@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HashidTrait;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Product extends Model
 {
@@ -24,6 +25,11 @@ class Product extends Model
         'status',
         'expiration'
     ];
+
+    public function thumbnail(): MorphOne
+    {
+        return $this->morphOne(Media::class, 'mediable');
+    }
 
     public function variations(){
         return $this->hasMany(ProductVariation::class, 'product_id', 'id');

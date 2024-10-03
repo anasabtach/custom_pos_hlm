@@ -18,7 +18,7 @@ interface ProductInterface
 
     public function updateProduct(array $arr):Product;
 
-    public function deleteProductVariations(Product $product):bool;
+    public function deleteProductVariations(Product $product):bool|null;
 
     public function searchProducts(string $search):Collection;
 
@@ -26,5 +26,6 @@ interface ProductInterface
 
     public function getSingleProduct(string $product_id):Product;
 
+    public function updateThumbail(Product $product, array $imageData): void;
 
 }

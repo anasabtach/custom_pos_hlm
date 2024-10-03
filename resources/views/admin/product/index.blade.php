@@ -24,6 +24,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Expiration</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Variations</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Action</th>
                   </tr>
                 </thead>
@@ -52,6 +53,9 @@
                         @else
                           <span class="badge badge-sm bg-gradient-secondary">Deactive</span>
                         @endif
+                      </td>
+                      <td><p class="text-sm font-weight-bold mb-0">
+                        <img src="{{ getImage(@$product->thumbnail->filename) }}" alt="" class="img-fluid" width="50px" height="50px">
                       </td>
                       <td>
                         <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('admin.products.edit',['product_id'=>$product->hashid]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>

@@ -2,7 +2,9 @@
 
 namespace App\Services\Admin;
 
+use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\ProductInterface;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class ProductService
@@ -21,6 +23,7 @@ class ProductService
     public function store($arr){//store product
         DB::transaction(function() use ($arr){
             $product = $this->repository->storeProduct($this->createProductArr($arr));
+            $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
             if($arr['has_variation']){//if has variation
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);
@@ -66,12 +69,15 @@ class ProductService
     }
 
     public function updateProduct($arr){
-        $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
-        $this->repository->deleteProductVariations($product);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
-        if($arr['has_variation']){//if has variation then create the new variations
-            $variation_arr = $this->createProductVariationArr($arr);//create the variation array
-            $this->repository->storeProductVariation($product, $variation_arr);//store the variation
-        }
+        DB::transaction(function() use ($arr){
+            $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
+            $this->updateThumbnail($product, $arr['product_thumbnail']);
+            $this->repository->deleteProductVariations($product);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
+            if($arr['has_variation']){//if has variation then create the new variations
+                $variation_arr = $this->createProductVariationArr($arr);//create the variation array
+                $this->repository->storeProductVariation($product, $variation_arr);//store the variation
+            }
+        });
     }
 
     public function searchProducts($search = null)
@@ -95,6 +101,15 @@ class ProductService
 
     public function productAndVariationRow($product_id, $product_variation_id){
         return $this->repository->productAndVariationRow($product_id, $product_variation_id);
+    }
+
+    public function updateThumbnail(Product $product, $thumbnail){        
+        if(isset($thumbnail)){
+            CommonHelper::removeImage(@$product->thumbnail->thumbnail);
+            CommonHelper::removeImage(@$product->thumbnail->filename);
+            $data = CommonHelper::uploadSingleImage($thumbnail, 'product_thumbnail');
+            $this->repository->updateThumbail($product, $data);
+        }
     }
 
 

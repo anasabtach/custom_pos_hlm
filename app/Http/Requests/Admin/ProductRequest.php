@@ -33,6 +33,7 @@ class ProductRequest extends FormRequest
             'expiration'       => ['nullable', 'date_format:Y-m-d', 'string', 'max:10'],
             'description'      => ['nullable', 'string', 'max:65000'],
             'has_variation'    => ['required', 'boolean'],
+            'product_thumbnail'=> ['nullable', 'mimes:jpg,jpeg,png', 'max:2048'], 
             //variation validation
             'variation_sku'           => ['required_if:has_variation,1', 'array'],
             'variation_sku.*'         => ['required', 'string', 'min:1','max:30'],

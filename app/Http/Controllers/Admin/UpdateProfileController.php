@@ -25,12 +25,12 @@ class UpdateProfileController extends Controller
 
     public function updateProfile(UpdateProfileRequest $req){
        
-        // try {
+        try {
             $this->adminProfileService->updateProfile($req->validated());
             return to_route('admin.profile')->with('success', __('error_messages.admin_update_profile_success'));
-        // } catch (\Exception $e) {
-        //     dd($e->getMessage());
-        //     return redirect()->back()->withInput()->with('error', __('error_messages.admin_update_profile_error'));
-        // }
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->back()->withInput()->with('error', __('error_messages.admin_update_profile_error'));
+        }
     }
 }

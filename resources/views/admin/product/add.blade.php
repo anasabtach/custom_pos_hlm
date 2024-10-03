@@ -8,7 +8,7 @@
                         <h6>{{ isset($is_update) ? 'Update' : 'Add' }} Customer</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
-                        <form action="{{ route('admin.products.store') }}" method="POST">
+                        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -102,6 +102,14 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="example-text-input" class="form-control-label">Product Image</label>
+                                      @include('admin.components.single_image', ['id'=> 'product_thumbnail', 'preview'=>'preview', 'name'=>'product_thumbnail', 'is_update'=>true, 'image'=>@getImage($edit_product->thumbnail->filename)])
+                                    </div>
+                                  </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

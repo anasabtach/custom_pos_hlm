@@ -30,6 +30,5 @@ class AdminProfileRepository implements AdminProfileInterface
                 'thumbnail' => $imageData['thumbnail']
             ]
         );
-        
     }
 }

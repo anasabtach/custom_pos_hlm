@@ -43,7 +43,7 @@ class ProductRepository implements ProductInterface
         return $product;
     }
 
-    public function deleteProductVariations(Product $product):bool
+    public function deleteProductVariations(Product $product):bool|null
     {
         return ($product->variations()->exists()) ? $product->variations()->delete() : NULL;
     }
@@ -63,5 +63,17 @@ class ProductRepository implements ProductInterface
     public function getSingleProduct(string $product_id):Product
     {
         return Product::with(['variations'])->findOrFail(hashid_decode($product_id));
+    }
+
+    public function updateThumbail(Product $product, array $imageData): void
+    {  
+        $product->thumbnail()->updateOrCreate(
+            ['mediable_id' => $product->id],
+            [
+                'filename'     => $imageData['image'],
+                'thumbnail'    => $imageData['thumbnail'],
+                'type'         => 'thumbnail'
+            ]
+        );
     }
 }
