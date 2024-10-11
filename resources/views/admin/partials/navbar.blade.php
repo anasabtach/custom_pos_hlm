@@ -1,114 +1,379 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
-    <div class="container-fluid py-1 px-3">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-          <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-          <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
-        </ol>
-        <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
-      </nav>
-      <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-          <div class="input-group">
-            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" placeholder="Type here...">
+<div id="tc_header" class="header header-fixed">
+  <!--begin::Container-->
+  <div class="container-fluid d-flex align-items-stretch justify-content-between">
+    <!--begin::Header Menu Wrapper-->
+    <div class="header-menu-wrapper header-menu-wrapper-left" id="tc_header_menu_wrapper">
+      <!--begin::Header Menu-->
+      <div id="tc_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+        <!--begin::Header Nav-->
+        <ul class="menu-nav">
+
+            <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active p-0"
+            data-menu-toggle="click" aria-haspopup="true">
+            <!--begin::Toggle-->
+            <div class="btn  btn-clean btn-dropdown mr-0 p-0" id="tc_aside_toggle">
+              <span class="svg-icon svg-icon-xl svg-icon-primary">
+
+                <svg width="24px" height="24px" viewBox="0 0 16 16" class="bi bi-list"
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+              </span>
+            </div>
+            <!--end::Toolbar-->
+          </li>
+
+        </ul>
+        <!--end::Header Nav-->
+      </div>
+      <!--end::Header Menu-->
+    </div>
+    <!--end::Header Menu Wrapper-->
+    <!--begin::Topbar-->
+    <div class="topbar">
+      <div class="posicon d-lg-block d-none">
+        <a href="pos.html" class="btn btn-primary white me-2">POS</a>
+      </div>
+      <div class="topbar-item">
+        <div class="quick-search quick-search-inline ml-20 me-1 w-300px"
+          id="kt_quick_search_inline">
+          <!--begin::Form-->
+          <form method="get" class="quick-search-form">
+            <div class="input-group rounded bg-light">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <span class="svg-icon svg-icon-lg">
+                    <svg width="20px" height="20px" viewBox="0 0 16 16"
+                      class="bi bi-search" fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                      <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <input type="text" class="form-control h-45px" placeholder="Search...">
+
+            </div>
+          </form>
+          <!--end::Form-->
+          <!--begin::Search Toggle-->
+          <div id="kt_quick_search_toggle" data-bs-toggle="dropdown" data-offset="0px,1px"></div>
+          <!--end::Search Toggle-->
+          <!--begin::Dropdown-->
+          <div
+            class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
+            <div class="quick-search-wrapper scroll ps" data-scroll="true" data-height="350"
+              data-mobile-height="200" style="height: 350px; overflow: hidden;">
+              <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;">
+                </div>
+              </div>
+              <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end::Dropdown-->
+        </div>
+      </div>
+      <!--begin::Languages-->
+      <div class="dropdown">
+
+        <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
+          <div class="btn btn-icon btn-clean btn-dropdown btn-lg me-1">
+            <img class="h-20px w-20px rounded-sm"
+              src="{{ asset('assets/images/svg/flags/226-united-states.svg') }}" alt="" />
           </div>
         </div>
-        <ul class="navbar-nav  justify-content-end">
-          <li class="nav-item d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-              <i class="fa fa-user me-sm-1"></i>
-              <span class="d-sm-inline d-none">Sign In</span>
-            </a>
-          </li>
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-              </div>
-            </a>
-          </li>
-          <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0">
-              <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown pe-2 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-bell cursor-pointer"></i>
-            </a>
-            {{-- <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="javascript:;">
-                  <div class="d-flex py-1">
-                    <div class="my-auto">
-                      <img src="{{ asset('assets/backend/img/team-2.jpg') }}" class="avatar avatar-sm  me-3 ">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold">New message</span> from Laur
-                      </h6>
-                      <p class="text-xs text-secondary mb-0">
-                        <i class="fa fa-clock me-1"></i>
-                        13 minutes ago
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="javascript:;">
-                  <div class="d-flex py-1">
-                    <div class="my-auto">
-                      <img src="{{ asset('assets/backend/img/small-logos/logo-spotify.svg') }}" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="text-sm font-weight-normal mb-1">
-                        <span class="font-weight-bold">New album</span> by Travis Scott
-                      </h6>
-                      <p class="text-xs text-secondary mb-0">
-                        <i class="fa fa-clock me-1"></i>
-                        1 day
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item border-radius-md" href="javascript:;">
-                  <div class="d-flex py-1">
-                    <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                      <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <title>credit-card</title>
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                          <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                            <g transform="translate(1716.000000, 291.000000)">
-                              <g transform="translate(453.000000, 454.000000)">
-                                <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                              </g>
-                            </g>
-                          </g>
-                        </g>
-                      </svg>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="text-sm font-weight-normal mb-1">
-                        Payment successfully completed
-                      </h6>
-                      <p class="text-xs text-secondary mb-0">
-                        <i class="fa fa-clock me-1"></i>
-                        2 days
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul> --}}
-          </li>
-        </ul>
+
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <span class="symbol symbol-20 me-3">
+              <img class="h-20px w-20px rounded-sm"
+                src="{{ asset('assets/images/svg/flags/226-united-states.svg') }}" alt="" />
+            </span>
+            English
+          </a>
+
+        </div>
+
       </div>
+      <!--end::Languages-->
+
+
+      <!--begin::Quick Actions-->
+      <div class="dropdown">
+
+        <div class="topbar-item" data-bs-toggle="dropdown" data-offset="10px,0px">
+          <div id="kt_open_fullscreen" class="btn btn-icon btn-clean btn-dropdown me-1" title="fullscreen"
+            onclick="openFullscreen();">
+            <span class="svg-icon svg-icon-xl svg-icon-primary">
+
+              <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-fullscreen"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
+              </svg>
+
+
+
+            </span>
+
+          </div>
+
+          <div id="kt_close_fullscreen" class="btn btn-icon btn-clean btn-dropdown me-1"
+            onclick="closeFullscreen();" style="display: none;">
+            <span class="svg-icon svg-icon-xl svg-icon-primary">
+              <svg width="20px" height="20px" viewBox="0 0 16 16"
+                class="bi bi-fullscreen-exit" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+
+
+      </div>
+      <!--end::Quick Actions-->
+
+
+
+      <!--begin::Quick panel-->
+      <div class="topbar-item">
+        <div class="btn btn-icon btn-clean  me-1" id="tc_quick_panel_toggle">
+          <span class="svg-icon svg-icon-xl svg-icon-primary">
+
+            <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-people"
+              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+            </svg>
+          </span>
+          <span class="badge badge-pill badge-secondary">5</span>
+        </div>
+      </div>
+      <!--end::Quick panel-->
+
+
+      <!--begin::Notifications-->
+      <div class="dropdown">
+
+        <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
+          <div class="btn btn-icon btn-clean btn-dropdown me-1">
+            <div class="svg-icon svg-icon-xl svg-icon-primary" title="Notification">
+
+              <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-bell"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
+                <path fill-rule="evenodd"
+                  d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+              </svg>
+              <div class="lds-ripple">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <span class="badge badge-pill badge-primary">5</span>
+          </div>
+        </div>
+
+        <div class="dropdown-menu p-0 m-0 dropdown-menu-right w-300px">
+          <form>
+
+            <div class="d-flex flex-column p-3 border-bottom rounded-top">
+
+              <h4
+                class="d-flex justify-content-between align-items-center mb-0 rounded-top">
+                <span class="font-size-h5 ">Notifications</span>
+                <a href="#" class="btn btn-sm btn-primary-hover py-1 px-2">
+                  Clear
+                </a>
+              </h4>
+
+            </div>
+
+            <div class="nav nav-hover scrollbar-1 ">
+
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-cog text-primary"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-archive text-secondary"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-plane text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="nav-item border-bottom">
+                <div class="nav-link">
+                  <div class="nav-icon me-3">
+                    <i class="fas fa-daimond text-success"></i>
+                  </div>
+                  <div class="nav-text">
+                    <div class="font-weight-bold">New report has been received</div>
+                    <div class="text-muted">23 hrs ago</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex flex-column p-3 rounded-top">
+
+              <h4 class="d-flex justify-content-center mb-0  rounded-top">
+                <a href="#" class="font-size-base text-primary">View All</a>
+
+              </h4>
+
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+      <!--end::Notifications-->
+
+
+
+      <!--begin::user-->
+      <div class="dropdown">
+
+        <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
+          <div class="btn btn-icon w-auto btn-clean d-flex align-items-center pr-1 ps-3">
+            <span class="text-dark-50 font-size-base d-none d-xl-inline me-3">Angilina
+              Deo</span>
+            <span class="symbol symbol-35 symbol-light-success">
+              <span class="symbol-label font-size-h5 ">
+                <svg width="20px" height="20px" viewBox="0 0 16 16"
+                  class="bi bi-person-fill" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="dropdown-menu dropdown-menu-right" style="min-width: 150px;">
+
+          <a href="#" class="dropdown-item">
+            <span class="svg-icon svg-icon-xl svg-icon-primary me-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-user">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            Edit Profile
+          </a>
+
+          <a href="#" class="dropdown-item">
+            <span class="svg-icon svg-icon-xl svg-icon-primary me-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-power">
+                <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                <line x1="12" y1="2" x2="12" y2="12"></line>
+              </svg>
+            </span>
+            Logout
+          </a>
+        </div>
+
+      </div>
+      <!--end::user-->
+
+
     </div>
-  </nav>
+    <!--end::Topbar-->
+  </div>
+  <!--end::Container-->
+</div>

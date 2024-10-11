@@ -17,6 +17,7 @@ class PurchaseRepository implements PurchaseInterface
     {   
        return  Purchase::create([
             'slug'          => $arr['slug'],
+            'batch_no'      => $arr['batch_no'],
             'admin_id'      => auth()->id(),
             'supplier_id'   => hashid_decode($arr['supplier_id']),
             'date'          => $arr['date'],

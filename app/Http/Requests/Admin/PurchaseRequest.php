@@ -24,7 +24,7 @@ class PurchaseRequest extends FormRequest
         return [
             'date'                      => ['required', 'date'],
             'supplier_id'               => ['required', 'string', 'max:50'],
-            'product_id'                => ['array'],
+            'product_id'                => ['required','array'],
             'product_id.*'              => ['required', 'string'],
             'product_variation_id'      => ['array'],
             'product_variation_id.*'    => ['nullable', 'string'],
@@ -34,7 +34,8 @@ class PurchaseRequest extends FormRequest
             'qty.*'                     => ['required', 'numeric'], // Changed from digits_between to numeric
             'expiration'                => ['array'],
             'expiration.*'              => ['nullable', 'date'],
-            'purchase_id'               => ['nullable', 'string', 'max:50']
+            'purchase_id'               => ['nullable', 'string', 'max:50'],
+            'batch_no'                  => ['required',' string', 'max:30']
         ];
     }
 }

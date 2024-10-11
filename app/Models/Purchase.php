@@ -14,6 +14,7 @@ class Purchase extends Model
 
     protected $fillable = [
         'slug',
+        'batch_no',
         'admin_id',
         'supplier_id',
         'date'
