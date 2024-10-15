@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SupplierController;
@@ -106,6 +107,10 @@ Route::name('admin.')->group(function(){
             Route::get('/details/{purchase_id}', 'details')->name('details');
             Route::get('/edit/{purchase_id}', 'edit')->name('edit');
             Route::get('/delete/{purchase_id}', 'delete')->name('delete');
+        });
+
+        Route::prefix('/pos')->name('pos.')->controller(PosController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
         });
     });
 });

@@ -36,7 +36,6 @@ class CustomerController extends Controller
             $this->service->store($req->validated());
             return to_route('admin.customers.index')->with('success',$msg);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return to_route('admin.customers.index')->withInput()->with('error', __('error_messages.customer_add_error'));
         }
     }

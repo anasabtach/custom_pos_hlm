@@ -1,7 +1,7 @@
 {{-- <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="./pages/dashboard.html">
+        <a class="nav-link active" href="./pages/admin.html">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </div>
@@ -94,7 +94,7 @@
       <!--begin::Menu Nav-->
       <div id="accordion">
       <ul class="nav flex-column">
-        <li class="nav-item active">
+        <li class="nav-item {{ request()->routeIs('admin.dashboard*') ? 'active' : '' }}">
           <a href="index-2.html" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -109,7 +109,7 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
           <a href="{{ route('admin.categories.index') }}" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -124,7 +124,22 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
+          <a href="{{ route('admin.brands.index') }}" class="nav-link">
+            <span class="svg-icon nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </span>
+            <span class="nav-text">
+              Brands
+            </span>
+          </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('admin.units.*') ? 'active' : '' }}">
           <a href="{{ route('admin.units.index') }}" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -139,7 +154,7 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.suppliers.*') ? 'active' : '' }}">
           <a href="{{ route('admin.suppliers.index') }}" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -154,7 +169,22 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+          <a href="{{ route('admin.customers.index') }}" class="nav-link">
+            <span class="svg-icon nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </span>
+            <span class="nav-text">
+              Customers
+            </span>
+          </a>
+        </li>
+        <li class="nav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
           <a href="{{ route('admin.products.index') }}" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -169,7 +199,7 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.purchases.*') ? 'active' : '' }}">
           <a href="{{ route('admin.purchases.index') }}" class="nav-link">
             <span class="svg-icon nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
