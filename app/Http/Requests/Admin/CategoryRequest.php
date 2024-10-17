@@ -23,8 +23,8 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {   
         return [
-            'category_name'          => ['required', 'string', 'max:50', Rule::unique('categories', 'name')->ignore((isset($this->category_id) ? hashid_decode($this->category_id) : ''))],
-            'category_id'   => ['nullable', 'string',' max:50']
+            'category_name'         => ['required', 'string', 'max:50', Rule::unique('categories', 'name')->ignore((isset($this->category_id) ? hashid_decode($this->category_id) : ''))],
+            'category_id'           => ['nullable', 'string',' max:50']
         ];
     }
 }

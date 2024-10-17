@@ -12,14 +12,14 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.customers.store') }}" method="POST">
+                        <form action="{{ route('admin.customers.store') }}" method="POST" id="customer_form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Name</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter unit name" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_unit->name : old('unit_name') }}" name="unit_name">
+                                               value="{{ isset($is_update) ? $edit_customer->name : old('name') }}" name="name">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
@@ -86,4 +86,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script src="{{ asset('assets/validation/customer_validation.js') }}"></script>
 @endsection

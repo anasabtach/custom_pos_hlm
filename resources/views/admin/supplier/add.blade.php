@@ -12,21 +12,21 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.suppliers.store') }}" method="POST">
+                        <form action="{{ route('admin.suppliers.store') }}" method="POST" id="supplier_form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Name</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter unit name" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_unit->name : old('unit_name') }}" name="unit_name">
+                                               value="{{ isset($is_update) ? $edit_unit->name : old('name') }}" name="name" id="name">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Email</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="email" placeholder="Enter email address" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_supplier->email : old('email') }}" name="email">
+                                               value="{{ isset($is_update) ? $edit_supplier->email : old('email') }}" name="email" id="email">
                                     </fieldset>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                     <label>Phone No</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter phone no" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_supplier->phone_no : old('phone_no') }}" name="phone_no">
+                                               value="{{ isset($is_update) ? $edit_supplier->phone_no : old('phone_no') }}" name="phone_no" id="phone_no">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
@@ -57,14 +57,14 @@
                                     <label>City</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter city name" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_supplier->city : old('city') }}" name="city">
+                                               value="{{ isset($is_update) ? $edit_supplier->city : old('city') }}" name="city" id="city">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Address</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter address" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_supplier->address : old('address') }}" name="address">
+                                               value="{{ isset($is_update) ? $edit_supplier->address : old('address') }}" name="address" id="address">
                                     </fieldset>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <div class="col-md-12">
                                     <label>Note</label>
                                     <fieldset class="form-group mb-3">
-                                        <textarea class="form-control round bg-transparent text-dark" name="note" cols="30" rows="3">{{ isset($is_update) ? $edit_supplier->note : old('note') }}</textarea>
+                                        <textarea class="form-control round bg-transparent text-dark" name="note" cols="30" rows="3" id="note">{{ isset($is_update) ? $edit_supplier->note : old('note') }}</textarea>
                                     </fieldset>
                                 </div>
                             </div>
@@ -86,4 +86,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script src="{{ asset('assets/validation/supplier_validation.js') }}"></script>
 @endsection

@@ -28,7 +28,6 @@ class UnitController extends Controller
             $this->service->store($req->validated());
             return to_route('admin.units.index')->with('success',$msg);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return to_route('admin.units.index')->withInput()->with('error', __('error_messages.unit_add_error'));
         }
     }

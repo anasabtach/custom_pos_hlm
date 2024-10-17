@@ -12,7 +12,7 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.brands.store') }}" method="POST">
+                            <form action="{{ route('admin.brands.store') }}" method="POST" id="brand_form">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-md-12">
@@ -21,7 +21,7 @@
                                             <input type="text" placeholder="Enter brand name"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_brand->name : old('brand_name') }}"
-                                                name="brand_name">
+                                                name="brand_name" id="brand_name">
 
                                         </fieldset>
                                     </div>
@@ -182,4 +182,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/validation/brands_validation.js') }}"></script>
 @endsection

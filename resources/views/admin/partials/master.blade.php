@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Admin | Dashboard</title>
+	<title>{{ config('app.name') ?? 'HLM' }}</title>
 	<meta name="description" content="Updates and statistics" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -28,6 +28,17 @@
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<style>
+	.error {
+		color: red;
+		font-size: 12px;
+		font-weight: normal;
+		font-style: italic;
+	},
+	input[type="file"]{
+		display: block !important;
+	}
+	</style>
 	@yield('style')
 
 </head>
@@ -43,11 +54,11 @@
 	<!--begin::Header Mobile-->
 	<div id="tc_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 		<!--begin::Logo-->
-		<a href="index-2.html" class="brand-logo">
+		{{-- <a href="index-2.html" class="brand-logo">
 
 			<span class="brand-text"><img style="height: 25px;" alt="Logo" src="{{ asset('assets/images/misc/logo.png') }}" /></span>
 
-		</a>
+		</a> --}}
 		<!--end::Logo-->
 		<!--begin::Toolbar-->
 		<div class="d-flex align-items-center">
@@ -89,12 +100,12 @@
 					<div class="brand flex-column-auto" id="tc_brand">
 						<!--begin::Logo-->
 	
-						<a href="index-2.html" class="brand-logo">
+						{{-- <a href="index-2.html" class="brand-logo">
 							<img class="brand-image" style="height: 25px;" alt="Logo" src="{{ asset('assets/images/misc/k.png') }}" />
 							<span class="brand-text"><img style="height: 25px;" alt="Logo"
 									src="{{ asset('assets/images/misc/logo.png') }}" /></span>
 	
-						</a>
+						</a> --}}
 						<!--end::Logo-->
 	
 	
@@ -141,7 +152,7 @@
 				
 				<div class="footer bg-white py-4 d-flex flex-lg-column" id="tc_footer">
 					
-					<div
+					{{-- <div
 						class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
 						
 						<div class="text-dark order-2 order-md-1">
@@ -155,7 +166,7 @@
 							<a href="#" target="_blank" class="nav-link pl-0 pr-0">Contact</a>
 						</div>
 
-					</div>
+					</div> --}}
 
 				</div>
 				<!--end::Footer-->
@@ -166,19 +177,23 @@
 	</div>
 	<!--end::Main-->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	
 	<script src="{{ asset('assets/js/plugin.bundle.min.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-	<script src="{{ asset('assets/api/jqueryvalidate/jquery.validate.min.js') }}"></script>
+	{{-- <script src="{{ asset('assets/api/jqueryvalidate/jquery.validate.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/api/pace/pace.js') }}"></script>
 	<script src="{{ asset('assets/api/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 	<script src="{{ asset('assets/api/quill/quill.min.js') }}"></script>
 	<script src="{{ asset('assets/api/datatable/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/js/script.bundle.js') }}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+	{{-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script> --}}
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
  	<script src="{{ asset('assets/js/custom.js') }}"></script>
+ 	<script src="{{ asset('assets/validation/custom_validation_rules.js') }}"></script>
 
     <script>
         @if ($errors->any())
@@ -194,7 +209,6 @@
         @endif
     </script>
     <script src="{{ asset('assets/js/toast-error.js') }}"></script>
-    @yield('script')
 	<script>
 	// 	var options = {
 	//   debug: 'info',
@@ -213,6 +227,6 @@
 	} );
 
 	</script>
-
+	@yield('script')
 </body>
 </html>

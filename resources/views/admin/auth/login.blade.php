@@ -12,13 +12,13 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="{{ asset('assets/backend/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/backend/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assetss/backend/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assetss/backend/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{ asset('assets/backend/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assetss/backend/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('assets/backend/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('assetss/backend/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -85,9 +85,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script src="{{ asset('assets/backend/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/backend/validation/login_validation.js') }}"></script>
+    <script src="{{ asset('assetss/backend/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assetss/backend/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assetss/backend/validation/login_validation.js') }}"></script>
 	<script>
         @if($errors->any())
             var errors = @json($errors->all());

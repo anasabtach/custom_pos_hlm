@@ -66,6 +66,38 @@
                                             </div>
                                         </div>
 
+                                        <!-- Product Table Section -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card card-custom gutter-b bg-white border-0">
+                                                    <div class="card-body">
+                                                        <div>
+                                                            <table class="table align-items-center justify-content-center mb-0 text-center" id="product_table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center">Category</th>
+                                                                        <th class="text-center">Product Name</th>
+                                                                        <th class="text-center">Cost</th>
+                                                                        <th class="text-center">Price</th>
+                                                                        <th class="text-center">Stock</th>
+                                                                        <th class="text-center">Qty</th>
+                                                                        <th class="text-center">Expiration</th>
+                                                                        <th class="text-center">Subtotal</th>
+                                                                        <th class="no-sort text-end">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if (isset($is_update))
+                                                                        @include('admin.purchase.edit_item_component')
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- Submit Button -->
                                         <div class="row">
                                             <div class="col-md-12">
@@ -80,40 +112,11 @@
                         </form>
                     </div>
                 </div>
-
-                <div class="col-12 px-4">
-                    <div class="card card-custom gutter-b bg-white border-0">
-                        <div class="card-body">
-                            <div>
-                                <table class="table align-items-center justify-content-center mb-0 text-center" id="product_table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Category</th>
-                                            <th class="text-center">Product Name</th>
-                                            <th class="text-center">Cost</th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Stock</th>
-                                            <th class="text-center">Qty</th>
-                                            <th class="text-center">Expiration</th>
-                                            <th class="text-center">Subtotal</th>
-                                            <th class="no-sort text-end">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (isset($is_update))
-                                            @include('admin.purchase.edit_item_component')
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div> <!-- End of col-lg-12 col-xl-12 -->
         </div> <!-- End of row -->
     </div> <!-- End of container-fluid -->
 </div> <!-- End of d-flex flex-column-fluid -->
+
 
 @endsection
 

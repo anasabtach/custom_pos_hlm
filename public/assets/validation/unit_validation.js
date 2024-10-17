@@ -1,0 +1,12 @@
+$('#unit_form').validate({
+    rules:{
+        unit_name:{
+            required:true,
+            maxlength:20
+        },
+        short_hand:{
+            required:true,
+            maxlength:10
+        },
+    }
+});

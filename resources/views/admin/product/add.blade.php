@@ -14,7 +14,7 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" id="product_form">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -30,7 +30,7 @@
                                             </select>
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Units</label>
                                         <fieldset class="form-group mb-3">
                                             <select class="form-control round bg-transparent text-dark" name="unit_id" id="unit_id">
@@ -54,7 +54,7 @@
                                                    value="{{ isset($is_update) ? $edit_product->name : old('name') }}" name="product_name">
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>SKU</label>
                                         <fieldset class="form-group mb-3">
                                             <input type="text" placeholder="Enter SKU"
@@ -65,7 +65,7 @@
                                 </div>
                             
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Price</label>
                                         <fieldset class="form-group mb-3">
                                             <input type="number" placeholder="Enter price"
@@ -73,31 +73,31 @@
                                                    value="{{ isset($is_update) ? $edit_product->price : old('price') }}" name="price">
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Stock</label>
                                         <fieldset class="form-group mb-3">
                                             <input type="number" placeholder="Enter stock quantity"
                                                    class="form-control round bg-transparent text-dark"
-                                                   value="{{ isset($is_update) ? $edit_product->stock : old('stock') }}" name="stock">
+                                                   value="{{ isset($is_update) ? $edit_product->stock : old('stock') }}" name="stock" id="stock">
                                         </fieldset>
                                     </div>
                                 </div>
                             
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Stock Alert</label>
                                         <fieldset class="form-group mb-3">
                                             <input type="number" placeholder="Enter stock alert"
                                                    class="form-control round bg-transparent text-dark"
-                                                   value="{{ isset($is_update) ? $edit_product->stock_alert : old('stock_alert') }}" name="stock_alert">
+                                                   value="{{ isset($is_update) ? $edit_product->stock_alert : old('stock_alert') }}" name="stock_alert" id="stock_alert">
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Expiration</label>
                                         <fieldset class="form-group mb-3">
                                             <input type="date" placeholder="Expiration date"
                                                    class="form-control round bg-transparent text-dark"
-                                                   value="{{ isset($is_update) ? $edit_product->expiration : old('expiration') }}" name="expiration">
+                                                   value="{{ isset($is_update) ? $edit_product->expiration : old('expiration') }}" name="expiration" id="expiration">
                                         </fieldset>
                                     </div>
                                 </div>
@@ -147,6 +147,7 @@
         </div>
 @endsection
 @section('script')
+<script src="{{ asset('assets/validation/product_validation.js') }}"></script>
 <script>
 const productVariations = `
     <div class="variation-row p-3 mb-4 bg-light border rounded">
@@ -161,7 +162,7 @@ const productVariations = `
                     <label for="sku" class="form-control-label">SKU</label>
                     <input type="text" placeholder="Enter SKU no"
                         class="form-control shadow-sm rounded"
-                        name="variation_sku[]">
+                        name="variation_sku[]" id="variation_sku">
                 </div>
             </div>
             <div class="col-md-4">
@@ -169,7 +170,7 @@ const productVariations = `
                     <label for="price" class="form-control-label">Price</label>
                     <input type="number" placeholder="Enter price"
                         class="form-control shadow-sm rounded"
-                        name="variation_price[]">
+                        name="variation_price[]" id="variation_price">
                 </div>
             </div>
             <div class="col-md-4">
@@ -177,7 +178,7 @@ const productVariations = `
                     <label for="stock" class="form-control-label">Stock</label>
                     <input type="number" placeholder="Enter stock no"
                         class="form-control shadow-sm rounded"
-                        name="variation_stock[]">
+                        name="variation_stock[]" id="variation_stock">
                 </div>
             </div>
         </div>
@@ -187,14 +188,14 @@ const productVariations = `
                     <label for="stock_alert" class="form-control-label">Stock Alert</label>
                     <input type="number" placeholder="Enter stock alert"
                         class="form-control shadow-sm rounded"
-                        name="variation_stock_alert[]">
+                        name="variation_stock_alert[]" id="variation_stock_alert">
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <div class="form-group">
                     <label for="unit" class="form-control-label">Units</label>
                     <select class="form-control shadow-sm rounded"
-                        name="variation_unit_id[]">
+                        name="variation_unit_id[]" id="variation_unit_id">
                         <option value="">Select unit</option>
                         @foreach ($units as $unit)
                             <option value="{{ $unit->hashid }}">{{ $unit->name }}</option>
@@ -206,7 +207,7 @@ const productVariations = `
                 <div class="form-group">
                     <label for="expiration" class="form-control-label">Expiration</label>
                     <input type="date" class="form-control shadow-sm rounded"
-                        name="variation_expiration[]">
+                        name="variation_expiration[]" id="variation_expiration">
                 </div>
             </div>
         </div>
@@ -219,8 +220,10 @@ const productVariations = `
         if (val == 1) {
             $('#variations').html('');
             $('#variations').append(productVariations);
+            $('.hide_when_variation_is_set').addClass('d-none');
         }else{
             $('#variations').html('');
+            $('.hide_when_variation_is_set').removeClass('d-none');
         }
     });
 

@@ -84,8 +84,8 @@ Route::name('admin.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
-            Route::get('/edit/{supplier_id}', 'edit')->name('edit');
-            Route::get('/delete/{supplier_id}', 'delete')->name('delete');
+            Route::get('/edit/{customer_id}', 'edit')->name('edit');
+            Route::get('/delete/{customer_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
         });
 

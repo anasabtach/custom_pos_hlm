@@ -12,7 +12,7 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.categories.store') }}" method="POST">
+                            <form action="{{ route('admin.categories.store') }}" method="POST" id="category_form">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-md-12">
@@ -21,7 +21,7 @@
                                             <input type="text" placeholder="Enter category name"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_category->name : old('category_name') }}"
-                                                name="category_name">
+                                                name="category_name" id="category_name">
 
                                         </fieldset>
                                     </div>
@@ -182,4 +182,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/validation/categories_validation.js') }}"></script>
 @endsection

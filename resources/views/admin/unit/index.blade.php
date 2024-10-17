@@ -13,19 +13,19 @@
                             </h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.units.store') }}" method="POST">
+                            <form action="{{ route('admin.units.store') }}" method="POST" id="unit_form">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                         <label>Unit Name</label>
                                         <fieldset class="form-group mb-3">
-                                              <input type="text" placeholder="Enter unit name" class="form-control round bg-transparent text-dark" value="{{ (isset($is_update)) ? $edit_unit->name : old('unit_name') }}" name="unit_name"> 
+                                              <input type="text" placeholder="Enter unit name" class="form-control round bg-transparent text-dark" value="{{ (isset($is_update)) ? $edit_unit->name : old('unit_name') }}" name="unit_name" id="unit_name"> 
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Short Hand</label>
                                         <fieldset class="form-group mb-3">
-                                              <input type="text" placeholder="Enter short hand" class="form-control round bg-transparent text-dark" value="{{ (isset($is_update)) ? $edit_unit->short_hand : old('short_hand') }}" name="short_hand"> 
+                                              <input type="text" placeholder="Enter short hand" class="form-control round bg-transparent text-dark" value="{{ (isset($is_update)) ? $edit_unit->short_hand : old('short_hand') }}" name="short_hand" id="short_hand"> 
                                         </fieldset>
                                     </div>
                                 </div>
@@ -190,5 +190,6 @@
         </div>
     </div>
 @endsection
-
+@section('script')
+    <script src="{{ asset('assets/validation/unit_validation.js') }}"></script>
 @endsection

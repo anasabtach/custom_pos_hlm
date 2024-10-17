@@ -341,7 +341,7 @@
 
         <div class="dropdown-menu dropdown-menu-right" style="min-width: 150px;">
 
-          <a href="#" class="dropdown-item">
+          <a href="{{ route('admin.profile') }}" class="dropdown-item">
             <span class="svg-icon svg-icon-xl svg-icon-primary me-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -354,7 +354,7 @@
             Edit Profile
           </a>
 
-          <a href="#" class="dropdown-item">
+          <a href="{{ route('admin.logout') }}" class="dropdown-item">
             <span class="svg-icon svg-icon-xl svg-icon-primary me-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

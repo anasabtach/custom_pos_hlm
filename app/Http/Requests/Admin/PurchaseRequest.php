@@ -24,7 +24,7 @@ class PurchaseRequest extends FormRequest
         return [
             'date'                      => ['required', 'date'],
             'supplier_id'               => ['required', 'string', 'max:50'],
-            'product_id'                => ['required','array'],
+            'product_id'                => ['array'],
             'product_id.*'              => ['required', 'string'],
             'product_variation_id'      => ['array'],
             'product_variation_id.*'    => ['nullable', 'string'],

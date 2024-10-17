@@ -612,16 +612,16 @@ jQuery('.kt_notes_panel_close').on("click", function(e){
 
   // validation for form fields
 
-  jQuery( "#myform" ).validate({
-    rules: {
-      email: {
-        required: true
-      },
-      password : {
-        required: true
-      }
-    }
-  });
+  // jQuery( "#myform" ).validate({
+  //   rules: {
+  //     email: {
+  //       required: true
+  //     },
+  //     password : {
+  //       required: true
+  //     }
+  //   }
+  // });
   
 });
 // jQuery(document).on('click',function() {

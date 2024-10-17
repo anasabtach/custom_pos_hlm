@@ -112,6 +112,11 @@
                                                                     <div class="dropdown-menu dropdown-menu-right"
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                        <a href="{{ route('admin.purchases.details', ['purchase_id' => $purchase->hashid]) }}"
+                                                                            class="dropdown-item click-edit"
+                                                                            id="click-edit2" data-bs-toggle="tooltip"
+                                                                            title="" data-bs-placement="right"
+                                                                            data-original-title="Check out more demos">Details</a>
                                                                         <a href="{{ route('admin.purchases.edit', ['purchase_id' => $purchase->hashid]) }}"
                                                                             class="dropdown-item click-edit"
                                                                             id="click-edit2" data-bs-toggle="tooltip"

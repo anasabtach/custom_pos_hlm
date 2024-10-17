@@ -11,7 +11,14 @@ use Livewire\Attributes\Computed;
 class PosComponent extends Component
 {
     public $category_id;  // Holds the selected category ID
+    public $customer_id;
     public $items = [];
+    public $recieved_amount = '';
+    public $return_amount = 0;
+    
+    public $total = [
+        'total' => 0
+    ];
     // Initialize component (mount lifecycle hook)
     public function mount()
     {
@@ -63,7 +70,37 @@ class PosComponent extends Component
                 'quantity'     => 1,
             ];
         }
+        $this->calculateTotal();
+    }
 
+    public function removeItem($sku){//remove item
+        unset($this->items[$sku]);
+        $this->calculateTotal();
+    }
+
+    public function calculateTotal(){
+        $total = 0;
+        if(!empty($this->items)){
+            foreach($this->items AS $item){
+                $total += $item['price'] * $item['quantity'];
+            }
+        }
+        $this->total['total'] = $total;
+    }
+
+    // public function setCustomer($customer_id){
+    //     $this->customer_id = $customer_id;
+    // }
+
+    public function calculateReturnAmount(){
+        if(!empty($this->items) && !empty($this->received_amount)){
+            dd('done');
+        }
+    }
+
+    public function updateRecievedAmount($value){
+        $this->recieved_amount = $value;
+        $this->calculateReturnAmount();
     }
 
     // Render method to return the view

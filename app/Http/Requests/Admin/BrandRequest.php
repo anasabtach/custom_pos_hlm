@@ -23,7 +23,7 @@ class BrandRequest extends FormRequest
     public function rules(): array
     {   
         return [
-            'brand_name'          => ['required', 'string', 'max:50', Rule::unique('brands', 'name')->ignore((isset($this->brand_id) ? hashid_decode($this->brand_id) : ''))],
+            'brand_name' => ['required', 'string', 'max:50', Rule::unique('brands', 'name')->ignore((isset($this->brand_id) ? hashid_decode($this->brand_id) : ''))],
             'brand_id'   => ['nullable', 'string',' max:50']
         ];
     }
