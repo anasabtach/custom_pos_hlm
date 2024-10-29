@@ -2,9 +2,13 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CommonHelper;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Sale;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Attributes\Computed;
 
@@ -14,7 +18,7 @@ class PosComponent extends Component
     public $customer_id;
     public $items = [];
     public $recieved_amount = '';
-    public $return_amount = 0;
+    public $return_amount = null;
     
     public $total = [
         'total' => 0
@@ -30,6 +34,11 @@ class PosComponent extends Component
     public function categories()
     {
         return Category::latest()->get();
+    }
+
+    #[Computed]
+    public function recentBills(){
+        return Sale::with(['customer'])->latest()->whereDate('created_at', now())->latest()->get();
     }
 
     // Computed property for fetching products based on selected category
@@ -56,7 +65,7 @@ class PosComponent extends Component
         $this->category_id = $category_id;  // Update the selected category ID
     }
 
-    public function addItems($product_name, $sku, $product_id, $stock, $price, $is_variaton=0){
+    public function addItems($product_name, $sku, $product_id, $stock, $price, $is_variaton=0, $product_variation_id=null){
         if (array_key_exists($sku, $this->items)) {
                 $this->items[$sku]['quantity'] += 1;
         } else {
@@ -64,13 +73,16 @@ class PosComponent extends Component
                 'product_name' => $product_name,
                 'sku'          => $sku,
                 'product_id'   => $product_id,
+                'product_variation_id'   => $product_variation_id,
                 'stock'        => $stock,
                 'is_variaton'  => $is_variaton,
-                'price'         => $price,
+                'price'         =>$price,
                 'quantity'     => 1,
             ];
         }
         $this->calculateTotal();
+        $this->return_amount = null;
+        $this->recieved_amount = null;
     }
 
     public function removeItem($sku){//remove item
@@ -93,8 +105,8 @@ class PosComponent extends Component
     // }
 
     public function calculateReturnAmount(){
-        if(!empty($this->items) && !empty($this->received_amount)){
-            dd('done');
+        if(!empty($this->items) && !empty($this->recieved_amount)){
+            $this->return_amount = $this->recieved_amount - $this->total['total'];
         }
     }
 
@@ -102,6 +114,60 @@ class PosComponent extends Component
         $this->recieved_amount = $value;
         $this->calculateReturnAmount();
     }
+
+    public function generateBill(){
+        if($this->customer_id){
+            try{
+                DB::transaction(function(){
+                    $sale = Sale::create($this->saleArr());
+                    $sale->saleItems()->createMany($this->saleItemArr());
+                    $this->resetProperties();
+                    $this->dispatch('bill-generated', success:true, sale_id:$sale->hashid);
+                    session()->forget('select_customer_error');
+                });
+            }catch(Exception $e){
+                $this->dispatch('bill-generated', success:false,);
+            }
+        }
+        session()->flash('select_customer_error', 'Please select the customer.');
+    }
+
+    public function saleArr(){
+        return [
+            'admin_id'      => auth()->id(),
+            'customer_id'   => hashid_decode($this->customer_id),
+            'sale_id'       => CommonHelper::generateId('sales', 'sale_id'),
+            'received_amount' => $this->recieved_amount,
+            'discount'        => 0,
+            'return_amount'   => $this->return_amount,
+            'subtotal'        => 0,
+            'total'           => $this->total['total'],
+        ];
+    }   
+
+    public function saleItemArr(){
+        $arr = [];
+        foreach($this->items AS $item){
+            $arr [] = [
+                'product_id'              => hashid_decode($item['product_id']),
+                'product_variation_id'    => ($item['is_variaton']) ? hashid_decode($item['product_variation_id']) : null,
+                'price'                   => $item['price'],
+                'quantity'                => $item['quantity'],
+                'total'                   => $item['quantity'] * $item['price'],
+            ];
+        }
+        return $arr;
+    }
+    
+    public function resetProperties(){
+        $this->reset('category_id');
+        $this->reset('customer_id');
+        $this->reset('items');
+        $this->reset('recieved_amount');
+        $this->reset('return_amount');
+        $this->reset('total');
+    }
+    
 
     // Render method to return the view
     public function render()

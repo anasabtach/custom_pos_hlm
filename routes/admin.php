@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
+use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UpdateProfileController;
@@ -111,6 +112,12 @@ Route::name('admin.')->group(function(){
 
         Route::prefix('/pos')->name('pos.')->controller(PosController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+            Route::get('/bill/{sale_id}', 'generateBill')->name('bill');
+        });
+
+        Route::prefix('sale')->name('sales.')->controller(SaleController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/details/{id}', 'details')->name('details');
         });
     });
 });

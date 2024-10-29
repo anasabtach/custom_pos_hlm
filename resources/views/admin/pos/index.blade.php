@@ -20,8 +20,20 @@
          type="text/css" />
       <link href="{{ asset('assets/api/datatable/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
       <link rel="shortcut icon" href="assets/media/logos/favicon.html" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
       @livewireStyles
    </head>
+   <style>
+      .table-contentpos .table-datapos1 {
+    padding: 1.25rem;
+    padding-top: 0;
+    height: 153px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+      </style>
    <!--end::Head-->
    <!--begin::Body-->
    <body id="tc_body" class="header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-fixed">
@@ -40,7 +52,7 @@
                      <h3 class="card-label mb-0 font-weight-bold text-primary">WELCOME
                      </h3>
                      <h3 class="card-label mb-0 ">
-                        Smith Joones
+                        
                      </h3>
                   </div>
                </div>
@@ -773,6 +785,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
          integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
+
       {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
       {{-- <script src="{{ asset('assets/js/plugin.bundle.min.js') }}"></script> --}}
       <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>

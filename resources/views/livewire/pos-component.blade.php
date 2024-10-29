@@ -20,10 +20,10 @@
                             @foreach($this->products as $product)
                                 @if($product->has_variation)
                                     @foreach($product->variations as $variation)
-                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name."|".$variation->unit->name }}','{{ $variation->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','1')">
+                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name."|".$variation->unit->name }}', '{{ $variation->sku }}', '{{ hashid_encode($variation->product_id) }}', '{{ $variation->stock }}', '{{ $variation->price }}', '1', '{{ $variation->hashid }}')">
                                         <div class="productCard">
                                                 <div class="productThumb">
-                                                    <img class="img-fluid" src="{{ asset('assets/images/carousel/element-banner2-right.jpg') }}" alt="ix">
+                                                    <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
                                                 </div>
                                                 <div class="productContent">
                                                     <a href="#">
@@ -34,10 +34,10 @@
                                         </div>
                                     @endforeach
                                 @else
-                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name }}','{{ $product->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','0')">
+                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name }}','{{ $product->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','0',)">
                                         <div class="productCard">
                                             <div class="productThumb">
-                                                <img class="img-fluid" src="{{ asset('assets/images/carousel/element-banner2-right.jpg') }}" alt="ix">
+                                                <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
                                             </div>
                                             <div class="productContent">
                                                 <a href="#">
@@ -62,7 +62,6 @@
                                         Choose a Customer
                                     </label>
                                     <select class="arabic-select select-down" wire:model="customer_id">
-                                        <option value="">Select Customer</option>
                                         @foreach($this->customers as $customer)
                                             <option value="{{ $customer->hashid }}">{{ $customer->name }}</option>
                                         @endforeach
@@ -125,6 +124,56 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card card-custom gutter-b bg-white border-0 table-contentpos">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between colorfull-select">
+                                {{-- <div class="selectmain">
+                                    <label class="text-dark d-flex">
+                                        Choose a Customer
+                                    </label>
+                                    <select class="arabic-select select-down" wire:model="customer_id">
+                                        <!--[if BLOCK]><![endif]-->                                            <option value="rozl9M6Ggxvmq4ZjbGwJEbeNdDX21YnA5">Ifeoma Osborne</option>
+                                                                                    <option value="R7E5xpO8mY3BnokKreVdA4WNGqQa1M6e0">Anas Rajput</option>
+                                                                                    <option value="rYM246gW1p0xbRnw1MwZ83d7avElDB5Pm">Clinton Hodges</option>
+                                                                                    <option value="72Z1xlqnYOQmD5MwBgVWzJ83EAgy0vLbN">Macy Bonner</option>
+                                                                                    <option value="eZbBNxEYn92XMd8jZeKW63zP5R4O0aJmQ">Tasha Bender</option>
+                                                                                    <option value="WaDrl82BLz3qoXNwP8weAEvxQGd45bkMY">Quinn Garza</option>
+                                                                                    <option value="OAzYMGkbENrnp6RVN8jZ0BXWa54m8DlJv">walk in customer</option>
+                                        <!--[if ENDBLOCK]><![endif]-->
+                                    </select>
+                                </div> --}}
+                            </div>
+                        </div>
+                        <div class="table-datapos1">
+                            <div class="table-responsive" id="printableTable">
+                                <table id="orderTable" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Total</th>
+                                            <th>Date</th>
+                                            <th>View</th>
+                                            <th class="text-right no-sort"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($this->recentBills As $bill)
+                                            <tr>
+                                                <td>{{ $bill->sale_id }}</td>
+                                                <td>{{ $bill->customer->name }}</td>
+                                                <td>{{ $bill->total }}</td>
+                                                <td>{{ getCustomDate($bill->created_at) }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.pos.bill', ['sale_id'=>$bill->hashid]) }}" target="_blank">view</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,7 +209,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <form wire:submit.prevent="submitPayment">
+                    <form wire:submit.prevent="generateBill">
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <label class="text-body">Received Amount</label>
@@ -173,6 +222,11 @@
                                 </div>
                             </div>
                         </div>
+                        @if (session('select_customer_error'))
+                            <div class="alert alert-danger">
+                                {{ session('select_customer_error') }}
+                            </div>
+                        @endif
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <label class="text-body">Note (If any)</label>
@@ -183,8 +237,8 @@
                         </div>
                         <div class="form-group row justify-content-end mb-0">
                             <div class="col-md-6 text-end">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                                <button type="submit" class="btn btn-primary" {{ ((!($return_amount >= 0) || is_null($return_amount))) ? 'disabled' : '' }}>Pay</button>
+                                </div>
                         </div>
                     </form>
                 </div>
@@ -192,3 +246,24 @@
         </div>
     </div>
 </div>
+@script
+<script>
+    $wire.on('bill-generated', (event) => {
+        if(event.success){
+            toastr.success('Bill generated successfully', 'Success', {
+                positionClass: 'toast-top-right',
+                timeOut: 3500
+            });
+            $('#payment-popup').modal('hide');
+            let route = "{{ route('admin.pos.bill', ':id') }}";
+            route = route.replace(':id', event.sale_id);            
+            window.open(route, "_blank");
+        }else{
+            toastr.error('Some error occured can not generate the bill', 'Success', {
+                positionClass: 'toast-top-right',
+                timeOut: 3500
+            });
+        }
+    });
+</script>
+@endscript

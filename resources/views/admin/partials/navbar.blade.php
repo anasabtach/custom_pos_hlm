@@ -33,7 +33,7 @@
     <!--begin::Topbar-->
     <div class="topbar">
       <div class="posicon d-lg-block d-none">
-        <a href="pos.html" class="btn btn-primary white me-2">POS</a>
+        <a href="{{ route('admin.pos.index') }}" class="btn btn-primary white me-2">POS</a>
       </div>
       <div class="topbar-item">
         <div class="quick-search quick-search-inline ml-20 me-1 w-300px"

@@ -13,5 +13,7 @@ class PosService
         $this->repository = $repository;
     }
 
-    // Your service methods here
+    public function bill($sale_id){
+        return $this->repository->bill($sale_id);
+    }
 }

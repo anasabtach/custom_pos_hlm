@@ -11,4 +11,12 @@ class Sale extends Model
     use HasFactory,HashidTrait;
 
     protected $guarded = [];
+
+    public function saleItems(){
+        return $this->hasMany(SaleItem::class, 'sale_id', 'id');
+    }
+
+    public function customer(){
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
 }
