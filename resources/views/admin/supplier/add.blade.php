@@ -19,7 +19,7 @@
                                     <label>Name</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="text" placeholder="Enter unit name" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_unit->name : old('name') }}" name="name" id="name">
+                                               value="{{ isset($is_update) ? $edit_supplier->name : old('name') }}" name="name" id="name">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6">

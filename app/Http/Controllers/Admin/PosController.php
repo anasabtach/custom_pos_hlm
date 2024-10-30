@@ -26,7 +26,6 @@ class PosController extends Controller
             'title' => 'Bill',
             'bill_data'  => $this->service->bill($id),
         ];
-        // dd($data['bill_data']->saleItems[0]->product);
         return view('admin.pos.bill')->with($data);
     }
 }

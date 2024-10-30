@@ -19,6 +19,7 @@ class PosComponent extends Component
     public $items = [];
     public $recieved_amount = '';
     public $return_amount = null;
+    public $edit_bill     = null;
     
     public $total = [
         'total' => 0
@@ -27,6 +28,12 @@ class PosComponent extends Component
     public function mount()
     {
         // Initialize anything here if necessary, like fetching initial data.
+    }
+
+    public function updatedCustomerId($value)
+    {
+        session()->forget('select_customer_error');
+
     }
 
     // Computed property for fetching all categories
@@ -38,7 +45,8 @@ class PosComponent extends Component
 
     #[Computed]
     public function recentBills(){
-        return Sale::with(['customer'])->latest()->whereDate('created_at', now())->latest()->get();
+//        return Sale::with(['customer'])->latest()->get();
+        return Sale::with(['customer'])->whereDate('created_at', now())->latest()->get();
     }
 
     // Computed property for fetching products based on selected category
@@ -85,6 +93,11 @@ class PosComponent extends Component
         $this->recieved_amount = null;
     }
 
+    public function updaeItemQuantity($sku, $value){
+        $this->items[$sku]['quantity'] = $value;
+        $this->calculateTotal();
+    }
+
     public function removeItem($sku){//remove item
         unset($this->items[$sku]);
         $this->calculateTotal();
@@ -119,7 +132,13 @@ class PosComponent extends Component
         if($this->customer_id){
             try{
                 DB::transaction(function(){
-                    $sale = Sale::create($this->saleArr());
+                    if(!is_null($this->edit_bill)){
+                        $sale = Sale::findOrFail(hashid_decode($this->edit_bill));
+                        $sale->saleItems()->delete();
+                        $sale->update(($this->saleArr()));
+                    }else{
+                        $sale = Sale::create($this->saleArr());
+                    }
                     $sale->saleItems()->createMany($this->saleItemArr());
                     $this->resetProperties();
                     $this->dispatch('bill-generated', success:true, sale_id:$sale->hashid);
@@ -128,22 +147,28 @@ class PosComponent extends Component
             }catch(Exception $e){
                 $this->dispatch('bill-generated', success:false,);
             }
+        }else{
+            session()->flash('select_customer_error', 'Please select the customer.');
         }
-        session()->flash('select_customer_error', 'Please select the customer.');
     }
 
-    public function saleArr(){
-        return [
-            'admin_id'      => auth()->id(),
-            'customer_id'   => hashid_decode($this->customer_id),
-            'sale_id'       => CommonHelper::generateId('sales', 'sale_id'),
+    public function saleArr() {
+        $saleData = [
+            'admin_id'        => auth()->id(),
+            'customer_id'     => hashid_decode($this->customer_id),
             'received_amount' => $this->recieved_amount,
             'discount'        => 0,
             'return_amount'   => $this->return_amount,
             'subtotal'        => 0,
             'total'           => $this->total['total'],
         ];
-    }   
+    
+        if (is_null($this->edit_bill)) {
+            $saleData['sale_id'] = CommonHelper::generateId('sales', 'sale_id');
+        }    
+        return $saleData;
+    }
+    
 
     public function saleItemArr(){
         $arr = [];
@@ -166,6 +191,45 @@ class PosComponent extends Component
         $this->reset('recieved_amount');
         $this->reset('return_amount');
         $this->reset('total');
+    }
+
+    public function editBill($bill_id){
+        $sale = Sale::with(['saleItems.product', 'saleItems.productVariation.unit'])->findOrFail(hashid_decode($bill_id));
+        foreach ($sale->saleItems as $sale_item) {
+            $product = $sale_item->product_variation_id ? $sale_item->productVariation : $sale_item->product;
+            
+            $product_name = $sale_item->product->name;
+            if ($sale_item->product_variation_id) {
+                $product_name .= " | {$product->unit->name}";
+            }
+            $sku = $product->sku;
+            $product_id             = hashid_encode($sale_item->product_id);
+            $stock                  = $product->stock;
+            $price                  = $product->price;
+            $is_variation           = $sale_item->product_variation_id ? 1 : 0;
+            $product_variation_id   = $is_variation ? hashid_encode($sale_item->product_variation_id) : null;
+            $quantity               = $sale_item->quantity;
+        
+            $this->editItemsList($product_name, $sku, $product_id, $stock, $price, $is_variation, $quantity, $product_variation_id);
+        }
+        $this->return_amount    = $sale->return_amount;
+        $this->recieved_amount  = $sale->received_amount;
+        $this->total['total']   = $sale->total;
+        $this->customer_id      = hashid_encode($sale->customer_id);
+        $this->edit_bill = $bill_id; 
+    }
+
+    public function editItemsList($product_name, $sku, $product_id, $stock, $price, $is_variaton=0, $quantity, $product_variation_id=null){
+            $this->items[$sku] = [
+                'product_name' => $product_name,
+                'sku'          => $sku,
+                'product_id'   => $product_id,
+                'product_variation_id'   => $product_variation_id,
+                'stock'        => $stock,
+                'is_variaton'  => $is_variaton,
+                'price'         =>$price,
+                'quantity'     => $quantity,
+            ];
     }
     
 

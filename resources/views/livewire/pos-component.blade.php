@@ -61,7 +61,8 @@
                                     <label class="text-dark d-flex">
                                         Choose a Customer
                                     </label>
-                                    <select class="arabic-select select-down" wire:model="customer_id">
+                                    <select class="arabic-select select-down" wire:model.live="customer_id">
+                                        <option value="#">Select Customer</option>
                                         @foreach($this->customers as $customer)
                                             <option value="{{ $customer->hashid }}">{{ $customer->name }}</option>
                                         @endforeach
@@ -85,7 +86,7 @@
                                             <tr>
                                                 <td>{{ $item['product_name'] }}</td>
                                                 <td>
-                                                    <input type="number" value="{{ $item['quantity'] }}" class="form-control border-dark w-100px" id="basicInput2" placeholder="" max="{{ $item['stock'] }}">
+                                                    <input type="number" value="{{ $item['quantity'] }}"  class="form-control border-dark w-100px" id="basicInput2" placeholder="" max="{{ $item['stock'] }}" wire:input="updaeItemQuantity('{{ $item['sku'] }}', $event.target.value)">
                                                 </td>
                                                 <td>{{ $item['price'] }}</td>
                                                 <td>
@@ -154,6 +155,7 @@
                                             <th>Total</th>
                                             <th>Date</th>
                                             <th>View</th>
+                                            <th>Edit</th>
                                             <th class="text-right no-sort"></th>
                                         </tr>
                                     </thead>
@@ -166,6 +168,9 @@
                                                 <td>{{ getCustomDate($bill->created_at) }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.pos.bill', ['sale_id'=>$bill->hashid]) }}" target="_blank">view</a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)" wire:click="editBill('{{$bill->hashid }}')">Edit</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -214,7 +219,7 @@
                             <div class="col-md-12">
                                 <label class="text-body">Received Amount</label>
                                 <fieldset class="form-group mb-3">
-                                    <input type="number" name="number" class="form-control" placeholder="Enter Amount" wire:model="recieved_amount" wire:keyup="updateRecievedAmount($event.target.value)">
+                                    <input type="number" name="number" class="form-control" placeholder="Enter Amount" wire:model.live="recieved_amount" wire:keyup="updateRecievedAmount($event.target.value)">
                                 </fieldset>
                                 <div class="p-3 bg-light-dark d-flex justify-content-between border-bottom">
                                     <h5 class="font-size-bold mb-0">Amount to Return :</h5>
