@@ -2,85 +2,106 @@
 @section('style')
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 <link href="{{ asset('assets/admin/css/menu.css') }}" rel="stylesheet">
-
 @endsection
+
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="white-box">
-                <form action="{{ route('admin.staffs.store') }}" class="form-horizontal form-material validation" method="POST" id="profile_form" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">First Name</label>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Enter first name" class="form-control form-control-line" value="{{ @$edit_staff->first_name }}" name="first_name"> 
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">Last Name</label>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Enter last name" class="form-control form-control-line" value="{{ @$edit_staff->last_name }}" name="last_name"> 
-                            </div>
-                        </div>
+<div class="d-flex flex-column-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 px-4">
+                <div class="card card-custom gutter-b bg-white border-0">
+                    <div class="card-header border-0 align-items-center">
+                        <h3 class="card-label mb-0 font-weight-bold text-body">
+                            {{ isset($edit_staff) ? 'Update' : 'Add' }} Staff
+                        </h3>
                     </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">Email</label>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Enter mail" class="form-control form-control-line" value="{{ @$edit_staff->email }}" name="email"> 
+                    <div class="card-body">
+                        <form action="{{ route('admin.staffs.store') }}" class="form-horizontal form-material validation" method="POST" id="profile_form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <!-- First Name -->
+                                <div class="col-md-6">
+                                    <label for="first_name" class="form-control-label">First Name</label>
+                                    <input type="text" class="form-control round bg-transparent text-dark" placeholder="Enter first name" name="first_name" value="{{ @$edit_staff->first_name }}">
+                                </div>
+                                
+                                <!-- Last Name -->
+                                <div class="col-md-6">
+                                    <label for="last_name" class="form-control-label">Last Name</label>
+                                    <input type="text" class="form-control round bg-transparent text-dark" placeholder="Enter last name" name="last_name" value="{{ @$edit_staff->last_name }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">Role</label>
-                            <div class="col-md-12">
-                                <select class="form-control" name="user_type" id="user_type">
-                                    <option value="">Select Role</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}" @selected(@$edit_staff->user_type == $role->name)>{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
+                            
+                            <div class="row">
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label for="email" class="form-control-label">Email</label>
+                                    <input type="text" class="form-control round bg-transparent text-dark" placeholder="Enter email" name="email" value="{{ @$edit_staff->email }}">
+                                </div>
+                                
+                                <!-- Role -->
+                                <div class="col-md-6">
+                                    <label for="user_type" class="form-control-label">Role</label>
+                                    <select class="form-control round bg-transparent text-dark" name="user_type" id="user_type">
+                                        <option value="">Select Role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}" @selected(@$edit_staff->user_type == $role->name)>{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">Password</label>
-                            <div class="col-md-12">
-                                <input type="password" placeholder="Enter password" class="form-control form-control-line" name="password" id="password"> 
+                            
+                            <div class="row">
+                                <!-- Password -->
+                                <div class="col-md-6">
+                                    <label for="password" class="form-control-label">Password</label>
+                                    <input type="password" class="form-control round bg-transparent text-dark" placeholder="Enter password" name="password" id="password">
+                                </div>
+                                
+                                <!-- Confirm Password -->
+                                <div class="col-md-6">
+                                    <label for="password_confirmation" class="form-control-label">Confirm Password</label>
+                                    <input type="password" class="form-control round bg-transparent text-dark" placeholder="Enter confirm password" name="password_confirmation">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="col-md-12">Confirm Password</label>
-                            <div class="col-md-12">
-                                <input type="password" placeholder="Enter confirm password" class="form-control form-control-line" name="password_confirmation"> 
+                            
+                            <div class="row">
+                                <!-- Profile Image -->
+                                <div class="col-md-12">
+                                    @include('admin.components.single_image', [
+                                        'id'=> 'profile_images', 
+                                        'preview'=>'preview', 
+                                        'name'=>'profile_image', 
+                                        'is_update'=>true, 
+                                        'image'=>getImage(@$edit_staff->profileImage->filename ?? null)
+                                    ])
+                                </div>
                             </div>
-                        </div>
+                            
+                            <div class="row mt-5">
+                                <!-- Submit Button -->
+                                <div class="col-md-12">
+                                    <input type="hidden" name="staff_id" value="{{ @$edit_staff->hashid }}">
+                                    <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($edit_staff) ? 'Update' : 'Add' }}">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row">
-                        @include('admin.components.single_image', ['id'=> 'profile_images', 'preview'=>'preview', 'name'=>'profile_image', 'is_update'=>true, 'image'=>getImage(@$edit_staff->profileImage->thumbnail ?? null)])
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-md-12">
-                            <input type="hidden" name="staff_id" value="{{ @$edit_staff->hashid }}">
-                            @include('admin.components.button', ['class'=> 'btn-success', 'type'=>'submit', 'name'=>'Update'])
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                </div>
+            </div> <!-- End of col-lg-12 col-xl-12 -->
+        </div> <!-- End of row -->
+    </div> <!-- End of container-fluid -->
+</div> <!-- End of d-flex flex-column-fluid -->
 @endsection
+
 @section('script')
-    <script>
-        let is_edit    = "{{ (isset($is_edit)) ? true : false }}";
-    </script>
-    <script src="{{ asset('assets/admin/validation/staff.js') }}"></script>
-    <script>
-        // setTimeout(function() {
-        //     $(".preloader").show();
-        // }, 2000); // 2000 milliseconds = 2 seconds
-    </script>
+<script>
+    let is_edit = "{{ isset($is_edit) ? true : false }}";
+</script>
+<script src="{{ asset('assets/admin/validation/staff.js') }}"></script>
+<script>
+    // setTimeout(function() {
+    //     $(".preloader").show();
+    // }, 2000); // 2000 milliseconds = 2 seconds
+</script>
 @endsection

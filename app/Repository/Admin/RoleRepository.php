@@ -47,8 +47,8 @@ class RoleRepository implements RoleInterface
         return $role->delete();
     }
 
-    public function updateStaffPermissions(string $role, array $permissions):bool
+    public function updateStaffPermissions(string $role, array $permissions):bool|null
     {
-        return Admin::where('user_type',$role)->firstOrFail()->update(['user_permissions'=>$permissions]);
+        return Admin::where('user_type',$role)->first()?->update(['user_permissions'=>$permissions]);
     }
 }

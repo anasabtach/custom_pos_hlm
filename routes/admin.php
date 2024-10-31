@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SaleController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\UpdateProfileController;
@@ -118,6 +120,23 @@ Route::name('admin.')->group(function(){
         Route::prefix('sale')->name('sales.')->controller(SaleController::class)->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/details/{id}', 'details')->name('details');
+        });
+
+        //role routes
+        Route::prefix('roles')->name('roles.')->controller(RoleController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::get('/delete/{id}', 'delete')->name('delete');
+        });
+        //staff routes
+        Route::prefix('staff')->name('staffs.')->controller(StaffController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/add', 'add')->name('add');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::get('/delete/{id}', 'delete')->name('delete');
+            Route::get('/update-status/{id}/{status}', 'updateStatus')->name('update_status');
         });
     });
 });

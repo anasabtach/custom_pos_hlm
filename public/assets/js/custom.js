@@ -50,3 +50,5 @@ function singleImagePreview(inputId, previewImage){//image preview funciton
 // .catch(error => {
 //     console.error(error);
 // });
+
+$('.multiple_select_2').select2()

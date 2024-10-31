@@ -20,5 +20,5 @@ interface RoleInterface
 
     public function delete(string $id):bool;
 
-    public function updateStaffPermissions(string $role,array $permissions):bool;
+    public function updateStaffPermissions(string $role, array $permissions):bool|null;
 }

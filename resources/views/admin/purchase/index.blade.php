@@ -90,8 +90,6 @@
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ $purchase->batch_no }}</p></td>
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ $purchase->supplier->name }}</p></td>
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ getCustomDate($purchase->date) }}</p></td>
-                                                            
-
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
