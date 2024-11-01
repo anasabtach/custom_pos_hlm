@@ -10,7 +10,7 @@
                     <div class="card card-custom gutter-b bg-white border-0">
                         <div class="card-header border-0 align-items-center">
                             <h3 class="card-label mb-0 font-weight-bold text-body">
-                                {{ isset($is_update) ? 'Update' : 'Add' }} Supplier
+                                {{ isset($is_update) ? 'Update' : 'Add' }} Product
                             </h3>
                         </div>
                         <div class="card-body">

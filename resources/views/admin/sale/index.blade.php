@@ -33,11 +33,11 @@
                             <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
                                 <div class="card-header align-items-center  border-bottom-dark px-0">
                                     <div class="card-title mb-0">
-                                        <h3 class="card-label mb-0 font-weight-bold text-body">Purchases
+                                        <h3 class="card-label mb-0 font-weight-bold text-body">Sales
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
-                                        <a href="{{ route('admin.purchases.create') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
+                                        {{-- <a href="{{ route('admin.purchases.create') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                             title="" data-bs-placement="right"
                                             data-original-title="Check out more demos">
                                             <span
@@ -51,7 +51,7 @@
                                                 </svg>
                                             </span>
 
-                                        </a>
+                                        </a> --}}
                                         <a href="#" onclick="printDiv()" class="ms-2">
                                             <span
                                                 class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
