@@ -1,11 +1,33 @@
 @extends('admin.partials.master')
 @section('content')
-  @section('content')
+
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 px-4">
+                    <div class="row">
+                        <div class="col-lg-12 col-xl-12 px-4">
+                            <div class="card card-custom gutter-b bg-white border-0">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label>Customers</label>
+                                            <fieldset class="form-group mb-3">
+                                                <select name="" id="customerFilter" class="form-control">
+                                                    <option value="">All</option>
+                                                    @foreach($customers AS $customer)
+                                                        <option value="{{ $customer->name }}">{{ $customer->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-xl-12 px-4">
                             <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
@@ -72,7 +94,7 @@
                                 <div class="card-body">
                                     <div>
                                         <div class=" table-responsive" id="printableTable">
-                                            <table id="myTable" class="display ">
+                                            <table id="sale_table" class="display ">
 
                                                 <thead class="text-body">
                                                     <tr>
@@ -147,5 +169,16 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+    $(document).ready(function() {
 
+    var table = jQuery('#sale_table').DataTable();
+    jQuery('#customerFilter').on('change', function() {
+        var selectedCustomer = $(this).val();
+        table.column(2).search(selectedCustomer).draw();
+    });
+});
+
+</script>
 @endsection

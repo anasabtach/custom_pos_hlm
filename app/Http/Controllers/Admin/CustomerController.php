@@ -15,6 +15,7 @@ class CustomerController extends Controller
     }
 
     public function index(){
+        rights('view-customer');
         $data = array(
             'title'         => "Customers",
             'customers'     => $this->service->getCustomers(),
@@ -41,6 +42,7 @@ class CustomerController extends Controller
     }
 
     public function edit($customer_id){
+        rights('edit-customer');
         $data = array(
             'title'         => "Edit Customer",
             'countries'     => $this->service->getCountries(),
@@ -51,6 +53,7 @@ class CustomerController extends Controller
     }
 
     public function delete($customer_id){
+        rights('delete-customer');
         $this->service->delete($customer_id);
         return to_route('admin.customers.index')->with('success', __('error_messages.customer_delete_success'));
     }

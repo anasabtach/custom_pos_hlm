@@ -174,6 +174,22 @@ class PermissionSeeder extends Seeder
                 'name'  => 'delete-pos',
                 'slug'  => 'delete-pos'
             ],
+            [
+                'name'  => 'view-unit',
+                'slug'  => 'view-unit'
+            ],
+            [
+                'name'  => 'add-unit',
+                'slug'  => 'add-unit'
+            ],
+            [
+                'name'  => 'edit-unit',
+                'slug'  => 'edit-unit'
+            ],
+            [
+                'name'  => 'delete-unit',
+                'slug'  => 'delete-unit'
+            ],
         ]);
     }
 }

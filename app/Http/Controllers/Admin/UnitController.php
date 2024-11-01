@@ -15,6 +15,7 @@ class UnitController extends Controller
     }
 
     public function index(){
+        rights('view-unit');
         $data = array(
             'title'         => "Units",
             'units'    => $this->service->getUnits(),
@@ -33,6 +34,7 @@ class UnitController extends Controller
     }
 
     public function edit($unit_id){
+        rights('edit-unit');
         $data = array(
             'title'         => "Brands",
             'units'    => $this->service->getUnits(),
@@ -43,6 +45,7 @@ class UnitController extends Controller
     }
 
     public function delete($unit_id){
+        rights('delete-unit');
         $this->service->delete($unit_id);
         return to_route('admin.units.index')->with('success', __('error_messages.unit_delete_success'));
     }

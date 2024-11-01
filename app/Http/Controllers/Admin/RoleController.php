@@ -16,6 +16,7 @@ class RoleController extends Controller
     }
 
     public function index(){
+        rights('view-role');
         $data = [
             'title' => 'Roles',
             'roles' => $this->service->getRoles(),
@@ -38,6 +39,7 @@ class RoleController extends Controller
     }
 
     public function edit($id){
+        rights('edit-role');
         $data = [
             'title'         => 'Edit Role',
             'roles'         => $this->service->getRoles(),
@@ -49,6 +51,7 @@ class RoleController extends Controller
     }
 
     public function delete($id){
+        rights('delete-role');
         $this->service->delete($id);
         return to_route('admin.roles.index')->with('success', 'Role and its permissions deleted successfullys');
     }

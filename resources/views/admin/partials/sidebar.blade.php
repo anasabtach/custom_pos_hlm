@@ -18,6 +18,7 @@
                       <span class="nav-text">Dashboard</span>
                   </a>
               </li>
+              @can('view-category')
               <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.categories.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -30,6 +31,8 @@
                       <span class="nav-text">Categories</span>
                   </a>
               </li>
+              @endcan
+              @can('view-brand')
               <li class="nav-item {{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.brands.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -42,6 +45,8 @@
                       <span class="nav-text">Brands</span>
                   </a>
               </li>
+              @endcan
+              @can('view-unit')
               <li class="nav-item {{ request()->routeIs('admin.units.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.units.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -54,6 +59,8 @@
                       <span class="nav-text">Units</span>
                   </a>
               </li>
+              @endcan
+              @can('view-supplier')
               <li class="nav-item {{ request()->routeIs('admin.suppliers.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.suppliers.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -66,6 +73,8 @@
                       <span class="nav-text">Suppliers</span>
                   </a>
               </li>
+              @endcan
+              @can('view-customer')
               <li class="nav-item {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.customers.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -79,6 +88,8 @@
                       <span class="nav-text">Customers</span>
                   </a>
               </li>
+              @endcan
+              @can('view-product')
               <li class="nav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.products.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -91,6 +102,8 @@
                       <span class="nav-text">Products</span>
                   </a>
               </li>
+              @endcan
+              @can('view-purchase')
               <li class="nav-item {{ request()->routeIs('admin.purchases.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.purchases.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -103,6 +116,8 @@
                       <span class="nav-text">Purchases</span>
                   </a>
               </li>
+              @endcan
+              @can('view-sale')
               <li class="nav-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.sales.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -115,6 +130,8 @@
                       <span class="nav-text">Sales</span>
                   </a>
               </li>
+              @endcan
+              @can('view-role')
               <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.roles.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -127,6 +144,8 @@
                       <span class="nav-text">Role</span>
                   </a>
               </li>
+              @endcan
+              @can('view-staff')
               <li class="nav-item {{ request()->routeIs('admin.staffs.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.staffs.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -139,6 +158,7 @@
                       <span class="nav-text">Staff</span>
                   </a>
               </li>
+              @endcan
           </ul>
       </div>
       <!--end::Menu Nav-->

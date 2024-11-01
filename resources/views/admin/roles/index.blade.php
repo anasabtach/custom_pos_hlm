@@ -6,6 +6,7 @@
 @endsection
 @section('content')
     <div class="container-fluid">
+        @can('add-role')
         <div class="row">
             <div class="col-lg-12 col-xl-12 px-4">
                 <div class="card card-custom gutter-b bg-white border-0">
@@ -49,6 +50,7 @@
                 </div>
             </div>
         </div>  
+        @endcan
         <div class="row">
             <div class="col-12 px-4">
                 <div class="row">
@@ -60,7 +62,7 @@
                                     </h3>
                                 </div>
                                 <div class="icons d-flex">
-                                    <button class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
+                                    {{-- <button class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                         title="" data-bs-placement="right" data-original-title="Check out more demos">
                                         <span
                                             class="bg-secondary h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center  rounded-circle shadow-sm ">
@@ -72,7 +74,7 @@
                                             </svg>
                                         </span>
 
-                                    </button>
+                                    </button> --}}
                                     <a href="#" onclick="printDiv()" class="ms-2">
                                         <span
                                             class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
@@ -151,14 +153,18 @@
                                                         <div class="dropdown-menu dropdown-menu-right"
                                                             aria-labelledby="dropdowneditButton01"
                                                             style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                            @can('edit-role')
                                                             <a href="{{ route('admin.roles.edit', ['id' => $role->hashid]) }}"
                                                                 class="dropdown-item click-edit"
                                                                 id="click-edit2" data-bs-toggle="tooltip"
                                                                 title="" data-bs-placement="right"
                                                                 data-original-title="Check out more demos">Edit</a>
+                                                            @endcan
+                                                            @can('delete-role')
                                                             <a class="dropdown-item confirm-delete"
                                                                 title="Delete"
                                                                 href="{{ route('admin.roles.delete', ['id' => $role->hashid]) }}">Delete</a>
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </td>

@@ -20,14 +20,17 @@ class PurchaseController extends Controller
     }
 
     public function index(){
+        rights('view-purchase');
         $data = [
             'title'     => 'Purchases',
             'purchases' => $this->service->getPurchases(),
+            'suppliers' => $this->supplierService->getSuppliers(),
         ];
         return view('admin.purchase.index')->with($data);
     }
 
     public function create(){
+        rights('add-purchase');
         $data = [
             'title' => 'Add Purchase',
             'suppliers' => $this->supplierService->getSuppliers(),
@@ -60,6 +63,7 @@ class PurchaseController extends Controller
     }
 
     public function edit($purchase_id){
+        rights('edit-purchase');
         $data = [
             'title'            => 'Edit Product',
             'edit_purchase'    => $this->service->edit($purchase_id),
@@ -70,6 +74,7 @@ class PurchaseController extends Controller
     }
 
     public function delete($purchase_id){
+        rights('delete-purchase');
         $this->service->delete($purchase_id);
         return to_route('admin.purchases.index')->with('success',__('error_messages.purchase_delete_success'));
     }

@@ -17,6 +17,7 @@ class StaffController extends Controller
     }
 
     public function index(){
+        rights('view-staff');
         $data = [
             'title' => 'Staff',
             'staffs'    => $this->service->getStaff(),
@@ -25,6 +26,7 @@ class StaffController extends Controller
     }
 
     public function add(RoleService $roleService){
+        rights('add-staff');
         $data = [
             'title' => 'Add Staff',
             'roles' => $roleService->getRoles(),
@@ -42,6 +44,7 @@ class StaffController extends Controller
     }
 
     public function edit($id, RoleService $roleService){
+        rights('edit-staff');
         $data = [
             'title'         => 'Staff',
             'edit_staff'    => $this->service->edit($id),
@@ -52,6 +55,7 @@ class StaffController extends Controller
     }
 
     public function delete(string $id){
+        rights('delete-staff');
         $this->service->delete($id);
         return to_route('admin.staffs.index')->with('success',__('staff_delete_success'));
     }

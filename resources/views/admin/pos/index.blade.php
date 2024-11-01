@@ -15,6 +15,7 @@
       <meta name="description" content="Updates and statistics" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <link href="{{ asset('assets/css/stylec619.css?v=1.0') }}" rel="stylesheet" type="text/css" />
+      <link href="{{ asset('assets/css/pos.css') }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset('assets/api/pace/pace-theme-flat-top.css') }}" rel="stylesheet" type="text/css" />
       <link href="{{ asset('assets/api/mcustomscrollbar/jquery.mCustomScrollbar.css') }}" rel="stylesheet"
          type="text/css" />

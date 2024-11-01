@@ -1,11 +1,32 @@
 @extends('admin.partials.master')
 @section('content')
-  @section('content')
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 px-4">
+                    <div class="row">
+                        <div class="col-lg-12 col-xl-12 px-4">
+                            <div class="card card-custom gutter-b bg-white border-0">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label>Suppliers</label>
+                                            <fieldset class="form-group mb-3">
+                                                <select name="" id="supplierFilter" class="form-control">
+                                                    <option value="">All</option>
+                                                    @foreach($suppliers AS $supplier)
+                                                        <option value="{{ $supplier->name }}">{{ $supplier->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-xl-12 px-4">
                             <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
@@ -15,6 +36,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
+                                        @can('add-purchase')
                                         <a href="{{ route('admin.purchases.create') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                             title="" data-bs-placement="right"
                                             data-original-title="Check out more demos">
@@ -28,8 +50,8 @@
                                                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                                 </svg>
                                             </span>
-
                                         </a>
+                                        @endcan
                                         <a href="#" onclick="printDiv()" class="ms-2">
                                             <span
                                                 class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
@@ -72,7 +94,7 @@
                                 <div class="card-body">
                                     <div>
                                         <div class=" table-responsive" id="printableTable">
-                                            <table id="myTable" class="display ">
+                                            <table id="purchase_table" class="display ">
 
                                                 <thead class="text-body">
                                                     <tr>
@@ -115,14 +137,18 @@
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Details</a>
+                                                                        @can('edit-purchase')
                                                                         <a href="{{ route('admin.purchases.edit', ['purchase_id' => $purchase->hashid]) }}"
                                                                             class="dropdown-item click-edit"
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Edit</a>
+                                                                        @endcan
+                                                                        @can('delete-purchase')
                                                                         <a class="dropdown-item confirm-delete"
                                                                             title="Delete"
                                                                             href="{{ route('admin.purchases.delete', ['purchase_id' => $purchase->hashid]) }}">Delete</a>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -141,5 +167,16 @@
         </div>
     </div>
 @endsection
+@section('script')
+<script>
+    $(document).ready(function() {
 
+    var table = jQuery('#purchase_table').DataTable();
+    jQuery('#supplierFilter').on('change', function() {
+        var selectedCategory = $(this).val();
+        table.column(2).search(selectedCategory).draw();
+    });
+});
+
+</script>
 @endsection

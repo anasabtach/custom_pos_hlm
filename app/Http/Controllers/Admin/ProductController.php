@@ -24,14 +24,18 @@ class ProductController extends Controller
     }
 
     public function index(){
+        rights('view-product');
         $data = [
             'title'         => 'Products',
             'products'      => $this->service->getProdcuts(),
+            'categories'    => $this->categoryService->getCategories(),
+            'units'         => $this->unitService->getUnits()
         ];
         return view('admin.product.index')->with($data);
     }
 
     public function add(){
+        rights('add-product');
         $data = [
             'title' => 'Add Product',
             'categories'    => $this->categoryService->getCategories(),
@@ -57,6 +61,7 @@ class ProductController extends Controller
     }
 
     public function edit($product_id){
+        rights('edit-product');
         $data = [
             'title'         => 'Edit Product',
             'edit_product'  => $this->service->editProduct($product_id),
@@ -74,6 +79,7 @@ class ProductController extends Controller
     }
 
     public function productAndVariationRow(Request $req){
+        
         return response()->json([
             'html'  => view('admin.product.product_and_variation_row', [
                 'data' =>  $this->service->productAndVariationRow($req->product_id, $req->product_variation_id),

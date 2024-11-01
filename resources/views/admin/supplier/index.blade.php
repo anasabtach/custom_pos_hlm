@@ -15,6 +15,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
+                                        @can('add-supplier')
                                         <a href="{{ route('admin.suppliers.create') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                             title="" data-bs-placement="right"
                                             data-original-title="Check out more demos">
@@ -28,8 +29,8 @@
                                                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                                 </svg>
                                             </span>
-
                                         </a>
+                                        @endcan
                                         <a href="#" onclick="printDiv()" class="ms-2">
                                             <span
                                                 class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
@@ -118,14 +119,18 @@
                                                                     <div class="dropdown-menu dropdown-menu-right"
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                        @can('edit-supplier')
                                                                         <a href="{{ route('admin.suppliers.edit', ['supplier_id' => $supplier->hashid]) }}"
                                                                             class="dropdown-item click-edit"
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Edit</a>
+                                                                        @endcan
+                                                                        @can('delete-supplier')
                                                                         <a class="dropdown-item confirm-delete"
                                                                             title="Delete"
                                                                             href="{{ route('admin.suppliers.delete', ['supplier_id' => $supplier->hashid]) }}">Delete</a>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>

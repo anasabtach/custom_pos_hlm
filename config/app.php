@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryProvider::class,
+        App\Providers\PermissionsServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class
 
     ])->toArray(),

@@ -24,6 +24,7 @@
                                     <div class="card-title mb-0">
                                         <h3 class="card-label mb-0 font-weight-bold text-body">Staff Management</h3>
                                     </div>
+                                    @can('add-staff')
                                     <div class="icons d-flex">
                                         <a href="{{ route('admin.staffs.add') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip" title="Add Staff">
                                             <span class="bg-secondary h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle shadow-sm">
@@ -33,6 +34,7 @@
                                             </span>
                                         </a>
                                     </div>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -90,14 +92,19 @@
                                                                 <div class="dropdown-menu dropdown-menu-right"
                                                                     aria-labelledby="dropdowneditButton01"
                                                                     style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                    @can('edit-staff')
+
                                                                     <a href="{{ route('admin.staffs.edit', ['id' => $staff->hashid]) }}"
                                                                         class="dropdown-item click-edit"
                                                                         id="click-edit2" data-bs-toggle="tooltip"
                                                                         title="" data-bs-placement="right"
                                                                         data-original-title="Check out more demos">Edit</a>
+                                                                    @endcan
+                                                                    @can('delete-staff')
                                                                     <a class="dropdown-item confirm-delete"
                                                                         title="Delete"
                                                                         href="{{ route('admin.staffs.delete', ['id' => $staff->hashid]) }}">Delete</a>
+                                                                    @endcan
                                                                 </div>
                                                             </div>
                                                         </td>

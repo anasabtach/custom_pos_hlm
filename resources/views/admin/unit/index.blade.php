@@ -4,6 +4,7 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class="container-fluid">
+            @can('add-unit')
             <div class="row">
                 <div class="col-lg-12 col-xl-12 px-4">
                     <div class="card card-custom gutter-b bg-white border-0">
@@ -41,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            @endcan
             <div class="row">
                 <div class="col-12 px-4">
                     <div class="row">
@@ -163,14 +165,18 @@
                                                                     <div class="dropdown-menu dropdown-menu-right"
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                        @can('edit-unit')
                                                                         <a href="{{ route('admin.categories.edit', ['category_id' => $unit->hashid]) }}"
                                                                             class="dropdown-item click-edit"
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Edit</a>
+                                                                        @endcan
+                                                                        @can('delete-unit')
                                                                         <a class="dropdown-item confirm-delete"
                                                                             title="Delete"
                                                                             href="{{ route('admin.categories.delete', ['category_id' => $unit->hashid]) }}">Delete</a>
+                                                                            @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>
