@@ -86,7 +86,7 @@
                                                 </span>
                                             </a>
                                         @endcan
-                                        <a href="#" onclick="printDiv()" class="ms-2">
+                                        {{-- <a href="#" onclick="printDiv()" class="ms-2">
                                             <span
                                                 class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
                                                 <svg width="15px" height="15px" viewBox="0 0 16 16"
@@ -112,7 +112,7 @@
                                                 </svg>
                                             </span>
 
-                                        </a>
+                                        </a> --}}
 
                                     </div>
                                 </div>

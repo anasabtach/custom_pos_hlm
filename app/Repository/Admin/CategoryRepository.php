@@ -28,7 +28,7 @@ class CategoryRepository implements CategoryInterface
 
     public function getCategories(): Collection
     {
-        return $this->category->whereNull('parent_id')->get();
+        return $this->category->whereNull('parent_id')->latest()->get();
     }
 
     public function edit(string $category_id):Category
