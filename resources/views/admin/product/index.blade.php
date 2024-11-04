@@ -133,6 +133,7 @@
                                                 <thead class="text-body">
                                                     <tr>
                                                         <th class="text-center">ID</th>
+                                                        <th class="text-center">Brand</th>
                                                         <th class="text-center">Category</th>
                                                         <th class="text-center">Unit</th>
                                                         <th class="text-center">Product Name</th>
@@ -153,8 +154,13 @@
                                                             <td class="text-center">{{ $loop->iteration }}</td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
+                                                                    {{ @$product->brand->name }}</p>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
                                                                     {{ $product->category->name }}</p>
                                                             </td>
+
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ @$product->unit->name }}</p>
@@ -257,19 +263,19 @@
     // Apply category filter
     jQuery('#categoryFilter').on('change', function() {
         var selectedCategory = $(this).val();
-        table.column(1).search(selectedCategory).draw();
+        table.column(2).search(selectedCategory).draw();
     });
     jQuery('#variationFilter').on('change', function() {
         var selectedVariation = $(this).val();
-        table.column(9).search(selectedVariation).draw();
+        table.column(10).search(selectedVariation).draw();
     });
     jQuery('#unitFilter').on('change', function() {
         var selectedUnit = $(this).val();
-        table.column(2).search(selectedUnit).draw();
+        table.column(3).search(selectedUnit).draw();
     });
     jQuery('#expirationFilter').on('change', function() {
         var selectedUnit = $(this).val();
-        table.column(8).search(selectedUnit).draw();
+        table.column(9).search(selectedUnit).draw();
     });
 });
 

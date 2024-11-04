@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Services\Admin\BrandService;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\ProductService;
 use App\Services\Admin\UnitService;
@@ -15,12 +16,14 @@ class ProductController extends Controller
     protected $service;
     protected $categoryService;
     protected $unitService;
+    protected $brandService;
 
-    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService)
+    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService, BrandService $brandService)
     {
         $this->service         = $service;
         $this->categoryService = $categoryService;
         $this->unitService     = $unitService;
+        $this->brandService    = $brandService;
     }
 
     public function index(){
@@ -40,12 +43,12 @@ class ProductController extends Controller
             'title' => 'Add Product',
             'categories'    => $this->categoryService->getCategories(),
             'units'         => $this->unitService->getUnits(),
+            'brands'        => $this->brandService->getBrands(),
         ];
         return view('admin.product.add')->with($data    );
     }
 
     public function store(ProductRequest $req){ 
-        // dd($req->all());
         try{
             if(isset($req->product_id)){
                 $this->service->updateProduct($req->validated());
@@ -56,7 +59,6 @@ class ProductController extends Controller
             }
             return to_route('admin.products.index')->with('success',$msg);
         }catch(Exception $e){
-            dd($e->getMessage());
             return redirect()->back()->withInput()->with('error', __('error_messages.product_add_error'));
         }
     }
@@ -68,6 +70,7 @@ class ProductController extends Controller
             'edit_product'  => $this->service->editProduct($product_id),
             'categories'    => $this->categoryService->getCategories(),
             'units'         => $this->unitService->getUnits(),
+            'brands'        => $this->brandService->getBrands(),
             'is_update'     => true
         ];
         return view('admin.product.add')->with($data);

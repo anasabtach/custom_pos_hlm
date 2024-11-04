@@ -26,6 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'category_id'      => ['required', 'string', 'max:50'],
             'unit_id'          => ['nullable', 'string', 'max:50'],
+            'brand_id'         => ['nullable', 'string', 'max:50'],
             'product_name'     => ['required', 'string', 'min:1', 'max:50', Rule::unique('products', 'name')->ignore((isset($this->product_id) ? hashid_decode($this->product_id) : NULL))],
             'sku'              => ['nullable','required_if:has_variation,0', 'string', 'min:1','max:30', Rule::unique('products')->ignore((isset($this->product_id) ? hashid_decode($this->product_id) : NULL))],
             'price'            => ['nullable','required_if:has_variation,0', 'numeric', 'digits_between:1,10'],

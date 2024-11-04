@@ -15,6 +15,7 @@ class Product extends Model
         'admin_id',
         'category_id',
         'unit_id',
+        'brand_id',
         'name',
         'sku',
         'price', 
@@ -23,7 +24,7 @@ class Product extends Model
         'description',
         'has_variation',
         'status',
-        'expiration'
+        'expiration',
     ];
 
     public function thumbnail(): MorphOne
@@ -41,5 +42,9 @@ class Product extends Model
     
     public function unit(){
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
+    }
+    
+    public function brand(){
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 }

@@ -18,7 +18,7 @@ class ProductRepository implements ProductInterface
 
     public function getProducts():Collection
     {
-        return $this->product->with(['category', 'unit'])->latest()->get();
+        return $this->product->with(['category', 'unit', 'brand'])->latest()->get();
     }
 
     public function storeProduct(array $arr):Product

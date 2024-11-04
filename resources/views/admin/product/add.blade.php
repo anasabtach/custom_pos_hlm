@@ -30,6 +30,19 @@
                                             </select>
                                         </fieldset>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label>Brand</label>
+                                        <fieldset class="form-group mb-3">
+                                            <select class="form-control round bg-transparent text-dark" name="brand_id" id="brand_id">
+                                                <option value="">Select Brand</option>
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{ $brand->hashid }}" @selected(isset($is_update) ? $edit_product->brand_id == $brand->id : false)>
+                                                        {{ $brand->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </fieldset>
+                                    </div>
                                     <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Units</label>
                                         <fieldset class="form-group mb-3">

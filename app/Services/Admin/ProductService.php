@@ -52,6 +52,7 @@ class ProductService
             'admin_id'             => auth()->id(),
             'category_id'          => hashid_decode($arr['category_id']),
             'unit_id'              => isset($arr['unit_id']) ? hashid_decode($arr['unit_id']) : NULL,
+            'brand_id'              => isset($arr['brand_id']) ? hashid_decode($arr['brand_id']) : NULL,
             'name'                 => $arr['product_name'],
             'sku'                  => $arr['sku'],
             'price'                => $arr['price'],
