@@ -22,6 +22,7 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {   //dd($this->all());
+        
         return [
             'category_id'      => ['required', 'string', 'max:50'],
             'unit_id'          => ['nullable', 'string', 'max:50'],

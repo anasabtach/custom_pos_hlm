@@ -71,7 +71,7 @@ class ProductService
     public function updateProduct($arr){
         DB::transaction(function() use ($arr){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
-            $this->updateThumbnail($product, $arr['product_thumbnail']);
+            $this->updateThumbnail($product, @$arr['product_thumbnail']);
             $this->repository->deleteProductVariations($product);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array

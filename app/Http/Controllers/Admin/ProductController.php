@@ -45,6 +45,7 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $req){ 
+        // dd($req->all());
         try{
             if(isset($req->product_id)){
                 $this->service->updateProduct($req->validated());
