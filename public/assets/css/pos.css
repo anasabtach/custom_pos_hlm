@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    font-family: "Inter", serif !important;
+}
+::selection {}
+
+::-webkit-scrollbar {    height: 12px;    width: 8px;    background:#e4e4e4; }
+
+::-webkit-scrollbar-thumb {background: #388CB8;}
+
+::-webkit-scrollbar-corner {    background: #ededed;   }
+
+
+i.fas {
+    font-family: 'Font Awesome 5 Free' !important;
+}
+.container-fluid {
+    max-width: 1440px;
+}
+html .productCard .btnCustom
+{
+    background-color: #388CB8;
+    display: table;
+    margin: 0 auto;
+    float: none;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+.productCard {
+    border: 1px solid #cccccc21;
+    padding: 15px 10px;
+    border-radius: 8px;
+    background-color: #aaa9a91c;
+    border-color: #fff;
+    box-shadow: 0px 0px 10px #00000021;
+    margin-top: 10px;
+}
+.productContent h4 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 17px;
+}
+
+.productContent h5 {
+    text-align: center;
+    font-weight: 600;
+}
+.productCard .productThumb img {
+    width: 100%;
+    height: unset;
+}
+
+.productCard .productThumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productCard .productContent {
+    text-align: center;
+}
+
+.productCard .productContent small {
+    margin-bottom: 15px;
+    display: block;
+}
+.inContent {
+    min-height: 70px;
+}
+.topTabsHd a {
+    padding:  4px 19px;
+    background: transparent !important;
+    color: #000;
+    border-radius: 30px;
+    border-width: 2px;
+    border-color: #cccccc82;
+    margin-bottom: 10px;
+}
+
+.topTabsHd a.active {
+    background: #388CB8 !important;
+}
+
+.topTabsHd a:hover {
+    color: #0000 !important;
+}
+table#orderTable thead th {
+    padding: 10px;
+    background-color: #388CB8;
+    color: #fff;
+    font-weight: 600;
+}
+
+table#orderTable tbody tr td {padding: 12px;}
+
+table#orderTable tbody tr:nth-child(even) td {
+    background-color: #97979721;
+}
+.selectmain select.arabic-select.select-down {
+    padding: 12px;
+}
+.resulttable-pos {border-top: 1px solid #e7e7e7;padding-top: 10px;padding-bottom: 10px;border-bottom: 1px solid #e7e7e7;}
+
+.resulttable-pos td {
+    font-weight: 600;
+}
+.table-contentpos .table-datapos1 {
+    padding: 0 0 !important;
+
+}
+.topTabsHd a:hover {
+    background-color: #388cb8 !important;
+    color: #fff !important;
+  
+}

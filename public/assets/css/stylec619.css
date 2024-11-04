@@ -9296,7 +9296,7 @@ textarea.form-control-lg {
   --artical-background-module: #f8f9fa;
   --artical-ligth-dark:#e9ecef;
   --artical-background-element: #e9ecef;
-  --artical-background-primary: #335bff;
+  --artical-background-primary: #388CB8;
   --artical-background-primary-dark: rgba(174, 105, 245, 0.85);
   --artical-background-primary-darkest: rgba(174, 105, 245, 0.6);
   --artical-background-primary-light: rgba(174, 105, 245, 0.4);
@@ -9305,7 +9305,7 @@ textarea.form-control-lg {
   --artical-background-secondary-darkest: rgba(244, 157, 42, 0.7);
   --artical-background-success: #28a745;
   --artical-background-info: #007bff;
-  --artical-color-primary:#335bff;
+  --artical-color-primary:#388CB8;
   --artical-color-secondary:#f49d2a;
   --artical-color-body:#1a3353;
   --artical-color-dark:#264164;
@@ -9320,9 +9320,9 @@ textarea.form-control-lg {
   --artical-background-module: #2a193b;
   --artical-background-element: #301d43;
   --artical-ligth-dark:  #2a193b;
-  --artical-background-primary: #335bff;
+  --artical-background-primary: #388CB8;
   --artical-background-secondary: #f49d2a;
-  --artical-color-primary:#335bff;
+  --artical-color-primary:#388CB8;
   --artical-color-secondary:#f49d2a;
   --artical-color-body:#BDD1F8;
   --artical-color-dark:#8A99B5;
@@ -9336,7 +9336,7 @@ textarea.form-control-lg {
   --artical-background-module: #f8f9fa;
   --artical-ligth-dark:#e9ecef;
   --artical-background-element: #e9ecef;
-  --artical-background-primary: #335bff;
+  --artical-background-primary: #388CB8;
   --artical-background-primary-dark: rgba(174, 105, 245, 0.85);
   --artical-background-primary-darkest: rgba(174, 105, 245, 0.6);
   --artical-background-primary-light: rgba(174, 105, 245, 0.4);
@@ -9345,7 +9345,7 @@ textarea.form-control-lg {
   --artical-background-secondary-darkest: rgba(244, 157, 42, 0.7);
   --artical-background-success: #28a745;
   --artical-background-info: #007bff;
-  --artical-color-primary:#335bff;
+  --artical-color-primary:#388CB8;
   --artical-color-secondary:#f49d2a;
   --artical-color-body:#1a3353;
   --artical-color-dark:#264164;
@@ -14695,7 +14695,7 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   .modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .ms-drop ul > li.hide-radio.selected {
   background-color: var(--artical-background-primary) !important; }
@@ -14780,7 +14780,7 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   .aside-menu-wrapper.flex-column-fluid.overflow-auto.h-100::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .aside-menu-wrapper.flex-column-fluid.overflow-auto.h-100::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .aside {
   background-color: var(--artical-background-panel);
@@ -16126,7 +16126,7 @@ body {
   .roles-main ul::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .roles-main ul::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .roles-main .tab-content .tab-pane {
   height: 350px;
@@ -16142,7 +16142,7 @@ body {
   .roles-main .tab-content .tab-pane::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .roles-main .tab-content .tab-pane::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .l-form {
   display: flex;
@@ -16359,8 +16359,8 @@ input[type=checkbox].bg-warning.radio-glow:checked + .custom-control-label:befor
   box-shadow: 0 0 6px 0 rgba(255, 193, 7, 0.7); }
 
 input[type=checkbox].radio-primary:checked + .custom-control-label:before, input[type=radio].radio-primary:checked + .custom-control-label:before {
-  background-color: #335bff;
-  border-color: #335bff;
+  background-color: #388CB8;
+  border-color: #388CB8;
   box-shadow: none; }
 
 input[type=checkbox].radio-secondary:checked + .custom-control-label:before, input[type=radio].radio-secondary:checked + .custom-control-label:before {
@@ -16507,7 +16507,7 @@ input[type=checkbox].radio-warning:checked + .custom-control-label:before, input
   .media-categories ::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .media-categories ::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .loadingmore {
   display: none; }
@@ -16563,7 +16563,7 @@ input[type=checkbox].radio-warning:checked + .custom-control-label:before, input
   .product-items::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .product-items::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .productCard {
   margin-bottom: 15px; }
@@ -16621,7 +16621,7 @@ input[type=checkbox].radio-warning:checked + .custom-control-label:before, input
   .table-contentpos .table-datapos::-webkit-scrollbar-thumb {
     background: #c1c1c1; }
   .table-contentpos .table-datapos::-webkit-scrollbar-thumb:hover {
-    background: #335bff; }
+    background: #388CB8; }
 
 .table-contentpos .select-down {
   width: 205px; }

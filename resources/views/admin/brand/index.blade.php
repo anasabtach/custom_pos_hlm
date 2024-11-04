@@ -4,42 +4,42 @@
         <!--begin::Container-->
         <div class="container-fluid">
             @can('add-brand')
-            <div class="row">
-                <div class="col-lg-12 col-xl-12 px-4">
-                    <div class="card card-custom gutter-b bg-white border-0">
-                        <div class="card-header border-0 align-items-center">
-                            <h3 class="card-label mb-0 font-weight-bold text-body">
-                                {{ isset($is_update) ? 'Update' : 'Add' }} brand
-                            </h3>
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('admin.brands.store') }}" method="POST" id="brand_form">
-                                @csrf
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label>brand</label>
-                                        <fieldset class="form-group mb-3">
-                                            <input type="text" placeholder="Enter brand name"
-                                                class="form-control round bg-transparent text-dark"
-                                                value="{{ isset($is_update) ? $edit_brand->name : old('brand_name') }}"
-                                                name="brand_name" id="brand_name">
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12 px-4">
+                        <div class="card card-custom gutter-b bg-white border-0">
+                            <div class="card-header border-0 align-items-center">
+                                <h3 class="card-label mb-0 font-weight-bold text-body">
+                                    {{ isset($is_update) ? 'Update' : 'Add' }} brand
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('admin.brands.store') }}" method="POST" id="brand_form">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label>brand</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="text" placeholder="Enter brand name"
+                                                    class="form-control round bg-transparent text-dark"
+                                                    value="{{ isset($is_update) ? $edit_brand->name : old('brand_name') }}"
+                                                    name="brand_name" id="brand_name">
 
-                                        </fieldset>
+                                            </fieldset>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="hidden" name="brand_id"
-                                        value="{{ isset($is_update) ? $edit_brand->hashid : '' }}">
-                                    <input type="submit" class="btn btn-primary mt-4"
-                                        value="{{ isset($is_update) ? 'Update' : 'Add' }}">
-                                </div>
-                            </form>
+                                    <div class="col-md-2">
+                                        <input type="hidden" name="brand_id"
+                                            value="{{ isset($is_update) ? $edit_brand->hashid : '' }}">
+                                        <input type="submit" class="btn btn-primary mt-4"
+                                            value="{{ isset($is_update) ? 'Update' : 'Add' }}">
+                                    </div>
+                                </form>
+
+                            </div>
 
                         </div>
-
                     </div>
                 </div>
-            </div>
             @endcan
             <div class="row">
                 <div class="col-12 px-4">
@@ -67,33 +67,6 @@
                                             </span>
 
                                         </button>
-                                        {{-- <a href="#" onclick="printDiv()" class="ms-2">
-                                            <span
-                                                class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
-                                                <svg width="15px" height="15px" viewBox="0 0 16 16"
-                                                    class="bi bi-printer-fill" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z" />
-                                                    <path fill-rule="evenodd"
-                                                        d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z" />
-                                                    <path fill-rule="evenodd"
-                                                        d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                                                </svg>
-                                            </span>
-
-                                        </a> --}}
-                                        {{-- <a href="#" class="ms-2">
-                                            <span
-                                                class="icon h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center rounded-circle ">
-                                                <svg width="15px" height="15px" viewBox="0 0 16 16"
-                                                    class="bi bi-file-earmark-text-fill" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M2 2a2 2 0 0 1 2-2h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7 2l.5-2.5 3 3L10 5a1 1 0 0 1-1-1zM4.5 8a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z" />
-                                                </svg>
-                                            </span>
-
-                                        </a> --}}
 
                                     </div>
                                 </div>
@@ -160,16 +133,16 @@
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                                         @can('edit-brand')
-                                                                        <a href="{{ route('admin.brands.edit', ['brand_id' => $brand->hashid]) }}"
-                                                                            class="dropdown-item click-edit"
-                                                                            id="click-edit2" data-bs-toggle="tooltip"
-                                                                            title="" data-bs-placement="right"
-                                                                            data-original-title="Check out more demos">Edit</a>
+                                                                            <a href="{{ route('admin.brands.edit', ['brand_id' => $brand->hashid]) }}"
+                                                                                class="dropdown-item click-edit"
+                                                                                id="click-edit2" data-bs-toggle="tooltip"
+                                                                                title="" data-bs-placement="right"
+                                                                                data-original-title="Check out more demos">Edit</a>
                                                                         @endcan
                                                                         @can('delete-brand')
-                                                                        <a class="dropdown-item confirm-delete"
-                                                                            title="Delete"
-                                                                            href="{{ route('admin.brands.delete', ['brand_id' => $brand->hashid]) }}">Delete</a>
+                                                                            <a class="dropdown-item confirm-delete"
+                                                                                title="Delete"
+                                                                                href="{{ route('admin.brands.delete', ['brand_id' => $brand->hashid]) }}">Delete</a>
                                                                         @endcan
                                                                     </div>
                                                                 </div>

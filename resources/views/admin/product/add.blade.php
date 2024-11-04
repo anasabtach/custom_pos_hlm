@@ -258,5 +258,11 @@ const productVariations = `
     $(document).on('click', '.remove_variation', function(){
         $(this).parents().eq(2).remove();
     });
+
+    $(document).ready(function(){
+        @if(isset($is_update) && $edit_product->has_variation)
+            $('.hide_when_variation_is_set').addClass('d-none');
+        @endif
+    })
 </script>
 @endsection

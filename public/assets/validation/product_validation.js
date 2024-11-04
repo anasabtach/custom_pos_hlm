@@ -8,6 +8,10 @@ $('#product_form').validate({
             required: true,
             maxlength: 50
         },
+        brand_id: {
+            required: true,
+            maxlength: 50
+        },
         product_name: {
             required: true,
             maxlength: 50

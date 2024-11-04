@@ -1,11 +1,10 @@
 <div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-9 order-xl-first order-last">
+            <div class="col-xl-8 order-xl-first order-last">
                 <div class="card card-custom gutter-b bg-white border-0 justify-content-evenly">
-                    <div class="card-body">
-                    </div>
-                    <div class="display-flex py-5 justify-content-evenly m-1 ps-2 p-3">
+                 
+                    <div class="display-flex py-5 justify-content-evenly m-1 ps-2 p-3 topTabsHd">
                         <span><a href="javascript:void(0)" wire:click="checkClick('all')" class="btn btn-primary">All</a></span>
                         @foreach($this->categories as $category)
                         <span>
@@ -20,28 +19,54 @@
                             @foreach($this->products as $product)
                                 @if($product->has_variation)
                                     @foreach($product->variations as $variation)
-                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name."|".$variation->unit->name }}', '{{ $variation->sku }}', '{{ hashid_encode($variation->product_id) }}', '{{ $variation->stock }}', '{{ $variation->price }}', '1', '{{ $variation->hashid }}')">
+                                    <div class="col-xl-3 col-lg-2 col-md-2 col-sm-3 col-6" wire:click="addItems('{{ $product->name."|".$variation->unit->name }}', '{{ $variation->sku }}', '{{ hashid_encode($variation->product_id) }}', '{{ $variation->stock }}', '{{ $variation->price }}', '1', '{{ $variation->hashid }}')">
                                         <div class="productCard">
                                                 <div class="productThumb">
                                                     <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
                                                 </div>
                                                 <div class="productContent">
-                                                    <a href="#">
-                                                        {{ $product->name }} | $ {{ $variation->unit->name }}
+                                                    <div class="inContent">
+                                                        <h4>
+                                                            {{ $product->name }} 
+                                                        </h4>
+                                                        <small>{{ $variation->unit->name }}</small>
+                                                    </div>
+                                                        <h5>
+                                                    
+                                                            $ {{ $product->price }} 
+                                                        </h5>
+                                                        
+                                                    
+                                                    <a href="javascript:;" class="btnCustom">
+                                                        Add To Basket
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 @else
-                                    <div class="col-xl-4 col-lg-2 col-md-3 col-sm-4 col-6" wire:click="addItems('{{ $product->name }}','{{ $product->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','0',)">
+                                    <div class="col-xl-3 col-lg-2 col-md-2 col-sm-3 col-6" wire:click="addItems('{{ $product->name }}','{{ $product->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','0',)">
                                         <div class="productCard">
                                             <div class="productThumb">
                                                 <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
                                             </div>
+                                            
                                             <div class="productContent">
-                                                <a href="#">
-                                                    {{ $product->name }}
+                                                <div class="inContent">
+                                                    <h4>
+                                                        {{ $product->name }} 
+                                                    </h4>
+                                                    {{-- <small>{{ $variation->unit->name }}</small> --}}
+                                                </div>
+
+                                                    <h5>
+                                                    
+                                                        AED {{ $product->price }} 
+                                                    </h5>
+                                                  
+                                             
+                                                <a href="javascript:;" class="btnCustom">
+                                                    Add To Basket
                                                 </a>
                                             </div>
                                         </div>
@@ -52,21 +77,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-8 col-md-8">
+            <div class="col-xl-4 col-lg-8 col-md-8">
                 <div class="">
                     <div class="card card-custom gutter-b bg-white border-0 table-contentpos">
                         <div class="card-body">
                             <div class="d-flex justify-content-between colorfull-select">
                                 <div class="selectmain">
-                                    <label class="text-dark d-flex">
-                                        Choose a Customer
-                                    </label>
-                                    <select class="arabic-select select-down" wire:model.live="customer_id">
-                                        <option value="#">Select Customer</option>
-                                        @foreach($this->customers as $customer)
-                                            <option value="{{ $customer->hashid }}">{{ $customer->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="row  mt-2 align-items-center">
+                                        <div class="col-md-6">
+                                            <h5 class="text-dark d-flex">
+                                                Choose a Customer
+                                            </h5>
+                                        </div>
+                                        <div class="col-md-6">                                                    
+                                            <select class="arabic-select select-down" wire:model.live="customer_id">
+                                                <option value="#">Select Customer</option>
+                                                @foreach($this->customers as $customer)
+                                                    <option value="{{ $customer->hashid }}">{{ $customer->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -88,7 +120,7 @@
                                                 <td>
                                                     <input type="number" value="{{ $item['quantity'] }}"  class="form-control border-dark w-100px" id="basicInput2" placeholder="" max="{{ $item['stock'] }}" wire:input="updaeItemQuantity('{{ $item['sku'] }}', $event.target.value)">
                                                 </td>
-                                                <td>{{ $item['price'] }}</td>
+                                                <td>AED {{ $item['price'] }}</td>
                                                 <td>
                                                     <div class="card-toolbar text-end">
                                                         <a href="#" class="confirm-delete" title="Delete" wire:click="removeItem('{{ $item['sku'] }}')"><i class="fas fa-trash-alt"></i></a>
@@ -106,51 +138,34 @@
                         </div>
                         <div class="card-body">
                             <div class="resulttable-pos">
-                                <table class="table right-table">
+                                <table class="table right-table totalTableLast">
                                     <tbody>
                                         <tr class="d-flex align-items-center justify-content-between item-price">
                                             <th class="border-0 font-size-h5 mb-0 font-size-bold text-primary">
                                                 TOTAL
                                             </th>
                                             <td class="border-0 justify-content-end d-flex text-primary font-size-base">
-                                                {{ $total['total'] }}
+                                                AED {{ $total['total'] }}
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <a href="#" class="btn btn-primary white mb-2" data-bs-toggle="modal" data-bs-target="#payment-popup">
-                                        <i class="fas fa-money-bill-wave me-2"></i>
-                                        Pay With Cash
-                                    </a>
+                                 
                                 </table>
                             </div>
+                            <a href="#" class="btn btn-primary white mb-2" data-bs-toggle="modal" data-bs-target="#payment-popup">
+                                <i class="fas fa-money-bill-wave me-2"></i>
+                                Pay With Cash
+                            </a>
                         </div>
                     </div>
                     <div class="card card-custom gutter-b bg-white border-0 table-contentpos">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between colorfull-select">
-                                {{-- <div class="selectmain">
-                                    <label class="text-dark d-flex">
-                                        Choose a Customer
-                                    </label>
-                                    <select class="arabic-select select-down" wire:model="customer_id">
-                                        <!--[if BLOCK]><![endif]-->                                            <option value="rozl9M6Ggxvmq4ZjbGwJEbeNdDX21YnA5">Ifeoma Osborne</option>
-                                                                                    <option value="R7E5xpO8mY3BnokKreVdA4WNGqQa1M6e0">Anas Rajput</option>
-                                                                                    <option value="rYM246gW1p0xbRnw1MwZ83d7avElDB5Pm">Clinton Hodges</option>
-                                                                                    <option value="72Z1xlqnYOQmD5MwBgVWzJ83EAgy0vLbN">Macy Bonner</option>
-                                                                                    <option value="eZbBNxEYn92XMd8jZeKW63zP5R4O0aJmQ">Tasha Bender</option>
-                                                                                    <option value="WaDrl82BLz3qoXNwP8weAEvxQGd45bkMY">Quinn Garza</option>
-                                                                                    <option value="OAzYMGkbENrnp6RVN8jZ0BXWa54m8DlJv">walk in customer</option>
-                                        <!--[if ENDBLOCK]><![endif]-->
-                                    </select>
-                                </div> --}}
-                            </div>
-                        </div>
+                     
                         <div class="table-datapos1">
                             <div class="table-responsive" id="printableTable">
                                 <table id="orderTable" class="display" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            {{-- <th>ID</th> --}}
                                             <th>Customer</th>
                                             <th>Total</th>
                                             <th>Date</th>
@@ -162,12 +177,12 @@
                                     <tbody>
                                         @foreach($this->recentBills As $bill)
                                             <tr>
-                                                <td>{{ $bill->sale_id }}</td>
+                                                {{-- <td>{{ $bill->sale_id }}</td> --}}
                                                 <td>{{ $bill->customer->name }}</td>
                                                 <td>{{ $bill->total }}</td>
                                                 <td>{{ getCustomDate($bill->created_at) }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.pos.bill', ['sale_id'=>$bill->hashid]) }}" target="_blank">view</a>
+                                                    <a href="{{ route('admin.pos.bill', ['sale_id'=>$bill->hashid]) }}" target="_blank">View</a>
                                                 </td>
                                                 <td>
                                                     <a href="javascript:void(0)" wire:click="editBill('{{$bill->hashid }}')">Edit</a>
@@ -201,7 +216,7 @@
                                     Total Amount to Pay :
                                 </th>
                                 <td class="border-0 justify-content-end d-flex text-primary font-size-lg font-size-bold px-0 mb-0">
-                                    {{ $total['total'] }}
+                                    AED {{ $total['total'] }}
                                 </td>
                             </tr>
                             <tr class="d-flex align-items-center justify-content-between">

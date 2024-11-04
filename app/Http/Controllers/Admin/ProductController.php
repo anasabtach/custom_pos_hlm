@@ -32,7 +32,8 @@ class ProductController extends Controller
             'title'         => 'Products',
             'products'      => $this->service->getProdcuts(),
             'categories'    => $this->categoryService->getCategories(),
-            'units'         => $this->unitService->getUnits()
+            'units'         => $this->unitService->getUnits(),
+            'brands'        => $this->brandService->getBrands(),
         ];
         return view('admin.product.index')->with($data);
     }
