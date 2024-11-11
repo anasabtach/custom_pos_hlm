@@ -115,13 +115,14 @@
                                                                     {{ $unit->short_hand }}</p>
                                                             </td>
                                                             <td class="align-middle text-center text-sm">
-                                                                @if ($unit->status)
-                                                                    active
-                                                                    {{-- <span class="badge badge-sm bg-gradient-success">Active</span> --}}
-                                                                @else
-                                                                    {{-- <span class="badge badge-sm bg-gradient-secondary">Deactive</span> --}}
-                                                                    deactive
-                                                                @endif
+                                                                <div
+                                                                    class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
+                                                                    <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($unit->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'untis', 'column_name' => 'status', 'id' => $unit->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
+                                                                    <label
+                                                                        class="custom-control-label form-check-label me-1"
+                                                                        for="customSwitchcolor3">
+                                                                    </label>
+                                                                </div>
                                                             </td>
 
 

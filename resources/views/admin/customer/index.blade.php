@@ -56,6 +56,7 @@
                                                         <th class="text-center">City</th>
                                                         <th class="text-center">DOB</th>
                                                         <th class="text-center">Address</th>
+                                                        <th>Status</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -87,7 +88,16 @@
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ $customer->address }}</p>
                                                             </td>
-
+                                                            <td class="align-middle text-center text-sm">
+                                                                <div
+                                                                    class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
+                                                                    <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($customer->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'customers', 'column_name' => 'status', 'id' => $customer->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
+                                                                    <label
+                                                                        class="custom-control-label form-check-label me-1"
+                                                                        for="customSwitchcolor3">
+                                                                    </label>
+                                                                </div>
+                                                            </td>
 
                                                             <td>
                                                                 <div class="card-toolbar text-end">

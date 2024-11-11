@@ -184,11 +184,14 @@
                                                                 @endif
                                                             </td>
                                                             <td class="align-middle text-center text-sm">
-                                                                @if ($product->status)
-                                                                    active
-                                                                @else
-                                                                    deactive
-                                                                @endif
+                                                                <div
+                                                                    class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
+                                                                    <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($product->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'products', 'column_name' => 'status', 'id' => $product->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
+                                                                    <label
+                                                                        class="custom-control-label form-check-label me-1"
+                                                                        for="customSwitchcolor3">
+                                                                    </label>
+                                                                </div>
                                                             </td>
                                                             <td class="text-center">
                                                                 <img src="{{ getImage(@$product->thumbnail->filename) }}"

@@ -5,13 +5,13 @@
                 <div class="card card-custom gutter-b bg-white border-0 justify-content-evenly">
                  
                     <div class="display-flex py-5 justify-content-evenly m-1 ps-2 p-3 topTabsHd">
-                        <span><a href="javascript:void(0)" wire:click="checkClick('all')" class="btn btn-primary">All</a></span>
+                        <span><a href="javascript:void(0)" wire:click="checkClick('')" class="btn btn-primary @if(empty($category_id)) active @endif" >All</a></span>
                         @foreach($this->categories as $category)
-                        <span>
-                            <a href="javascript:void(0)" class="btn btn-primary" wire:click="checkClick('{{ $category->hashid }}')">
-                                {{ $category->name }}
-                            </a>
-                        </span>
+                            <span>
+                                <a href="javascript:void(0)" class="btn btn-primary @if($category_id == $category->hashid) active @endif" wire:click="checkClick('{{ $category->hashid }}')" >
+                                    {{ $category->name }}
+                                </a>
+                            </span>
                         @endforeach
                     </div>
                     <div class="product-items">
@@ -118,7 +118,7 @@
                                             <tr>
                                                 <td>{{ $item['product_name'] }}</td>
                                                 <td>
-                                                    <input type="number" value="{{ $item['quantity'] }}"  class="form-control border-dark w-100px" id="basicInput2" placeholder="" max="{{ $item['stock'] }}" wire:input="updaeItemQuantity('{{ $item['sku'] }}', $event.target.value)">
+                                                    <input type="number" value="{{ $item['quantity'] }}"  class="form-control border-dark w-100px" id="basicInput2" placeholder="" max="{{ $item['stock'] }}" min="1" wire:input="updaeItemQuantity('{{ $item['sku'] }}', $event.target.value)">
                                                 </td>
                                                 <td>AED {{ $item['price'] }}</td>
                                                 <td>

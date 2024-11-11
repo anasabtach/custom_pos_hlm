@@ -63,13 +63,15 @@
                                                         <td class="text-center">{{ $staff->full_name }}</td>
                                                         <td class="text-center">{{ $staff->email }}</td>
                                                         <td class="text-center">{{ $staff->user_type }}</td>
-                                                        <td class="text-center">
-                                                            <label class="toggle-switch">
-                                                                <input type="checkbox" @checked($staff->status) onChange="updateUserStatus(this)" data-id={{ $staff->hashid }} data-status={{ $staff->status }}>
-                                                                <div class="toggle-switch-background">
-                                                                    <div class="toggle-switch-handle"></div>
-                                                                </div>
-                                                            </label>
+                                                        <td class="align-middle text-center text-sm">
+                                                            <div
+                                                                class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
+                                                                <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($staff->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'admins', 'column_name' => 'status', 'id' => $staff->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
+                                                                <label
+                                                                    class="custom-control-label form-check-label me-1"
+                                                                    for="customSwitchcolor3">
+                                                                </label>
+                                                            </div>
                                                         </td>
                                
                                                         <td>

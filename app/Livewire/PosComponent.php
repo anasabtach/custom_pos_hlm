@@ -69,7 +69,7 @@ class PosComponent extends Component
 
     // Handle category selection
     public function checkClick($category_id)
-    {
+    {   //dd($category_id);
         $this->category_id = $category_id;  // Update the selected category ID
     }
 
@@ -107,7 +107,9 @@ class PosComponent extends Component
         $total = 0;
         if(!empty($this->items)){
             foreach($this->items AS $item){
-                $total += $item['price'] * $item['quantity'];
+                if(!empty($item['quantity'])){
+                    $total += $item['price'] * $item['quantity'];
+                }
             }
         }
         $this->total['total'] = $total;
@@ -232,6 +234,11 @@ class PosComponent extends Component
             ];
     }
     
+
+    public function placeholder(array $params = [])
+    {
+        return view('livewire.placeholders.skeleton', $params);
+    }
 
     // Render method to return the view
     public function render()

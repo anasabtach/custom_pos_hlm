@@ -27,6 +27,33 @@ function singleImagePreview(inputId, previewImage){//image preview funciton
 });
 
 
+$('.status_toggle_btn').change(function(){
+    let route = $(this).data('route');
+    if ($(this).prop('checked')) {
+        route = route.replace(':value', '1');  // Reassign the modified value
+    } else {
+        route = route.replace(':value', '0');  // Reassign the modified value
+    }
+
+    $.ajax({
+        url: route,
+        method: "GET",
+        success: function(res) {
+            if(res.success){
+                toastr.success(res.success, 'Success', {
+                    positionClass: 'toast-top-right',
+                    timeOut: 3500
+                });
+            }else{
+                toastr.error(res.error, 'Success', {
+                    positionClass: 'toast-top-right',
+                    timeOut: 3500
+                });
+            }
+        }
+    });
+});
+
 //datatable initialization
 // let table = new DataTable('#table', {
 //     columnDefs: [

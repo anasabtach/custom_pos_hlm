@@ -35,119 +35,12 @@
       <div class="posicon d-lg-block d-none">
         <a href="{{ route('admin.pos.index') }}" class="btn btn-primary white me-2">POS</a>
       </div>
-      <div class="topbar-item">
-        <div class="quick-search quick-search-inline ml-20 me-1 w-300px"
-          id="kt_quick_search_inline">
-          <!--begin::Form-->
-          <form method="get" class="quick-search-form">
-            <div class="input-group rounded bg-light">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <span class="svg-icon svg-icon-lg">
-                    <svg width="20px" height="20px" viewBox="0 0 16 16"
-                      class="bi bi-search" fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd"
-                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                      <path fill-rule="evenodd"
-                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                    </svg>
-                  </span>
-                </span>
-              </div>
-              <input type="text" class="form-control h-45px" placeholder="Search...">
 
-            </div>
-          </form>
-          <!--end::Form-->
-          <!--begin::Search Toggle-->
-          <div id="kt_quick_search_toggle" data-bs-toggle="dropdown" data-offset="0px,1px"></div>
-          <!--end::Search Toggle-->
-          <!--begin::Dropdown-->
-          <div
-            class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
-            <div class="quick-search-wrapper scroll ps" data-scroll="true" data-height="350"
-              data-mobile-height="200" style="height: 350px; overflow: hidden;">
-              <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;">
-                </div>
-              </div>
-              <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;">
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--end::Dropdown-->
-        </div>
-      </div>
-      <!--begin::Languages-->
-      <div class="dropdown">
-
-        <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
-          <div class="btn btn-icon btn-clean btn-dropdown btn-lg me-1">
-            <img class="h-20px w-20px rounded-sm"
-              src="{{ asset('assets/images/svg/flags/226-united-states.svg') }}" alt="" />
-          </div>
-        </div>
-
-        <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <span class="symbol symbol-20 me-3">
-              <img class="h-20px w-20px rounded-sm"
-                src="{{ asset('assets/images/svg/flags/226-united-states.svg') }}" alt="" />
-            </span>
-            English
-          </a>
-
-        </div>
-
-      </div>
-      <!--end::Languages-->
-
-
-      <!--begin::Quick Actions-->
-      <div class="dropdown">
-
-        <div class="topbar-item" data-bs-toggle="dropdown" data-offset="10px,0px">
-          <div id="kt_open_fullscreen" class="btn btn-icon btn-clean btn-dropdown me-1" title="fullscreen"
-            onclick="openFullscreen();">
-            <span class="svg-icon svg-icon-xl svg-icon-primary">
-
-              <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-fullscreen"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
-              </svg>
-
-
-
-            </span>
-
-          </div>
-
-          <div id="kt_close_fullscreen" class="btn btn-icon btn-clean btn-dropdown me-1"
-            onclick="closeFullscreen();" style="display: none;">
-            <span class="svg-icon svg-icon-xl svg-icon-primary">
-              <svg width="20px" height="20px" viewBox="0 0 16 16"
-                class="bi bi-fullscreen-exit" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z" />
-              </svg>
-            </span>
-          </div>
-        </div>
-
-
-
-      </div>
-      <!--end::Quick Actions-->
 
 
 
       <!--begin::Quick panel-->
-      <div class="topbar-item">
+      {{-- <div class="topbar-item">
         <div class="btn btn-icon btn-clean  me-1" id="tc_quick_panel_toggle">
           <span class="svg-icon svg-icon-xl svg-icon-primary">
 
@@ -159,7 +52,7 @@
           </span>
           <span class="badge badge-pill badge-secondary">5</span>
         </div>
-      </div>
+      </div> --}}
       <!--end::Quick panel-->
 
 
@@ -324,8 +217,7 @@
 
         <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
           <div class="btn btn-icon w-auto btn-clean d-flex align-items-center pr-1 ps-3">
-            <span class="text-dark-50 font-size-base d-none d-xl-inline me-3">Angilina
-              Deo</span>
+            <span class="text-dark-50 font-size-base d-none d-xl-inline me-3">{{ auth()->user()->full_name }}</span>
             <span class="symbol symbol-35 symbol-light-success">
               <span class="symbol-label font-size-h5 ">
                 <svg width="20px" height="20px" viewBox="0 0 16 16"

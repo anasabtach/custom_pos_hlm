@@ -4,6 +4,7 @@ use App\Helpers\Hashid;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PosController;
@@ -138,5 +139,10 @@ Route::name('admin.')->group(function(){
             Route::get('/delete/{id}', 'delete')->name('delete');
             Route::get('/update-status/{id}/{status}', 'updateStatus')->name('update_status');
         });
+    });
+
+    //commonr routes
+    Route::prefix('common')->name('common.')->controller(CommonController::class)->group(function(){
+        Route::get('/update-status/{table_name}/{column_name}/{id}/{value}','updateStatus')->name('update_status');
     });
 });
