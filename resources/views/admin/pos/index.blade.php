@@ -85,13 +85,13 @@
                <div class="col-xl-4 col-lg-5 col-md-6  clock-main">
                   <div class="clock">
                      <div class="datetime-content">
-                        <ul>
+                        {{-- <ul>
                            <li id="hours"></li>
                            <li id="point1">:</li>
                            <li id="min"></li>
                            <li id="point">:</li>
                            <li id="sec"></li>
-                        </ul>
+                        </ul> --}}
                      </div>
                      <div class="datetime-content">
                         <div id="Date" class=""></div>

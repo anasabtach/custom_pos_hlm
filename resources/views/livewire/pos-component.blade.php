@@ -33,7 +33,7 @@
                                                     </div>
                                                         <h5>
                                                     
-                                                            $ {{ $product->price }} 
+                                                            AED {{ $product->price }} 
                                                         </h5>
                                                         
                                                     
@@ -238,7 +238,7 @@
                                 </fieldset>
                                 <div class="p-3 bg-light-dark d-flex justify-content-between border-bottom">
                                     <h5 class="font-size-bold mb-0">Amount to Return :</h5>
-                                    <h5 class="font-size-bold mb-0">${{ $return_amount }}</h5>
+                                    <h5 class="font-size-bold mb-0">AED{{ $return_amount }}</h5>
                                 </div>
                             </div>
                         </div>

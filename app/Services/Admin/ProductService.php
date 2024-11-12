@@ -62,6 +62,7 @@ class ProductService
             'has_variation'        => $arr['has_variation'],
             'expiration'           => $arr['expiration'],
             'product_id'           => isset($arr['product_id']) ? hashid_decode($arr['product_id']) : NULL,
+            'status'               => $arr['status'],
         ];
     }
 
