@@ -99,7 +99,7 @@ Route::name('admin.')->group(function(){
             Route::get('/add', 'add')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{product_id}', 'edit')->name('edit');
-            Route::get('/delete/{product_id}', 'product_id')->name('delete');
+            Route::get('/delete/{product_id}', 'delete')->name('delete');
             Route::get('/search', 'searchProducts')->name('search');
             Route::get('/product-variation-row', 'productAndVariationRow')->name('product_and_variation_row');
         });

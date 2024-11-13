@@ -77,6 +77,16 @@ class ProductController extends Controller
         return view('admin.product.add')->with($data);
     }
 
+    public function delete($product_id){
+        try{
+            $this->service->delete($product_id);
+            return redirect()->back()->with('success', __('error_messages.product_delete_success'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', __('error_messages.product_delete_error'));
+        }
+        $this->service->delete($product_id);
+    }
+
     public function searchProducts(Request $req){
         return response()->json([
             'items' => $this->service->searchProducts($req->search),

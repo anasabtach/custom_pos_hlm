@@ -36,6 +36,11 @@ class ProductRepository implements ProductInterface
         return $this->product->with(['variations'])->findOrFail(hashid_decode($product_id));
     }
 
+    public function delete(string $product_id):bool
+    {   
+        return $this->product->destroy(hashid_decode($product_id));
+    }
+
     public function updateProduct(array $arr):Product
     {  
         $product = $this->product->findOrFaiL($arr['product_id']);

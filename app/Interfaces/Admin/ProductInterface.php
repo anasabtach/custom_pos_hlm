@@ -16,6 +16,8 @@ interface ProductInterface
 
     public function editProduct(string $product_id):Product;
 
+    public function delete(string $product_id):bool;
+
     public function updateProduct(array $arr):Product;
 
     public function deleteProductVariations(Product $product):bool|null;

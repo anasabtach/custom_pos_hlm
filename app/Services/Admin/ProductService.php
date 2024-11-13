@@ -44,7 +44,7 @@ class ProductService
                 'expiration'    => $arr['variation_expiration'][$key],
             ];
         })->toArray();
-        return $product_variation_arr;
+        return $product_variation_arr;  
     }
 
     public function createProductArr($arr){//create product arr
@@ -80,6 +80,10 @@ class ProductService
                 $this->repository->storeProductVariation($product, $variation_arr);//store the variation
             }
         });
+    }
+
+    public function delete($product_id){
+        return $this->repository->delete($product_id);
     }
 
     public function searchProducts($search = null)

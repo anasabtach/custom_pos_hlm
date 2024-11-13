@@ -7,49 +7,53 @@
 @section('content')
     <div class="container-fluid">
         @can('add-role')
-        <div class="row">
-            <div class="col-lg-12 col-xl-12 px-4">
-                <div class="card card-custom gutter-b bg-white border-0">
-                    <div class="card-header align-items-center border-0">
-                        <h3 class="card-label font-weight-bold text-body">
-                            {{ isset($is_update) ? 'Update' : 'Add' }} Role
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('admin.roles.store') }}" method="POST" id="role_form" class="validation">
-                            @csrf
-                            <div class="form-group row">
-                                <div class="col-md-5">
-                                    <label>Role Name</label>
-                                    <input type="text" placeholder="Role Name"
-                                        class="form-control round bg-transparent text-dark" name="name"
-                                        value="{{ $edit_role->name ?? '' }}" required>
+            <div class="row">
+                <div class="col-lg-12 col-xl-12 px-4">
+                    <div class="card card-custom gutter-b bg-white border-0">
+                        <div class="card-header align-items-center border-0">
+                            <h3 class="card-label font-weight-bold text-body">
+                                {{ isset($is_update) ? 'Update' : 'Add' }} Role
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('admin.roles.store') }}" method="POST" id="role_form" class="validation">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-md-5">
+                                        <label>Role Name</label>
+                                        <input type="text" placeholder="Role Name"
+                                            class="form-control round bg-transparent text-dark" name="name"
+                                            value="{{ $edit_role->name ?? '' }}" required>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label>Permissions</label>
+                                        <select class="form-control fav_clr" name="permissions[]" id="permissions" multiple>
+                                            <option value="all">all</option>
+                                            @foreach ($permissions as $permission)
+                                                <option value="{{ $permission->hashid }}"
+                                                    @isset($is_edit) @selected(in_array($permission->id, $edit_role->permissions->pluck('id')->toArray())) @endisset>
+                                                    {{ $permission->name }}</option>
+                                            @endforeach
+                                        </select>
+
+
+
+
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <input type="hidden" name="role_id" value="{{ $edit_role->hashid ?? '' }}">
+                                        @include('admin.components.button', [
+                                            'class' => 'btn-primary',
+                                            'type' => 'submit',
+                                            'name' => isset($is_edit) ? 'Update' : 'Add',
+                                        ])
+                                    </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <label>Permissions</label>
-                                    <select class="form-control multiple_select_2" name="permissions[]" id="permissions"
-                                        multiple>
-                                        @foreach ($permissions as $permission)
-                                            <option value="{{ $permission->hashid }}"
-                                                @isset($is_edit) @selected(in_array($permission->id, $edit_role->permissions->pluck('id')->toArray())) @endisset>
-                                                {{ $permission->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-2 d-flex align-items-center">
-                                    <input type="hidden" name="role_id" value="{{ $edit_role->hashid ?? '' }}">
-                                    @include('admin.components.button', [
-                                        'class' => 'btn-primary',
-                                        'type' => 'submit',
-                                        'name' => isset($is_edit) ? 'Update' : 'Add',
-                                    ])
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>  
         @endcan
         <div class="row">
             <div class="col-12 px-4">
@@ -121,7 +125,7 @@
 
                                             <thead class="text-body">
                                                 <tr>
-                                                  <tr>
+                                                <tr>
                                                     <th class="text-center">ID</th>
                                                     <th class="text-center">Role</th>
                                                     <th class="text-center">Action</th>
@@ -129,47 +133,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="kt-table-tbody text-dark">
-                                              @foreach ($roles as $role)
-                                              <tr>
-                                                  <td class="text-center">{{ $loop->iteration }}</td>
-                                                  <td class="text-center">{{ $role->name }}</td>
-                                                  <td>
-                                                    <div class="card-toolbar text-end">
-                                                        <button class="btn p-0 shadow-none" type="button"
-                                                            id="dropdowneditButton01" data-bs-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            <span class="svg-icon">
-                                                                <svg width="20px" height="20px"
-                                                                    viewBox="0 0 16 16"
-                                                                    class="bi bi-three-dots text-body"
-                                                                    fill="currentColor"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
-                                                                    </path>
-                                                                </svg>
-                                                            </span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right"
-                                                            aria-labelledby="dropdowneditButton01"
-                                                            style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                            @can('edit-role')
-                                                            <a href="{{ route('admin.roles.edit', ['id' => $role->hashid]) }}"
-                                                                class="dropdown-item click-edit"
-                                                                id="click-edit2" data-bs-toggle="tooltip"
-                                                                title="" data-bs-placement="right"
-                                                                data-original-title="Check out more demos">Edit</a>
-                                                            @endcan
-                                                            @can('delete-role')
-                                                            <a class="dropdown-item confirm-delete"
-                                                                title="Delete"
-                                                                href="{{ route('admin.roles.delete', ['id' => $role->hashid]) }}">Delete</a>
-                                                            @endcan
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                              </tr>
-                                          @endforeach
+                                                @foreach ($roles as $role)
+                                                    <tr>
+                                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                                        <td class="text-center">{{ $role->name }}</td>
+                                                        <td>
+                                                            <div class="card-toolbar text-end">
+                                                                <button class="btn p-0 shadow-none" type="button"
+                                                                    id="dropdowneditButton01" data-bs-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    <span class="svg-icon">
+                                                                        <svg width="20px" height="20px"
+                                                                            viewBox="0 0 16 16"
+                                                                            class="bi bi-three-dots text-body"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right"
+                                                                    aria-labelledby="dropdowneditButton01"
+                                                                    style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                    @can('edit-role')
+                                                                        <a href="{{ route('admin.roles.edit', ['id' => $role->hashid]) }}"
+                                                                            class="dropdown-item click-edit" id="click-edit2"
+                                                                            data-bs-toggle="tooltip" title=""
+                                                                            data-bs-placement="right"
+                                                                            data-original-title="Check out more demos">Edit</a>
+                                                                    @endcan
+                                                                    @can('delete-role')
+                                                                        <a class="dropdown-item confirm-delete" title="Delete"
+                                                                            href="{{ route('admin.roles.delete', ['id' => $role->hashid]) }}">Delete</a>
+                                                                    @endcan
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -183,11 +186,25 @@
     </div>
 @endsection
 @section('script')
-    {{-- <script>
-        $('.multiple_select_2').select2();
-    </script>
-    <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#myTable');
-    </script> --}}
+        $(document).ready(function() {
+            $('.fav_clr').select2({
+                placeholder: 'Permissions',
+                width: '100%',
+                border: '1px solid #e4e5e7',
+                closeOnSelect: false
+            });
+        });
+        $('.fav_clr').on("select2:select", function(e) {
+            var data = e.params.data.text;
+
+            if (data === 'all') {
+                $(".fav_clr > option[value='all']").prop("selected", false);
+
+                $(".fav_clr > option").not("[value='all']").prop("selected", true);
+
+                $(".fav_clr").trigger("change");
+            }
+        });
+    </script>
 @endsection
