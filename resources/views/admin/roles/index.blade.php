@@ -28,7 +28,7 @@
                                     <div class="col-md-5">
                                         <label>Permissions</label>
                                         <select class="form-control fav_clr" name="permissions[]" id="permissions" multiple>
-                                            <option value="all">all</option>
+                                            <option value="all">All</option>
                                             @foreach ($permissions as $permission)
                                                 <option value="{{ $permission->hashid }}"
                                                     @isset($is_edit) @selected(in_array($permission->id, $edit_role->permissions->pluck('id')->toArray())) @endisset>

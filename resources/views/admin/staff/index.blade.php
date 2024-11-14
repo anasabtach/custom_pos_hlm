@@ -53,6 +53,7 @@
                                                     <th class="text-center">Email</th>
                                                     <th class="text-center">Role</th>
                                                     <th class="text-center">Status</th>
+                                                    <th>Resend<br/>Credentials</th>
                                                     <th class="text-center no-sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -73,7 +74,17 @@
                                                                 </label>
                                                             </div>
                                                         </td>
-                               
+                                                        <td>
+                                                            <a href="{{ route('admin.staffs.resend_credentials_email', ['user_id'=>$staff->hashid]) }}">
+                                                                <span class="svg-icon nav-icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw">
+                                                                        <polyline points="23 4 23 10 17 10"></polyline>
+                                                                        <polyline points="1 20 1 14 7 14"></polyline>
+                                                                        <path d="M3.51 9a9 9 0 0 1 14.36-3.36L23 10M1 14l5.63 5.64A9 9 0 0 0 20.49 15"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </a>
+                                                        </td>
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"

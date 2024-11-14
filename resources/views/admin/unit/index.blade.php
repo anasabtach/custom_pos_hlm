@@ -10,7 +10,7 @@
                         <div class="card card-custom gutter-b bg-white border-0">
                             <div class="card-header border-0 align-items-center">
                                 <h3 class="card-label mb-0 font-weight-bold text-body">
-                                    {{ isset($is_update) ? 'Update' : 'Add' }} Unit
+                                    Unit
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -18,7 +18,7 @@
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-6">
-                                            <label>Unit Name</label>
+                                            <label> {{ isset($is_update) ? 'Update' : 'Add' }}  Unit Name</label>
                                             <fieldset class="form-group mb-3">
                                                 <input type="text" placeholder="Enter unit name"
                                                     class="form-control round bg-transparent text-dark"
@@ -37,8 +37,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="hidden" name="category_id"
-                                            value="{{ isset($is_update) ? $edit_category->hashid : '' }}">
+                                        <input type="hidden" name="unit_id"
+                                            value="{{ isset($is_update) ? $edit_unit->hashid : '' }}">
                                         <input type="submit" class="btn btn-primary mt-4"
                                             value="{{ isset($is_update) ? 'Update' : 'Add' }}">
                                     </div>
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-12 px-4">
                     <div class="row">
-                        <div class="col-lg-12 col-xl-12 px-4">
+                        {{-- <div class="col-lg-12 col-xl-12 px-4">
                             <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
                                 <div class="card-header align-items-center  border-bottom-dark px-0">
                                     <div class="card-title mb-0">
@@ -83,7 +83,7 @@
                             </div>
 
 
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
                         <div class="col-12  px-4">
@@ -147,7 +147,7 @@
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                                         @can('edit-unit')
-                                                                            <a href="{{ route('admin.categories.edit', ['category_id' => $unit->hashid]) }}"
+                                                                            <a href="{{ route('admin.units.edit', ['unit_id' => $unit->hashid]) }}"
                                                                                 class="dropdown-item click-edit"
                                                                                 id="click-edit2" data-bs-toggle="tooltip"
                                                                                 title="" data-bs-placement="right"
@@ -156,7 +156,7 @@
                                                                         @can('delete-unit')
                                                                             <a class="dropdown-item confirm-delete"
                                                                                 title="Delete"
-                                                                                href="{{ route('admin.categories.delete', ['category_id' => $unit->hashid]) }}">Delete</a>
+                                                                                href="{{ route('admin.units.delete', ['unit_id' => $unit->hashid]) }}">Delete</a>
                                                                         @endcan
                                                                     </div>
                                                                 </div>

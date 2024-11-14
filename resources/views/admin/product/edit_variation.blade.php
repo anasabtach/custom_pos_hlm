@@ -59,6 +59,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <!-- Color Picker Input -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="color" class="form-control-label">Color</label>
+                            <input type="text" class="form-control shadow-sm rounded" name="variation_color[]" id="variation_color" value="{{ $variation->color }}">
+                        </div>
+                    </div>
+
+                    <!-- Image Upload with Preview -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="image" class="form-control-label">Image</label>
+                            <input type="file" class="form-control shadow-sm rounded variation_image" name="variation_image[]" id="variation_image" accept="image/*" onchange="previewVariationImage(event)">
+                            <img src="{{ @getImage($variation->thumbnail) }}" height="100" width="100" alt="Image Preview" class="img-thumbnail mt-2" id="image_preview" @if(!isset($is_update)) style="display: none; max-width: 100px;" @endif>
+                        </div>
+                    </div>
+                </div>
             </div>
         @endforeach
     @endif

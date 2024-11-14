@@ -86,7 +86,8 @@
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->note }}</p>
+                                                                    {!! wordwrap($supplier->note, 100, "<br>\n", true) !!}
+                                                                </p>
                                                             </td>
 
 

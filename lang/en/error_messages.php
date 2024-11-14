@@ -6,6 +6,12 @@ return [
     'category_update_success'       => 'Category updated successfully',
     'category_delete_success'       => 'Category deleted successfully',
 
+    //staff messages
+    'staff_store_success'        => 'Staff added successfully!',
+    'staff_store_error'          => 'Error adding staff. Please try again.',
+    'staff_update_success'       => 'Category updated successfully',
+    'staff_update_error'       => 'Category deleted successfully',
+
     //brand messages
     'brand_update_success'      => 'Brand updated successfully',
     'brand_delete_success'      => 'Brand deleted successfully',

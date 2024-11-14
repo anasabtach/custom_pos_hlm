@@ -24,7 +24,7 @@ class UnitController extends Controller
     }
 
     public function store(UnitRequest $req){
-        $msg = (isset($req->brand_id)) ?  __('error_messages.unit_update_success') :  __('error_messages.unit_add_success');//send update message when brand_id is set
+        $msg = (isset($req->unit_id)) ?  __('error_messages.unit_update_success') :  __('error_messages.unit_add_success');//send update message when brand_id is set
         try {
             $this->service->store($req->validated());
             return to_route('admin.units.index')->with('success',$msg);

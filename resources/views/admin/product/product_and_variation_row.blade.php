@@ -7,7 +7,7 @@
             <p class="text-center">{{ $data->name }}</p>
         </td>
         <td>
-            <input class="form-control" type="number" name="cost[]">
+            <input class="form-control cost" type="number" name="cost[]">
         </td>
         <td>
             <p class="text-center">{{ $data->price }}</p>
@@ -16,7 +16,7 @@
             <p class="text-center">{{ $data->stock }}</p>
         </td>
         <td>
-            <input class="form-control" type="number" name="qty[]">
+            <input class="form-contro qtyl" type="number" name="qty[]">
         </td>
         <td>
             <input class="form-control" type="date" name="expiration[]">

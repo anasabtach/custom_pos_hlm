@@ -27,7 +27,7 @@ class ProductRepository implements ProductInterface
     }
 
     public function storeProductVariation(Product $product, array $arr):Collection
-    {  
+    {   
         return $product->variations()->createMany($arr);
     }
     
@@ -81,4 +81,16 @@ class ProductRepository implements ProductInterface
             ]
         );
     }
+    
+    public function updateProductStock($product_id, $stock, $type):bool
+    {
+        $query = Product::where('id', hashid_decode($product_id));
+        if ($type === 'increment') {
+            return $query->increment('stock', $stock);
+        } elseif ($type === 'decrement') {
+            return $query->decrement('stock', $stock);
+        }
+        return false; 
+    }
+    
 }

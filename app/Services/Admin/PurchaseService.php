@@ -38,7 +38,10 @@ class PurchaseService
        $purchase_item_arr = [];
         
        foreach($arr['product_id'] AS $key=>$product){
-            
+        
+            $this->productRepository->updateProductStock($arr['product_id'][$key], $arr['qty'][$key], 'increment');
+
+
             $product_id = $this->productRepository->getSingleProduct($product);//get product
             $product_variation_id =  (isset($arr['product_variation_id'][$key])) 
                                         ? $product_id->variations->where('id', hashid_decode($arr['product_variation_id'][$key]))->first() 
@@ -77,4 +80,9 @@ class PurchaseService
     public function delete($purchase_id){
         return $this->repository->delete($purchase_id);
     }
+
+    // public function updateProductStock($product_id, $stock, $type):bool
+    // {
+    //     return $this->repository->updateProductStock($product_id, $stock, $type);
+    // }
 }

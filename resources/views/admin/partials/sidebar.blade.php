@@ -18,20 +18,7 @@
                       <span class="nav-text">Dashboard</span>
                   </a>
               </li>
-              @can('view-category')
-              <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                  <a href="{{ route('admin.categories.index') }}" class="nav-link">
-                      <span class="svg-icon nav-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
-                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round">
-                              <path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"></path>
-                          </svg>
-                      </span>
-                      <span class="nav-text">Categories</span>
-                  </a>
-              </li>
-              @endcan
+
               @can('view-brand')
               <li class="nav-item {{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.brands.index') }}" class="nav-link">
@@ -43,6 +30,20 @@
                           </svg>
                       </span>
                       <span class="nav-text">Brands</span>
+                  </a>
+              </li>
+              @endcan
+              @can('view-category')
+              <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                  <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                      <span class="svg-icon nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
+                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"></path>
+                          </svg>
+                      </span>
+                      <span class="nav-text">Categories</span>
                   </a>
               </li>
               @endcan

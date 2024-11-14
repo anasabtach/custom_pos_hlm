@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Services\Admin\CategoryService;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {   
@@ -26,7 +25,7 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $req){
         
-        $msg = (isset($req->category_id)) ?  __('error_messages.category_update_success') :  __('error_messages.store_category_error');
+        $msg = (isset($req->category_id)) ?  __('error_messages.category_update_success') :  __('error_messages.store_category_success');
         try {
             $this->categoryService->store($req->validated());
             return to_route('admin.categories.index')->with('success',$msg);

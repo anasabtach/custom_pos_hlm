@@ -55,4 +55,9 @@ class StaffRepository implements StaffInterface
     {   $status = $status == true ? '1' : '0';
         return Admin::findOrFail(hashid_decode($id))->update(['status'=>$status]);
     }
+
+    public function getStaffMember(string $user_id):Admin
+    {
+        return Admin::findOrFail(hashid_decode($user_id));
+    }
 }

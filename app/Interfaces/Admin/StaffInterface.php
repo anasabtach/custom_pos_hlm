@@ -23,6 +23,7 @@ interface StaffInterface
     public function delete($id):bool;
 
     public function updateStatus(string $id, bool $status):bool;
-
+    
+    public function getStaffMember(string $user_id):Admin;
     
 }

@@ -9,7 +9,7 @@
                         <div class="card card-custom gutter-b bg-white border-0">
                             <div class="card-header border-0 align-items-center">
                                 <h3 class="card-label mb-0 font-weight-bold text-body">
-                                    {{ isset($is_update) ? 'Update' : 'Add' }} brand
+                                    Brands
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -17,7 +17,7 @@
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-12">
-                                            <label>brand</label>
+                                            <label>{{ isset($is_update) ? 'Update' : 'Add' }} Brand</label>
                                             <fieldset class="form-group mb-3">
                                                 <input type="text" placeholder="Enter brand name"
                                                     class="form-control round bg-transparent text-dark"
@@ -43,7 +43,7 @@
             @endcan
             <div class="row">
                 <div class="col-12 px-4">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-12 col-xl-12 px-4">
                             <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
                                 <div class="card-header align-items-center  border-bottom-dark px-0">
@@ -75,7 +75,7 @@
 
 
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
 
                         <div class="col-12  px-4">

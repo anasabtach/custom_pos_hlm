@@ -129,6 +129,7 @@
                                                         <th class="text-center">Expiration</th>
                                                         <th class="text-center">Variations</th>
                                                         <th class="text-center">Status</th>
+                                                        <th class="text-center">Color</th>
                                                         <th class="text-center">Image</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
@@ -192,6 +193,9 @@
                                                                         for="customSwitchcolor3">
                                                                     </label>
                                                                 </div>
+                                                            </td>
+                                                            <td>
+                                                                {{ $product->color }}
                                                             </td>
                                                             <td class="text-center">
                                                                 <img src="{{ getImage(@$product->thumbnail->filename) }}"

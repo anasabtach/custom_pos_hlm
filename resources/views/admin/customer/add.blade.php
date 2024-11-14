@@ -69,13 +69,22 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <label>DOB</label>
+                                    <fieldset class="form-group mb-3">
+                                        <input type="date" placeholder="DOB" class="form-control round bg-transparent text-dark" 
+                                               value="{{ isset($is_update) ? $edit_customer->dob : old('dob') }}" name="dob">
+                                    </fieldset>
+                                </div>
+                            </div>
+                            {{-- <div class="row">
                                 <div class="col-md-12">
                                     <label>Note</label>
                                     <fieldset class="form-group mb-3">
                                         <textarea class="form-control round bg-transparent text-dark" name="note" cols="30" rows="3">{{ isset($is_update) ? $edit_customer->note : old('note') }}</textarea>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <input type="hidden" name="customer_id" value="{{ isset($is_update) ? $edit_customer->hashid : '' }}">
                                 <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}">

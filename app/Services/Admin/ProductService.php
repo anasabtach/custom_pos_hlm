@@ -34,14 +34,18 @@ class ProductService
 
     public function createProductVariationArr($arr)//create variaton array
     {
-        $product_variation_arr = collect($arr['variation_sku'])->map(function($data, $key) use ($arr) {//first create the collecton of array then iterat over
+        $product_variation_arr = collect($arr['variation_sku'])->map(function($data, $key) use ($arr) {
             return [
-                'unit_id'       => (isset($arr['variation_unit_id'][$key])) ? hashid_decode($arr['variation_unit_id'][$key]) : NULL,
+                'unit_id'       => isset($arr['variation_unit_id'][$key]) ? hashid_decode($arr['variation_unit_id'][$key]) : null,
                 'sku'           => $arr['variation_sku'][$key],
                 'price'         => $arr['variation_price'][$key],
                 'stock'         => $arr['variation_stock'][$key],
                 'stock_alert'   => $arr['variation_stock_alert'][$key],
                 'expiration'    => $arr['variation_expiration'][$key],
+                'color'         => $arr['variation_color'][$key] ?? null,
+                'thumbnail'     => (isset($arr['variation_image'][$key]) && !empty($arr['variation_image'][$key]))
+                                    ? CommonHelper::uploadSingleImage($arr['variation_image'][$key], 'product_thumbnail')['image']
+                                    : null,
             ];
         })->toArray();
         return $product_variation_arr;  
@@ -71,12 +75,14 @@ class ProductService
     }
 
     public function updateProduct($arr){
+        // dd($arr);
         DB::transaction(function() use ($arr){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
             $this->updateThumbnail($product, @$arr['product_thumbnail']);
             $this->repository->deleteProductVariations($product);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
+                // dd($variation_arr);
                 $this->repository->storeProductVariation($product, $variation_arr);//store the variation
             }
         });

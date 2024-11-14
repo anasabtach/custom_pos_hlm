@@ -50,6 +50,7 @@ class PurchaseController extends Controller
             (isset($req->purchase_id)) ? $this->service->update($req->validated()) : $this->service->store($req->validated());
             return to_route('admin.purchases.index')->with('success',$success_msg);
         }catch(Exception $e){
+            dd($e->getMessage());
             return redirect()->back()->with('error',$error_msg);
         }
     }

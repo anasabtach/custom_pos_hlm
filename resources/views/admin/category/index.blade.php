@@ -9,7 +9,7 @@
                         <div class="card card-custom gutter-b bg-white border-0">
                             <div class="card-header border-0 align-items-center">
                                 <h3 class="card-label mb-0 font-weight-bold text-body">
-                                    {{ isset($is_update) ? 'Update' : 'Add' }} Category
+                                     Category
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -17,7 +17,7 @@
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-12">
-                                            <label>Category</label>
+                                            <label>{{ isset($is_update) ? 'Update' : 'Add' }} Category</label>
                                             <fieldset class="form-group mb-3">
                                                 <input type="text" placeholder="Enter category name"
                                                     class="form-control round bg-transparent text-dark"
@@ -51,7 +51,7 @@
                                         <h3 class="card-label mb-0 font-weight-bold text-body">Categories
                                         </h3>
                                     </div>
-                                    <div class="icons d-flex">
+                                    {{-- <div class="icons d-flex">
                                         <button class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                             title="" data-bs-placement="right"
                                             data-original-title="Check out more demos">
@@ -68,7 +68,7 @@
 
                                         </button>
 
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                             </div>

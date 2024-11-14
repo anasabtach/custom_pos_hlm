@@ -16,9 +16,9 @@ class StaffRegisteredMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public string $email, public string $password)
     {
-        //
+       
     }
 
     /**
@@ -27,7 +27,7 @@ class StaffRegisteredMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Staff Registered Mail',
+            subject: 'Staff Registration Mail',
         );
     }
 
@@ -35,9 +35,9 @@ class StaffRegisteredMail extends Mailable
      * Get the message content definition.
      */
     public function content(): Content
-    {
+    {   
         return new Content(
-            view: 'view.name',
+            view: 'mail.staff_registration_mail',
         );
     }
 

@@ -17,7 +17,7 @@ class StaffRegisteredEvent
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public string $email, public string $password)
     {
         //
     }

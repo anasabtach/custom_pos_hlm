@@ -30,4 +30,8 @@ interface ProductInterface
 
     public function updateThumbail(Product $product, array $imageData): void;
 
+    public function updateProductStock($product_id, $stock, $type):bool;
+
+    
+
 }

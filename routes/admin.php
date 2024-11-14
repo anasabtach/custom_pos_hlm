@@ -138,6 +138,7 @@ Route::name('admin.')->group(function(){
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::get('/delete/{id}', 'delete')->name('delete');
             Route::get('/update-status/{id}/{status}', 'updateStatus')->name('update_status');
+            Route::get('/resend-credentials-email/{user_id}', 'resendCredentialsEmail')->name('resend_credentials_email');
         });
     });
 

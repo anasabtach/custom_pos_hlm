@@ -72,5 +72,14 @@ class StaffController extends Controller
           ]);
         }
     }
+
+    public function resendCredentialsEmail($user_id){
+        try {
+            $this->service->resendCredentialsEmail($user_id);
+            return to_route('admin.staffs.index')->with('success', __('error_messages.staff_store_success'));
+        } catch (\Exception $e){
+            return redirect()->back()->withInput()->with('error', __('error_messages.staff_store_error'));
+        }
+    }
     
 }
