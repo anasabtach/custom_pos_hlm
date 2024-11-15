@@ -62,6 +62,11 @@ class PurchaseRepository implements PurchaseInterface
         return Purchase::destroy(hashid_decode($purchase_id));
     }
 
+    public function purchaseCount():int
+    {
+        return Purchase::count();
+    }
+
 
 
 }

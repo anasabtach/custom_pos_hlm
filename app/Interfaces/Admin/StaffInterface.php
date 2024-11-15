@@ -25,5 +25,7 @@ interface StaffInterface
     public function updateStatus(string $id, bool $status):bool;
     
     public function getStaffMember(string $user_id):Admin;
+
+    public function staffCount():int;
     
 }

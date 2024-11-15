@@ -85,7 +85,13 @@ $('#product_form').validate({
         'variation_expiration[]': {
             required: false,
             date: true
-        }
+        },
+        'name[]': {
+            required:function(element){
+                return $('#has_variation').val() ==1;
+            }, 
+            maxlength: 50
+        },
     },
     messages: {
         // Optional: Define custom error messages for clarity

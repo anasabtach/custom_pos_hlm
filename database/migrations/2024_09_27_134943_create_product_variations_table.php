@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->unsignedInteger('unit_id')->nullable();
+            $table->string('name', 50)->nullable();
             $table->string('sku',50)->unique();
             $table->unsignedFloat('price',10,2);
             $table->unsignedInteger('stock');

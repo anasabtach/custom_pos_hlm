@@ -12,6 +12,13 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
+                            <label for="sku" class="form-control-label">Variation Name</label>
+                            <input type="text" placeholder="Enter variation name" class="form-control shadow-sm rounded"
+                                name="name[]" id="name"  value="{{ $variation->name }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
                             <label for="sku" class="form-control-label">SKU</label>
                             <input type="text" placeholder="Enter sku no" class="form-control form-control-line"
                                 name="variation_sku[]" value="{{ $variation->sku }}">
@@ -24,6 +31,9 @@
                                 name="variation_price[]"  value="{{ $variation->price }}">
                         </div>
                     </div>
+
+                </div>
+                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="stock" class="form-control-label">Stock</label>
@@ -31,8 +41,6 @@
                                 name="variation_stock[]"  value="{{ $variation->stock }}">
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="stock_alert" class="form-control-label">Stock Alert</label>
@@ -51,6 +59,8 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="expiration" class="form-control-label">Expiration</label>
@@ -58,8 +68,6 @@
                                 name="variation_expiration[]"  value="{{ $variation->expiration }}">
                         </div>
                     </div>
-                </div>
-                <div class="row mb-3">
                     <!-- Color Picker Input -->
                     <div class="col-md-4">
                         <div class="form-group">
@@ -78,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="product_variation_id[]" value="{{ $variation->hashid }}">
         @endforeach
     @endif
 @endif

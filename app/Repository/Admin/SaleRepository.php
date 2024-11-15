@@ -17,4 +17,20 @@ class SaleRepository implements SaleInterface
     {
         return $this->sale->with(['saleItems', 'customer', 'saleItems.product', 'saleItems.productVariation.unit'])->findOrFail(hashid_decode($id));
     }
+
+    public function allSalesCount():int
+    {   
+        return $this->sale->count();
+    }
+
+    public function todaySalesCount():int
+    {
+        return $this->sale->whereDate('created_at', now()->today())->count(); 
+    }
+
+    public function allSaleSum():int
+    {   
+        return $this->sale->sum('total');
+    }
+    
 }

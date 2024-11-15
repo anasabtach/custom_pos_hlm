@@ -18,4 +18,10 @@ interface CustomerInterface
     public function update(array $arr):bool;
 
     public function getCountries():Collection;
+
+    public function customersCount():int;
+
+    public function customerGrowthChart();
+
+
 }

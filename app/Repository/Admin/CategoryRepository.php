@@ -60,4 +60,9 @@ class CategoryRepository implements CategoryInterface
     //         return true;
     //     });
     // }
+
+    public function categoriesCount():int
+    {
+        return $this->category->count();
+    }
 }

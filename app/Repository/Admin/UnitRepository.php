@@ -44,4 +44,9 @@ class UnitRepository implements UnitInterface
     {
         return $this->unit->destroy(hashid_decode($unit_id));
     }
+
+    public function unitsCount():int
+    {
+        return $this->unit->count();
+    }
 }

@@ -44,4 +44,9 @@ class BrandRepository implements BrandInterface
     {
         return $this->brand->destroy(hashid_decode($brand_id));
     }
+
+    public function brandsCount():int
+    {
+       return  $this->brand->count();
+    }
 }

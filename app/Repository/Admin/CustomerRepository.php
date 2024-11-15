@@ -64,4 +64,19 @@ class CustomerRepository implements CustomerInterface
     {
         return Country::get();
     }
+
+    public function customersCount():int
+    {
+        return $this->customer->count();
+    }
+
+    public function customerGrowthChart()
+    {
+        // Example: Fetch customer count grouped by month
+        $customerData = Customer::selectRaw('MONTHNAME(created_at) as month, COUNT(id) as total')
+            ->groupByRaw('MONTH(created_at), MONTHNAME(created_at)') // Group by both the month number and name
+            ->orderByRaw('MONTH(created_at)') // Sort by month number
+            ->get();
+        return $customerData; // Return this to the view
+    }
 }

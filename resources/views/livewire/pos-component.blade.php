@@ -16,24 +16,28 @@
                     </div>
                     <div class="product-items">
                         <div class="row">
-                            @foreach($this->products as $product)
+                            @forelse($this->products as $product)
                                 @if($product->has_variation)
                                     @foreach($product->variations as $variation)
                                     <div class="col-xl-3 col-lg-2 col-md-2 col-sm-3 col-6" wire:click="addItems('{{ $product->name."|".$variation->unit->name }}', '{{ $variation->sku }}', '{{ hashid_encode($variation->product_id) }}', '{{ $variation->stock }}', '{{ $variation->price }}', '1', '{{ $variation->hashid }}')">
                                         <div class="productCard">
                                                 <div class="productThumb">
-                                                    <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
+                                                    @if(is_null($variation->thumbnail))
+                                                        <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
+                                                    @else 
+                                                        <img class="img-fluid" src="{{ getImage($variation->thumbnail) }}" alt="ix">
+                                                    @endif
                                                 </div>
                                                 <div class="productContent">
                                                     <div class="inContent">
                                                         <h4>
-                                                            {{ $product->name }} 
+                                                            {{ $variation->name ?? $product->name }} 
                                                         </h4>
                                                         <small>{{ $variation->unit->name }}</small>
                                                     </div>
                                                         <h5>
                                                     
-                                                            AED {{ $product->price }} 
+                                                            AED {{ $variation->price }} 
                                                         </h5>
                                                         
                                                     
@@ -72,7 +76,9 @@
                                         </div>
                                     </div>
                                 @endif
-                            @endforeach
+                            @empty
+                                    <div class="col-md-12 alert alert-info">No products found</div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

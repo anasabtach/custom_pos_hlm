@@ -7,6 +7,7 @@ use App\Interfaces\Admin\AuthInterface;
 use App\Interfaces\Admin\BrandInterface;
 use App\Interfaces\Admin\CategoryInterface;
 use App\Interfaces\Admin\CustomerInterface;
+use App\Interfaces\Admin\DashboardInterface;
 use App\Interfaces\Admin\PosInterface;
 use App\Interfaces\Admin\ProductInterface;
 use App\Interfaces\Admin\PurchaseInterface;
@@ -20,6 +21,7 @@ use App\Repository\Admin\AuthRepository;
 use App\Repository\Admin\BrandRepository;
 use App\Repository\Admin\CategoryRepository;
 use App\Repository\Admin\CustomerRepository;
+use App\Repository\Admin\DashboardRepository;
 use App\Repository\Admin\PosRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Repository\Admin\PurchaseRepository;
@@ -50,6 +52,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(SaleInterface::class, SaleRepository::class);
         $this->app->bind(StaffInterface::class, StaffRepository::class);
         $this->app->bind(RoleInterface::class, RoleRepository::class);
+        $this->app->bind(DashboardInterface::class, DashboardRepository::class);
 
 
     }

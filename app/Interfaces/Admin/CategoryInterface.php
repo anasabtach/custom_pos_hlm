@@ -17,6 +17,7 @@ interface CategoryInterface
 
     public function update(array $arr):bool;
 
+    public function categoriesCount():int;
 
     // public function updateList(array $data):bool;
 }

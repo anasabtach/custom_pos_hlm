@@ -23,5 +23,6 @@ interface PurchaseInterface
 
     public function delete(string $purchase_id):bool;
 
+    public function purchaseCount():int;
 
 }

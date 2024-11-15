@@ -5,6 +5,7 @@ namespace App\Interfaces\Admin;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 
 interface ProductInterface
 {   
@@ -12,7 +13,7 @@ interface ProductInterface
 
     public function storeProduct(array $arr):Product;
 
-    public function storeProductVariation(Product $product, array $arr):Collection;
+    public function storeProductVariation(Product $product, array $arr):void;
 
     public function editProduct(string $product_id):Product;
 
@@ -20,7 +21,7 @@ interface ProductInterface
 
     public function updateProduct(array $arr):Product;
 
-    public function deleteProductVariations(Product $product):bool|null;
+    public function deleteProductVariations(Product $product, array $arr):bool|null;
 
     public function searchProducts(string $search):Collection;
 
@@ -32,6 +33,7 @@ interface ProductInterface
 
     public function updateProductStock($product_id, $stock, $type):bool;
 
+    public function productSalesChart():SupportCollection;
     
 
 }

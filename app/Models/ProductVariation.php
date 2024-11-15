@@ -20,7 +20,8 @@ class ProductVariation extends Model
         'stock_alert',
         'expiration',
         'thumbnail',
-        'color'
+        'color',
+        'name'
     ];
 
     public function product(){

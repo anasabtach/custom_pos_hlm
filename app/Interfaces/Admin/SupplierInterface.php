@@ -18,4 +18,6 @@ interface SupplierInterface
     public function update(array $arr):bool;
 
     public function getCountries():Collection;
+
+    public function suppliersCount():int;
 }

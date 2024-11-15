@@ -6,6 +6,7 @@ use App\Interfaces\Admin\ProductInterface;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 
 class ProductRepository implements ProductInterface
 {   
@@ -26,9 +27,15 @@ class ProductRepository implements ProductInterface
         return $this->product->create($arr);
     }
 
-    public function storeProductVariation(Product $product, array $arr):Collection
+    public function storeProductVariation(Product $product, array $arr):void
     {   
-        return $product->variations()->createMany($arr);
+        // return $product->variations()->createMany($arr);
+        foreach ($arr as $variation) {
+            $product->variations()->updateOrCreate(
+                ['id' => $variation['id']], 
+                $variation                     
+            );
+        }
     }
     
     public function editProduct(string $product_id):Product
@@ -48,9 +55,9 @@ class ProductRepository implements ProductInterface
         return $product;
     }
 
-    public function deleteProductVariations(Product $product):bool|null
-    {
-        return ($product->variations()->exists()) ? $product->variations()->delete() : NULL;
+    public function deleteProductVariations(Product $product,array $arr):bool|null
+    {  
+        return ($product->variations()->exists()) ? $product->variations()->whereNotIn('id', array_map('hashid_decode',$arr['product_variation_id']))->delete() : NULL;
     }
 
     public function searchProducts(string $search):Collection
@@ -91,6 +98,22 @@ class ProductRepository implements ProductInterface
             return $query->decrement('stock', $stock);
         }
         return false; 
+    }
+
+    public function productSalesChart():SupportCollection
+    {
+        return  Product::with('saleitems')->get()->map(function($product){
+            // $quantitySum = ; // Sum of all quantities
+            // $totalSum = $product->sales->sum(function($sale) {
+            //     return $sale->quantity * $sale->price; // Total sum (quantity * price)
+            // });
+            
+            return [
+                'product_name' => $product->name,
+                'quantity_sum' => $product->saleitems->sum('quantity'),   
+                'total_sum'    => $product->saleitems->sum('total'),         
+            ];
+        });
     }
     
 }

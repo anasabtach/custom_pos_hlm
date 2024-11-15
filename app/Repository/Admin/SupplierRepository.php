@@ -62,4 +62,9 @@ class SupplierRepository implements SupplierInterface
     {
         return Country::get();
     }
+
+    public function suppliersCount():int
+    {
+        return $this->supplier->count();
+    }
 }

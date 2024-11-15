@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {   //dd($this->all());
-       
+      
         return [
             'category_id'      => ['required', 'string', 'max:50'],
             'unit_id'          => ['nullable', 'string', 'max:50'],
@@ -51,9 +51,16 @@ class ProductRequest extends FormRequest
             'variation_stock_alert.*' => ['required', 'numeric', 'digits_between:1,10', 'lt:variation_stock.*'],
             'variation_expiration'    => ['required_if:has_variation,1', 'array'],
             'variation_expiration.*'  => ['nullable', 'date_format:Y-m-d', 'max:10'],
+            'variation_color'         => ['array'],
             'variation_color.*'       => ['nullable', 'string', 'max:30'],
+            'variation_image'         => ['array'],
             'variation_image.*'       => ['nullable', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'product_id'              => ['nullable', 'string', 'max:50']
+            'product_id'              => ['nullable', 'string', 'max:50'],
+            'product_variation_id'    => ['array'],
+            'product_variation_id.*'  => ['nullable', 'string', 'max:50'],
+            'name'                    => ['array'],
+            'name.*'                  => ['nullable', 'string', 'max:50'],
+
         ];
     }
 }

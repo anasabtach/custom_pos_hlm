@@ -16,4 +16,6 @@ interface UnitInterface
     public function delete(string $unit_id):bool;
 
     public function update(array $arr):bool;
+
+    public function unitsCount():int;
 }

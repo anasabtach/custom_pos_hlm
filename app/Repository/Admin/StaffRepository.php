@@ -60,4 +60,11 @@ class StaffRepository implements StaffInterface
     {
         return Admin::findOrFail(hashid_decode($user_id));
     }
+
+    
+    public function staffCount():int
+    {
+        return Admin::count();
+    }
+
 }

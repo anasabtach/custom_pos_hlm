@@ -25,6 +25,7 @@ class Product extends Model
         'has_variation',
         'status',
         'expiration',
+        'color'
     ];
 
     public function thumbnail(): MorphOne
@@ -46,5 +47,13 @@ class Product extends Model
     
     public function brand(){
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+
+    public function sales(){
+        return $this->hasMany(Sale::class, 'product_id', 'id');
+    }
+
+    public function saleitems(){
+        return $this->hasMany(SaleItem::class, 'product_id', 'id');
     }
 }

@@ -60,7 +60,6 @@ class ProductController extends Controller
             }
             return to_route('admin.products.index')->with('success',$msg);
         }catch(Exception $e){
-            dd($e->getMessage());
             return redirect()->back()->withInput()->with('error', __('error_messages.product_add_error'));
         }
     }
