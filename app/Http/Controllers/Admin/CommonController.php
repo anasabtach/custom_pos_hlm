@@ -16,6 +16,7 @@ class CommonController extends Controller
             ]);
             return response()->json(['success'  => 'Status updated successfully']);
         }catch(Exception $e){
+            // dd($e->getMessage());
             return response()->json(['error'  => 'some error occured']);
         }
     }

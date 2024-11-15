@@ -25,7 +25,8 @@ class Product extends Model
         'has_variation',
         'status',
         'expiration',
-        'color'
+        'color',
+        'shopify_id',
     ];
 
     public function thumbnail(): MorphOne

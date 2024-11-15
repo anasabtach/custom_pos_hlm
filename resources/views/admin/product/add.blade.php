@@ -66,7 +66,7 @@
                                         <fieldset class="form-group mb-3">
                                             <input type="text" placeholder="Enter product name"
                                                 class="form-control round bg-transparent text-dark"
-                                                value="{{ isset($is_update) ? $edit_product->name : old('name') }}"
+                                                value="{{ isset($is_update) ? $edit_product->name : old('product_name') }}"
                                                 name="product_name">
                                         </fieldset>
                                     </div>

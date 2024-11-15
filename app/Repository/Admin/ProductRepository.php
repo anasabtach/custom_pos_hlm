@@ -27,16 +27,31 @@ class ProductRepository implements ProductInterface
         return $this->product->create($arr);
     }
 
-    public function storeProductVariation(Product $product, array $arr):void
-    {   
-        // return $product->variations()->createMany($arr);
-        foreach ($arr as $variation) {
+    // public function storeProductVariation(Product $product, array $arr):void
+    // {   
+    //     // return $product->variations()->createMany($arr);
+    //     foreach ($arr as $variation) {
+    //         $product->variations()->updateOrCreate(
+    //             ['id' => $variation['id']], 
+    //             $variation                     
+    //         );
+    //     }
+    // }
+    public function storeProductVariation(Product $product, array $arr): void
+{
+    foreach ($arr as $variation) {
+        if (isset($variation['id']) && !empty($variation['id'])) {
+            // Update the existing variation
             $product->variations()->updateOrCreate(
-                ['id' => $variation['id']], 
-                $variation                     
+                ['id' => $variation['id']],
+                $variation
             );
+        } else {
+            // Create a new variation
+            $product->variations()->create($variation);
         }
     }
+}
     
     public function editProduct(string $product_id):Product
     {

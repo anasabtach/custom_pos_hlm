@@ -31,6 +31,11 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'shopify_shop_url'      => env('SHOPIFY_SHOP_URL'),
+    'shopify_api_key'       => env('SHOPIFY_API_KEY'),
+    'shopify_api_password'  => env('SHOPIFY_API_PASSWORD'),
+    'shopify_access_token'  => env('SHOPIFY_ACCESS_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

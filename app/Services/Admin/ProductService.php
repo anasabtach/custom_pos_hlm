@@ -5,15 +5,18 @@ namespace App\Services\Admin;
 use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\ProductInterface;
 use App\Models\Product;
+use App\Repository\Admin\ShopifyProductRepository;
 use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
     protected $repository;
+    protected $shopifyRepository;
 
-    public function __construct(ProductInterface $repository)
+    public function __construct(ProductInterface $repository, ShopifyProductRepository $shopifyRepository)
     {
-        $this->repository = $repository;
+        $this->repository        = $repository;
+        $this->shopifyRepository = $shopifyRepository;
     }
 
     public function getProdcuts(){//get all products
@@ -22,6 +25,7 @@ class ProductService
 
     public function store($arr){//store product
         DB::transaction(function() use ($arr){
+            $arr['shopify_id'] = $this->shopifyRepository->store($arr);
             $product = $this->repository->storeProduct($this->createProductArr($arr));
             $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
             if($arr['has_variation']){//if has variation
@@ -66,18 +70,24 @@ class ProductService
                 'expiration'    => $arr['variation_expiration'][$key],
                 'color'         => $arr['variation_color'][$key] ?? null,
                 'name'          => $arr['name'][$key] ?? null,
-                'id'            => hashid_decode($arr['product_variation_id'][$key]) ?? null,
             ];
+
+            // Set 'id' only if 'product_variation_id' exists
+            if (!empty($arr['product_variation_id'][$key])) {
+                $variation['id'] = hashid_decode($arr['product_variation_id'][$key]);
+            }
 
             // Only add the thumbnail if a new image is provided
             if (isset($arr['variation_image'][$key]) && !empty($arr['variation_image'][$key])) {
                 $variation['thumbnail'] = CommonHelper::uploadSingleImage($arr['variation_image'][$key], 'product_thumbnail')['image'];
             }
+
             $product_variation_arr[] = $variation;
         }
 
         return $product_variation_arr;
     }
+
 
     public function createProductArr($arr){//create product arr
         return [
@@ -96,6 +106,7 @@ class ProductService
             'product_id'           => isset($arr['product_id']) ? hashid_decode($arr['product_id']) : NULL,
             'status'               => $arr['status'],
             'color'                => $arr['color'],
+            'shopify_id'           => $arr['shopify_id'] ?? null,
         ];
     }
 
@@ -105,6 +116,7 @@ class ProductService
 
     public function updateProduct($arr){
         DB::transaction(function() use ($arr){
+            $this->shopifyRepository->update($arr, $this->editProduct($arr['product_id'])->shopify_id);
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
             $this->updateThumbnail($product, @$arr['product_thumbnail']);
             $this->repository->deleteProductVariations($product, $arr);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)

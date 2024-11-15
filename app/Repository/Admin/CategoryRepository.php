@@ -20,9 +20,10 @@ class CategoryRepository implements CategoryInterface
     public function store(array $data): Category
     {   
         return $this->category->create([
-            'admin_id'   => auth()->id(),
-            'slug'      => $data['slug'],
-            'name'      => $data['category_name'],
+            'admin_id'      => auth()->id(),
+            'slug'          => $data['slug'],
+            'name'          => $data['category_name'],
+            'shopify_id'    => $data['shopify_id'] ?? null,
         ]);
     }
 
@@ -39,7 +40,7 @@ class CategoryRepository implements CategoryInterface
     public function update(array $arr):bool
     {
         return $this->category->findOrFail(hashid_decode($arr['category_id']))->update([
-            'name'  => $arr['category_name'],
+            'name'        => $arr['category_name'],
         ]);
     }
 

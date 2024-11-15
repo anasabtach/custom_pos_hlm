@@ -17,6 +17,7 @@ class BrandRepository implements BrandInterface
     public function store(array $data): Brand
     {       
         return $this->brand->create([
+            'shopify_brand_id'  => $data['shopify_brand_id'],
             'admin_id'   => auth()->id(),
             'slug'      => $data['slug'],
             'name'      => $data['brand_name'],

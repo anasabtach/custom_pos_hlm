@@ -12,6 +12,6 @@ class Brand extends Model
     
     protected $table = 'brands';
 
-    protected $fillable = ['name', 'admin_id', 'slug', 'status', 'order_by'];
+    protected $fillable = ['name', 'admin_id', 'slug', 'status', 'order_by', 'shopify_brand_id'];
 
 }

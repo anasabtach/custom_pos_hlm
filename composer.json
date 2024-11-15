@@ -13,7 +13,8 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
-        "mckenziearts/laravel-notify": "^2.5"
+        "mckenziearts/laravel-notify": "^2.5",
+        "phpclassic/php-shopify": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.10",

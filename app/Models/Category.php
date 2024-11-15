@@ -13,7 +13,7 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $fillable = ['name', 'parent_id', 'admin_id', 'slug', 'status', 'order_by'];
+    protected $fillable = ['name', 'parent_id', 'admin_id', 'slug', 'status', 'order_by', 'shopify_id'];
 
     // public function subCategories():HasMany{
     //     return $this->hasMany(Category::class, 'parent_id', 'id');
