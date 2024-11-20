@@ -11,6 +11,8 @@ interface ProductInterface
 {   
     public function getProducts():Collection;
 
+    public function getDeletedProdcuts():Collection;
+
     public function storeProduct(array $arr):Product;
 
     public function storeProductVariation(Product $product, array $arr):void;
@@ -35,5 +37,6 @@ interface ProductInterface
 
     public function productSalesChart():SupportCollection;
     
+    public function updateProductShopifyId($product_id, $shopify_id):bool;
 
 }

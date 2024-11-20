@@ -23,11 +23,17 @@ class ProductService
         return $this->repository->getProducts();
     }
 
+    public function getDeletedProdcuts(){//get all products
+        return $this->repository->getDeletedProdcuts();
+    }
+
     public function store($arr){//store product
         DB::transaction(function() use ($arr){
-            $arr['shopify_id'] = $this->shopifyRepository->store($arr);
+            // $arr['shopify_id'] = $this->shopifyRepository->store($arr);
             $product = $this->repository->storeProduct($this->createProductArr($arr));
-            $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
+            $image_data = $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
+            $shopify_id = $this->shopifyRepository->store($product, $image_data);
+            $this->repository->updateProductShopifyId($product->id, $shopify_id);
             if($arr['has_variation']){//if has variation
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);
@@ -89,45 +95,54 @@ class ProductService
     }
 
 
-    public function createProductArr($arr){//create product arr
-        return [
-            'admin_id'             => auth()->id(),
-            'category_id'          => hashid_decode($arr['category_id']),
-            'unit_id'              => isset($arr['unit_id']) ? hashid_decode($arr['unit_id']) : NULL,
-            'brand_id'              => isset($arr['brand_id']) ? hashid_decode($arr['brand_id']) : NULL,
-            'name'                 => $arr['product_name'],
-            'sku'                  => $arr['sku'],
-            'price'                => $arr['price'],
-            'stock'                => $arr['stock'],
-            'stock_alert'          => $arr['stock_alert'],
-            'description'          => $arr['description'],
-            'has_variation'        => $arr['has_variation'],
-            'expiration'           => $arr['expiration'],
-            'product_id'           => isset($arr['product_id']) ? hashid_decode($arr['product_id']) : NULL,
-            'status'               => $arr['status'],
-            'color'                => $arr['color'],
-            'shopify_id'           => $arr['shopify_id'] ?? null,
+    public function createProductArr($arr) {
+        $productArr = [
+            'admin_id'       => auth()->id(),
+            'category_id'    => hashid_decode($arr['category_id']),
+            'unit_id'        => isset($arr['unit_id']) ? hashid_decode($arr['unit_id']) : null,
+            'brand_id'       => isset($arr['brand_id']) ? hashid_decode($arr['brand_id']) : null,
+            'name'           => $arr['product_name'],
+            'sku'            => $arr['sku'],
+            'price'          => $arr['price'],
+            'stock'          => $arr['stock'],
+            'stock_alert'    => $arr['stock_alert'],
+            'description'    => $arr['description'],
+            'has_variation'  => $arr['has_variation'],
+            'expiration'     => $arr['expiration'],
+            'product_id'     => isset($arr['product_id']) ? hashid_decode($arr['product_id']) : null,
+            'status'         => $arr['status'],
+            'color'          => $arr['color'],
         ];
+    
+        // Only add `shopify_id` if it's present in the array
+        if (isset($arr['shopify_id'])) {
+            $productArr['shopify_id'] = $arr['shopify_id'];
+        }
+    
+        return $productArr;
     }
+    
 
     public function editProduct($product_id){
         return $this->repository->editProduct($product_id);
     }
 
     public function updateProduct($arr){
-        DB::transaction(function() use ($arr){
-            $this->shopifyRepository->update($arr, $this->editProduct($arr['product_id'])->shopify_id);
+        $shopify_id =             $this->editProduct($arr['product_id']);
+        // DB::transaction(function() use ($arr,$shopify_id){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
-            $this->updateThumbnail($product, @$arr['product_thumbnail']);
+            $image_data = $this->updateThumbnail($product, @$arr['product_thumbnail']);
+            $this->shopifyRepository->update($arr, $shopify_id, $image_data);
             $this->repository->deleteProductVariations($product, $arr);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);//store the variation
             }
-        });
+        //});
     }
 
     public function delete($product_id){
+        $this->shopifyRepository->delete($this->repository->editProduct($product_id)->shopify_id);
         return $this->repository->delete($product_id);
     }
 
@@ -160,6 +175,7 @@ class ProductService
             CommonHelper::removeImage(@$product->thumbnail->filename);
             $data = CommonHelper::uploadSingleImage($thumbnail, 'product_thumbnail');
             $this->repository->updateThumbail($product, $data);
+            return $data;
         }
     }
 

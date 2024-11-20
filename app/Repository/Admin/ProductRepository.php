@@ -22,6 +22,11 @@ class ProductRepository implements ProductInterface
         return $this->product->with(['category', 'unit', 'brand'])->latest()->get();
     }
 
+    public function getDeletedProdcuts():Collection
+    {
+        return $this->product->with(['category', 'unit', 'brand'])->onlyTrashed()->get();
+    }
+
     public function storeProduct(array $arr):Product
     {
         return $this->product->create($arr);
@@ -129,6 +134,11 @@ class ProductRepository implements ProductInterface
                 'total_sum'    => $product->saleitems->sum('total'),         
             ];
         });
+    }
+
+    public function updateProductShopifyId($product_id, $shopify_id):bool
+    {
+        return Product::findOrFail($product_id)->update(['shopify_id'=>$shopify_id]);
     }
     
 }

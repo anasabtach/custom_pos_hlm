@@ -102,6 +102,7 @@ Route::name('admin.')->group(function(){
             Route::get('/delete/{product_id}', 'delete')->name('delete');
             Route::get('/search', 'searchProducts')->name('search');
             Route::get('/product-variation-row', 'productAndVariationRow')->name('product_and_variation_row');
+            Route::get('/deleted-products', 'deletedProducts')->name('deleted_products');
         });
 
         Route::prefix('/purchases')->name('purchases.')->controller(PurchaseController::class)->group(function(){

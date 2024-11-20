@@ -139,8 +139,8 @@
                                         <fieldset class="form-group mb-3">
                                             <select class="form-control round bg-transparent text-dark" name="status"
                                                 id="has_variation">
-                                                <option value="0" @selected(@$edit_product->status == 0 ?? null)>No</option>
-                                                <option value="1" @selected(@$edit_product->status == 1 ?? null)>Yes</option>
+                                                <option value="0" @selected(@$edit_product->status == 0 ?? null)>Inactive</option>
+                                                <option value="1" @selected(@$edit_product->status == 1 ?? null)>Active</option>
                                             </select>
                                         </fieldset>
                                     </div>

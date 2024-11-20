@@ -91,7 +91,7 @@
               </li>
               @endcan
               @can('view-product')
-              <li class="nav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+              <li class="nav-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                   <a href="{{ route('admin.products.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -101,6 +101,20 @@
                           </svg>
                       </span>
                       <span class="nav-text">Products</span>
+                  </a>
+              </li>
+              @endcan
+              @can('view-product')
+              <li class="nav-item {{ request()->routeIs('admin.products.deleted_products') ? 'active' : '' }}">
+                  <a href="{{ route('admin.products.deleted_products') }}" class="nav-link">
+                      <span class="svg-icon nav-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 2L2 7v15h20V7l-10-5zm0 15h-2v-2h2v2zm0-4h-2v-2h2v2z"></path>
+                          </svg>
+                      </span>
+                      <span class="nav-text">Deleted Products</span>
                   </a>
               </li>
               @endcan

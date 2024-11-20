@@ -113,7 +113,7 @@
                                                             </td>
 
 
-                                                            <td>
+                                                            <td class="text-center">
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
                                                                         id="dropdowneditButton01" data-bs-toggle="dropdown"

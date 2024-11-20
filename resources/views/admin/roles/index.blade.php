@@ -186,25 +186,39 @@
     </div>
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
-            $('.fav_clr').select2({
-                placeholder: 'Permissions',
-                width: '100%',
-                border: '1px solid #e4e5e7',
-                closeOnSelect: false
-            });
+<script>
+    $(document).ready(function () {
+        $('.fav_clr').select2({
+            placeholder: 'Permissions',
+            width: '100%',
+            closeOnSelect: false,
         });
-        $('.fav_clr').on("select2:select", function(e) {
-            var data = e.params.data.text;
+    });
 
-            if (data === 'all') {
-                $(".fav_clr > option[value='all']").prop("selected", false);
+    $('.fav_clr').on('select2:select', function (e) {
+        var selectedOption = e.params.data.id;
 
-                $(".fav_clr > option").not("[value='all']").prop("selected", true);
+        if (selectedOption === 'all') {
+            // Get all options except "all"
+            var allOptions = $('.fav_clr option')
+                .map(function () {
+                    return $(this).val() !== 'all' ? $(this).val() : null;
+                })
+                .get();
 
-                $(".fav_clr").trigger("change");
-            }
-        });
-    </script>
+            // Update the select2 value
+            $('.fav_clr').val(allOptions).trigger('change');
+        }
+    });
+
+    $('.fav_clr').on('select2:unselect', function (e) {
+        var unselectedOption = e.params.data.id;
+
+        if (unselectedOption === 'all') {
+            // Deselect all options if "all" is unselected
+            $('.fav_clr').val(null).trigger('change');
+        }
+    });
+</script>
+
 @endsection

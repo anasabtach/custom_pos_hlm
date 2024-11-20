@@ -37,7 +37,10 @@
 	},
 	input[type="file"]{
 		display: block !important;
-	}
+	},
+	#myTable th, #myTable td {
+        text-align: center;
+    }
 	</style>
 	@yield('style')
 

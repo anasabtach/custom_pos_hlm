@@ -102,10 +102,10 @@
                                                         <th class="text-center">Invoiecs ID</th>
                                                         <th class="text-center">Cusomter</th>
                                                         <th class="text-center">Received Amount</th>
-                                                        <th class="no-sort text-end">Return Amount</th>
-                                                        <th class="no-sort text-end">Discount</th>
-                                                        <th class="no-sort text-end">Total</th>
-                                                        <th class="no-sort text-end">Action</th>
+                                                        <th class="no-sort text-end text-center">Return Amount</th>
+                                                        <th class="no-sort text-end text-center">Discount</th>
+                                                        <th class="no-sort text-end text-center">Total</th>
+                                                        <th class="no-sort text-end text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="kt-table-tbody text-dark">
