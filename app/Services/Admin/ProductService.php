@@ -180,4 +180,7 @@ class ProductService
     }
 
 
+    public function remarks($remark, $product_id){
+        return $this->repository->remarks($remark, $product_id);
+    }
 }

@@ -34,4 +34,8 @@ class CustomerService{
     public function getCountries(){
         return $this->repository->getCountries();
     }
+
+    public function remarks($remark, $customer_id){
+        return $this->repository->remarks($remark, $customer_id);
+    }
 }

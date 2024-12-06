@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\CategoryService;
 
 class CategoryController extends Controller
@@ -45,8 +46,9 @@ class CategoryController extends Controller
         return view('admin.category.index')->with($data);
     }
 
-    public function delete($category_id){
+    public function delete(RemarkRequest $req, $category_id){
         rights('delete-category');
+        $this->categoryService->remarks($req->remarks, $category_id);
         $this->categoryService->delete($category_id);
         return to_route('admin.categories.index')->with('success', __('error_messages.category_delete_success'));
     }

@@ -32,5 +32,10 @@ class SaleRepository implements SaleInterface
     {   
         return $this->sale->sum('total');
     }
+
+    public function remarks($remarks, $sale_id):bool
+    {
+        return $this->sale->where('id', hashid_decode($sale_id))->update(['remarks'=>$remarks]);
+    }
     
 }

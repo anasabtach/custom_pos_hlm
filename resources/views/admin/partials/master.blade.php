@@ -179,6 +179,31 @@
 		<!--end::Page-->
 	</div>
 	<!--end::Main-->
+      <!-- REMARK Modal -->
+	  <div class="modal fade" id="remark_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Your Remarks</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form action="" method="GET" id="remark_form">
+					<div class="modal-body">
+							@csrf <!-- Include this for Laravel POST forms -->
+							<div class="form-group mb-3">
+								<label for="remarks" class="form-label">Remarks</label>
+								<textarea name="remarks" id="remarks" class="form-control" rows="4" placeholder="Enter your remarks here..."></textarea>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
@@ -228,6 +253,12 @@
 	jQuery(document).ready( function () {
 		jQuery('#myTable').DataTable();
 	} );
+	
+	$('.confirm-delete').click(function(e){
+		e.preventDefault();
+		jQuery('#remark_modal').modal('show');
+		jQuery('#remark_form').attr('action', $(this).attr('href'));
+    })
 
 	</script>
 	@yield('script')

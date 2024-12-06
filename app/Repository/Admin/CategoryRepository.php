@@ -66,4 +66,9 @@ class CategoryRepository implements CategoryInterface
     {
         return $this->category->count();
     }
+
+    public function remarks($remarks, $category_id):bool
+    {
+        return $this->category->where('id', hashid_decode($category_id))->update(['remarks'=>$remarks]);
+    }
 }

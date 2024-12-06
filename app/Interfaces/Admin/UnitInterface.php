@@ -18,4 +18,7 @@ interface UnitInterface
     public function update(array $arr):bool;
 
     public function unitsCount():int;
+
+    public function remarks($remarks, $unit_id):bool;
+
 }

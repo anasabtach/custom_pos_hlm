@@ -67,4 +67,9 @@ class SupplierRepository implements SupplierInterface
     {
         return $this->supplier->count();
     }
+
+    public function remarks($remarks, $supplier_id):bool
+    {
+        return $this->supplier->where('id', hashid_decode($supplier_id))->update(['remarks'=>$remarks]);
+    }
 }

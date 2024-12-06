@@ -40,13 +40,35 @@
 
                         </div>
                     </div>
+                    <div class="row"></div>
+                    <div class="row">
+                        <div class="col-12  px-4">
+                            <div class="card card-custom gutter-b bg-white border-0">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>From Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="from_date">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>To Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="to_date">
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="row">
                         <div class="col-12  px-4">
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
                                         <div class=" table-responsive" id="printableTable">
-                                            <table id="myTable" class="display ">
+                                            <table id="supplier_datatable" class="display ">
 
                                                 <thead class="text-body">
                                                     <tr>
@@ -57,6 +79,7 @@
                                                         <th class="text-center">City</th>
                                                         <th class="text-center">Address</th>
                                                         <th class="text-center">Note</th>
+                                                        <th class="text-center">Created <br/>At</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -87,6 +110,11 @@
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {!! wordwrap($supplier->note, 100, "<br>\n", true) !!}
+                                                                </p>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    {{ getCustomDate($supplier->created_at) }}
                                                                 </p>
                                                             </td>
 
@@ -140,4 +168,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/js/supplier.js') }}"></script>
 @endsection

@@ -49,4 +49,9 @@ class UnitRepository implements UnitInterface
     {
         return $this->unit->count();
     }
+
+    public function remarks($remarks, $unit_id):bool
+    {
+        return $this->unit->where('id', hashid_decode($unit_id))->update(['remarks'=>$remarks]);
+    }
 }

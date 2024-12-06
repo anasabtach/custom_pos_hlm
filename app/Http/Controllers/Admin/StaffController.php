@@ -39,6 +39,7 @@ class StaffController extends Controller
             $this->service->store($req->validated());
             return to_route('admin.staffs.index')->with('success', __('error_messages.staff_store_success'));
         } catch (\Exception $e){
+            dd($e->getMessage());
             return redirect()->back()->withInput()->with('error', __('error_messages.staff_store_error'));
         }
     }

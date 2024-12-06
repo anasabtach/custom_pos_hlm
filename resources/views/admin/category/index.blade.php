@@ -51,24 +51,6 @@
                                         <h3 class="card-label mb-0 font-weight-bold text-body">Categories
                                         </h3>
                                     </div>
-                                    {{-- <div class="icons d-flex">
-                                        <button class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
-                                            title="" data-bs-placement="right"
-                                            data-original-title="Check out more demos">
-                                            <span
-                                                class="bg-secondary h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center  rounded-circle shadow-sm ">
-
-                                                <svg width="25px" height="25px" viewBox="0 0 16 16"
-                                                    class="bi bi-plus white" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                </svg>
-                                            </span>
-
-                                        </button>
-
-                                    </div> --}}
                                 </div>
 
                             </div>

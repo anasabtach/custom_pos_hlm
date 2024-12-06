@@ -67,4 +67,8 @@ class StaffRepository implements StaffInterface
         return Admin::count();
     }
 
+    public function remarks($remarks, $staff_id):bool
+    {
+        return Admin::where('id', hashid_decode($staff_id))->update(['remarks'=>$remarks]);
+    }
 }

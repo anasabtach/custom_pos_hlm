@@ -44,4 +44,8 @@ class CategoryService{
     // public function updateList(array $data):bool{
     //     return $this->categoryRepository->updateList($data);
     // }
+
+    public function remarks($remark, $category_id){
+        return $this->categoryRepository->remarks($remark, $category_id);
+    }
 }

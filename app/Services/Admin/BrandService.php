@@ -39,4 +39,8 @@ class BrandService{
     public function delete($brand_id){
         return $this->repository->delete($brand_id);
     }
+    
+    public function remarks($remark, $brand_id){
+        return $this->repository->remarks($remark, $brand_id);
+    }
 }

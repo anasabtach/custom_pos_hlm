@@ -23,5 +23,8 @@ interface CustomerInterface
 
     public function customerGrowthChart();
 
+    public function remarks($remarks, $customer_id):bool;
+
+
 
 }

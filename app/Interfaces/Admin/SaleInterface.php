@@ -13,4 +13,7 @@ interface SaleInterface
     public function todaySalesCount():int;
 
     public function allSaleSum():int;
+
+    public function remarks($remarks, $sale_id):bool;
+
 }

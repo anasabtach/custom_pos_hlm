@@ -85,4 +85,8 @@ class PurchaseService
     // {
     //     return $this->repository->updateProductStock($product_id, $stock, $type);
     // }
+
+    public function remarks($remark, $purchase_id){
+        return $this->repository->remarks($remark, $purchase_id);
+    }
 }

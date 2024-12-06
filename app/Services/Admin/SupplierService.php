@@ -34,4 +34,8 @@ class SupplierService{
     public function getCountries(){
         return $this->repository->getCountries();
     }
+
+    public function remarks($remark, $supplier_id){
+        return $this->repository->remarks($remark, $supplier_id);
+    }
 }

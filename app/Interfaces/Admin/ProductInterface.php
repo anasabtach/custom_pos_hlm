@@ -39,4 +39,7 @@ interface ProductInterface
     
     public function updateProductShopifyId($product_id, $shopify_id):bool;
 
+    public function remarks($remarks, $product_id):bool;
+
+
 }

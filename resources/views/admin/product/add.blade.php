@@ -88,7 +88,7 @@
                                             <input type="number" placeholder="Enter price"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_product->price : old('price') }}"
-                                                name="price">
+                                                name="price" min="1">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 hide_when_variation_is_set">
@@ -97,7 +97,7 @@
                                             <input type="number" placeholder="Enter stock quantity"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_product->stock : old('stock') }}"
-                                                name="stock" id="stock">
+                                                name="stock" id="stock" min="0">
                                         </fieldset>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                             <input type="number" placeholder="Enter stock alert"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_product->stock_alert : old('stock_alert') }}"
-                                                name="stock_alert" id="stock_alert">
+                                                name="stock_alert" id="stock_alert" min="0">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6 hide_when_variation_is_set">
@@ -139,8 +139,8 @@
                                         <fieldset class="form-group mb-3">
                                             <select class="form-control round bg-transparent text-dark" name="status"
                                                 id="has_variation">
-                                                <option value="0" @selected(@$edit_product->status == 0 ?? null)>Inactive</option>
-                                                <option value="1" @selected(@$edit_product->status == 1 ?? null)>Active</option>
+                                                <option value="0" @selected(@$edit_product->status == 0 ?? null)>Disable</option>
+                                                <option value="1" @selected(@$edit_product->status == 1 ?? null)>Enable</option>
                                             </select>
                                         </fieldset>
                                     </div>
@@ -291,7 +291,7 @@
             <div class="form-group">
                 <label for="price" class="form-control-label">Price</label>
                 <input type="number" placeholder="Enter price" class="form-control shadow-sm rounded"
-                    name="variation_price[]" id="variation_price">
+                    name="variation_price[]" id="variation_price" min="1">
             </div>
         </div>
     </div>
@@ -300,14 +300,14 @@
             <div class="form-group">
                 <label for="stock" class="form-control-label">Stock</label>
                 <input type="number" placeholder="Enter stock no" class="form-control shadow-sm rounded"
-                    name="variation_stock[]" id="variation_stock">
+                    name="variation_stock[]" id="variation_stock" min="0">
             </div>
         </div>
         <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label for="stock_alert" class="form-control-label">Stock Alert</label>
                 <input type="number" placeholder="Enter stock alert" class="form-control shadow-sm rounded"
-                    name="variation_stock_alert[]" id="variation_stock_alert">
+                    name="variation_stock_alert[]" id="variation_stock_alert" min="0">
             </div>
         </div>
         <div class="col-md-4 mb-3">

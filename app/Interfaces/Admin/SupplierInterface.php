@@ -20,4 +20,7 @@ interface SupplierInterface
     public function getCountries():Collection;
 
     public function suppliersCount():int;
+
+    public function remarks($remarks, $supplier_id):bool;
+
 }

@@ -8,12 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Permissions\HasPermissionsTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\HashidTrait;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, HashidTrait, HasPermissionsTrait;
+    use HasFactory, HashidTrait, HasPermissionsTrait, SoftDeletes;
     
     protected $fillable  = ['first_name', 'last_name', 'email', 'password', 'status', 'user_type', 'user_permissions'];
 
@@ -29,7 +30,9 @@ class Admin extends Authenticatable
     
     public function profileImage(): MorphOne
     {
-        return $this->morphOne(Media::class, 'mediable');
+        return $this->morphOne(Media::class, 'mediable')->withDefault([
+            'media_url' => null
+        ]);
     }
 
     protected function password():Attribute

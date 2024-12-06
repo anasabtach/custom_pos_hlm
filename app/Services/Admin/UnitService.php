@@ -34,4 +34,8 @@ class UnitService
     public function delete($unit_id){
         return $this->repository->delete($unit_id);
     }
-}
+    
+    public function remarks($remark, $unit_id){
+        return $this->repository->remarks($remark, $unit_id);
+    }
+}   

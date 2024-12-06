@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Http\Requests\Admin\SupplierRequest;
 use App\Http\Requests\Admin\UnitRequest;
 use App\Services\Admin\SupplierService;
@@ -54,8 +55,9 @@ class SupplierController extends Controller
         return view('admin.supplier.add')->with($data);
     }
 
-    public function delete($supplier_id){
+    public function delete(RemarkRequest $req, $supplier_id){
         rights('delete-supplier');
+        $this->service->remarks($req->remarks, $supplier_id);
         $this->service->delete($supplier_id);
         return to_route('admin.suppliers.index')->with('success', __('error_messages.supplier_delete_success'));
     }

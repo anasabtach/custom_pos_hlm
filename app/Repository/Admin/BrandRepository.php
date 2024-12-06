@@ -50,4 +50,10 @@ class BrandRepository implements BrandInterface
     {
        return  $this->brand->count();
     }
+
+    public function remarks($remarks, $brand_id):bool
+    {
+        return $this->brand->where('id', hashid_decode($brand_id))->update(['remarks'=>$remarks]);
+    }
+
 }

@@ -21,11 +21,13 @@ $('#product_form').validate({
             maxlength: 30
         },
         price: {
+            min: 1,
             required: true,
             number: true,
             rangelength: [1, 10] 
         },
         stock: {
+            min: 0,
             required: true,
             number: true,
             rangelength: [1, 10] 
@@ -34,7 +36,8 @@ $('#product_form').validate({
             required: true,
             number: true,
             rangelength: [1, 10],
-            lessThan: '#stock' 
+            lessThanOrEqual: "#stock",
+            min: 0,
         },
         expiration: {
             required: false,

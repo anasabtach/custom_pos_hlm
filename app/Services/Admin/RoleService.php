@@ -44,4 +44,8 @@ class RoleService
         return $this->repository->delete($id);
     }
     // Your service methods here
+
+    public function remarks($remark, $role_id){
+        return $this->repository->remarks($remark, $role_id);
+    }
 }

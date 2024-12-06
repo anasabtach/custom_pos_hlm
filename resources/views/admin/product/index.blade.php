@@ -67,6 +67,18 @@
                                                 </select>
                                             </fieldset>
                                         </div>
+                                        <div class="col-md-4">
+                                            <label>From Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="from_date">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>To Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="to_date">
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -131,6 +143,7 @@
                                                         <th class="text-center">Status</th>
                                                         <th class="text-center">Color</th>
                                                         <th class="text-center">Image</th>
+                                                        <th class="text-center">Created <br/>At</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -202,6 +215,9 @@
                                                                     alt="" class="img-fluid" width="50px"
                                                                     height="50px">
                                                             </td>
+                                                            <td class="align-middle text-center text-sm">
+                                                                {{ getCustomDate($product->created_at) }}
+                                                            </td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -229,7 +245,9 @@
                                                                         @can('delete-product')
                                                                             <a class="dropdown-item confirm-delete"
                                                                                 href="{{ route('admin.products.delete', ['product_id' => $product->hashid]) }}">Delete</a>
-                                                                        @endcan
+        
+                                                                                  
+                                                                                @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>

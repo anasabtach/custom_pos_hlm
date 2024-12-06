@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\BrandService;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\ProductService;
@@ -78,8 +79,9 @@ class ProductController extends Controller
         return view('admin.product.add')->with($data);
     }
 
-    public function delete($product_id){
+    public function delete(RemarkRequest $req, $product_id){
         try{
+            $this->service->remarks($req->remarks, $product_id);
             $this->service->delete($product_id);
             return redirect()->back()->with('success', __('error_messages.product_delete_success'));
         }catch(Exception $e){

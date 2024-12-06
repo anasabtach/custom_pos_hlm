@@ -162,27 +162,27 @@ function checkedPoint() {
 }
 
   
-jQuery(document).ready(function(){
-  jQuery(".loadingmore").slice(0, 12).show();
-  console.log( jQuery(".loadingmore").slice(0, 12).show().length);
-  var getnumber = document.getElementById('numbering').innerHTML;
- console.log(getnumber);
-  var totalgetnumber =jQuery(".loadingmore").length
-  document.getElementById('totalnumber').innerHTML=totalgetnumber;
-  console.log(totalgetnumber);
+// jQuery(document).ready(function(){
+//   jQuery(".loadingmore").slice(0, 12).show();
+//   console.log( jQuery(".loadingmore").slice(0, 12).show().length);
+//   var getnumber = document.getElementById('numbering').innerHTML;
+//  console.log(getnumber);
+//   var totalgetnumber =jQuery(".loadingmore").length
+//   document.getElementById('totalnumber').innerHTML=totalgetnumber;
+//   console.log(totalgetnumber);
   
-  jQuery("#loadMore").on("click", function(e){
-  e.preventDefault();
-  jQuery(".loadingmore:hidden").slice(0, 6).slideDown();
-   getnumber= parseInt(getnumber)+6;
-   document.getElementById("numbering").innerHTML=getnumber;
+//   jQuery("#loadMore").on("click", function(e){
+//   e.preventDefault();
+//   jQuery(".loadingmore:hidden").slice(0, 6).slideDown();
+//    getnumber= parseInt(getnumber)+6;
+//    document.getElementById("numbering").innerHTML=getnumber;
  
-  if(jQuery(".loadingmore:hidden").length == 0) {
-      jQuery("#loadMore").text("No Content").addClass("noContent");
-  }
-});
+//   if(jQuery(".loadingmore:hidden").length == 0) {
+//       jQuery("#loadMore").text("No Content").addClass("noContent");
+//   }
+// });
 
-});
+// });
 
 function printDiv2() {
   var id = jQuery('.tab-pane.show.active .table-responsive-sm').attr('id');

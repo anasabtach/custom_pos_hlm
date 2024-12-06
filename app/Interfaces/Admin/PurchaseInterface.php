@@ -25,4 +25,6 @@ interface PurchaseInterface
 
     public function purchaseCount():int;
 
+    public function remarks($remarks, $purchase_id):bool;
+
 }

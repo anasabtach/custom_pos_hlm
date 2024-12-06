@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="price" class="form-control-label">Price</label>
                             <input type="number" placeholder="Enter price" class="form-control form-control-line"
-                                name="variation_price[]"  value="{{ $variation->price }}">
+                                name="variation_price[]"  value="{{ $variation->price }}" min="1">
                         </div>
                     </div>
 
@@ -38,14 +38,14 @@
                         <div class="form-group">
                             <label for="stock" class="form-control-label">Stock</label>
                             <input type="number" placeholder="Enter stock no" class="form-control form-control-line"
-                                name="variation_stock[]"  value="{{ $variation->stock }}">
+                                name="variation_stock[]"  value="{{ $variation->stock }}" min="0">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="stock_alert" class="form-control-label">Stock Alert</label>
                             <input type="number" placeholder="Enter stock alert" class="form-control form-control-line"
-                                name="variation_stock_alert[]"  value="{{ $variation->stock_alert }}">
+                                name="variation_stock_alert[]"  value="{{ $variation->stock_alert }}" min="0">
                         </div>
                     </div>
                     <div class="col-md-4">

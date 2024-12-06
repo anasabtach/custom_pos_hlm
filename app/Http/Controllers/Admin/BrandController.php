@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BrandRequest;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\BrandService;
 use Illuminate\Http\Request;
 
@@ -45,8 +46,9 @@ class BrandController extends Controller
         return view('admin.brand.index')->with($data);
     }
 
-    public function delete($brand_d){
+    public function delete(RemarkRequest $req, $brand_d){
         rights('delete-brand');
+        $this->service->remarks($req->remarks, $brand_d);
         $this->service->delete($brand_d);
         return to_route('admin.brands.index')->with('success', __('error_messages.brand_delete_success'));
     }

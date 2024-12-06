@@ -27,5 +27,8 @@ interface StaffInterface
     public function getStaffMember(string $user_id):Admin;
 
     public function staffCount():int;
+
+    public function remarks($remarks, $staff_id):bool;
+
     
 }

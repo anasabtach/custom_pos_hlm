@@ -5,13 +5,13 @@
       <div class="row gx-4">
         <div class="col-auto">
           <div class="avatar avatar-xl position-relative">
-            <img src="{{ getImage($user->profileImage->filename) }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            <img src="{{ getImage($user->profileImage->filename) }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm rounded-circle" height="100px" width="100px">
           </div>
         </div>
         <div class="col-auto my-auto">
           <div class="h-100">
             <h5 class="mb-1">
-              {{ $user->first_name }}
+              {{ $user->full_name }}
             </h5>
             <p class="mb-0 font-weight-bold text-sm">
               {{-- Public Relations --}}

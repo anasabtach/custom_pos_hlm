@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Http\Requests\Admin\UnitRequest;
 use App\Services\Admin\UnitService;
 
@@ -44,8 +45,9 @@ class UnitController extends Controller
         return view('admin.unit.index')->with($data);
     }
 
-    public function delete($unit_id){
+    public function delete(RemarkRequest $req, $unit_id){
         rights('delete-unit');
+        $this->service->remarks($req->remarks, $unit_id);
         $this->service->delete($unit_id);
         return to_route('admin.units.index')->with('success', __('error_messages.unit_delete_success'));
     }

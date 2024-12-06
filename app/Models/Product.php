@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, HashidTrait,SoftDeletes;
+    use HasFactory, HashidTrait, SoftDeletes;
 
     protected $fillable = [
         'admin_id',

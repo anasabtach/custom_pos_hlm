@@ -19,4 +19,6 @@ interface BrandInterface
     public function update(array $arr):bool;
     
     public function brandsCount():int;
+
+    public function remarks($remarks, $brand_id):bool;
 }

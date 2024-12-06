@@ -67,6 +67,10 @@ class PurchaseRepository implements PurchaseInterface
         return Purchase::count();
     }
 
+    public function remarks($remarks, $purchase_id):bool
+    {
+        return Purchase::where('id', hashid_decode($purchase_id))->update(['remarks'=>$remarks]);
+    }
 
 
 }

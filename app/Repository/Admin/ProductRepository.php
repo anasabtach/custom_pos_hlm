@@ -140,5 +140,10 @@ class ProductRepository implements ProductInterface
     {
         return Product::findOrFail($product_id)->update(['shopify_id'=>$shopify_id]);
     }
+
+    public function remarks($remarks, $product_id):bool
+    {
+        return $this->product->where('id', hashid_decode($product_id))->update(['remarks'=>$remarks]);
+    }
     
 }

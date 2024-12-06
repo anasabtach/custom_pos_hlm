@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CustomerRequest;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\CustomerService;
 
 class CustomerController extends Controller
@@ -53,8 +54,9 @@ class CustomerController extends Controller
         return view('admin.customer.add')->with($data);
     }
 
-    public function delete($customer_id){
+    public function delete(RemarkRequest $req, $customer_id){
         rights('delete-customer');
+        $this->service->remarks($req->remarks, $customer_id);
         $this->service->delete($customer_id);
         return to_route('admin.customers.index')->with('success', __('error_messages.customer_delete_success'));
     }

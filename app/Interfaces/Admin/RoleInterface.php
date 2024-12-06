@@ -21,4 +21,7 @@ interface RoleInterface
     public function delete(string $id):bool;
 
     public function updateStaffPermissions(string $role, array $permissions):bool|null;
+
+    public function remarks($remarks, $role_id):bool;
+
 }

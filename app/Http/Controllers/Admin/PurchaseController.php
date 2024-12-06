@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PurchaseRequest;
+use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\PurchaseService;
 use App\Services\Admin\SupplierService;
 use Exception;
@@ -73,8 +74,9 @@ class PurchaseController extends Controller
         return view('admin.purchase.add')->with($data);
     }
 
-    public function delete($purchase_id){
+    public function delete(RemarkRequest $req, $purchase_id){
         rights('delete-purchase');
+        $this->service->remarks($req->remarks, $purchase_id);
         $this->service->delete($purchase_id);
         return to_route('admin.purchases.index')->with('success',__('error_messages.purchase_delete_success'));
     }

@@ -32,7 +32,7 @@ class CustomerRepository implements CustomerInterface
 
     public function getCustomers(): Collection
     {
-        return $this->customer->get();
+        return $this->customer->latest()->get();
     }
 
     public function edit(string $customer_id):Customer
@@ -78,5 +78,10 @@ class CustomerRepository implements CustomerInterface
             ->orderByRaw('MONTH(created_at)') // Sort by month number
             ->get();
         return $customerData; // Return this to the view
+    }
+
+    public function remarks($remarks, $customer_id):bool
+    {
+        return $this->customer->where('id', hashid_decode($customer_id))->update(['remarks'=>$remarks]);
     }
 }

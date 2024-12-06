@@ -64,4 +64,8 @@ class StaffService
         $this->repository->update(['staff_id'=>$user_id,'email'=>$staff->email, 'password'=>$password]);//update the password
         $this->staffRegistrationMail($staff->email, $password);//send mail
     }
+
+    public function remarks($remark, $staff_id){
+        return $this->repository->remarks($remark, $staff_id);
+    }
 }
