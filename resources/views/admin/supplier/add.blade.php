@@ -68,6 +68,21 @@
                                     </fieldset>
                                 </div>
                             </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Offered Products</label>
+                                    <fieldset class="form-group mb-3">
+                                        <select class="form-control multiple_select_2" name="product_ids[]" id="product_ids" multiple>
+                                            @foreach($products AS $product)
+                                            <option value="{{ $product->hashid }}" @selected(in_array($product->id, $offered_product_ids ?? []))>
+                                                {{ $product->name }}
+                                            </option>                                            
+                                            @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Note</label>

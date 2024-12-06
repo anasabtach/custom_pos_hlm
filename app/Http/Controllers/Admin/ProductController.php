@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\BrandService;
 use App\Services\Admin\CategoryService;
 use App\Services\Admin\ProductService;
+use App\Services\Admin\SupplierService;
 use App\Services\Admin\UnitService;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,13 +19,15 @@ class ProductController extends Controller
     protected $categoryService;
     protected $unitService;
     protected $brandService;
+    protected $supplierService;
 
-    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService, BrandService $brandService)
+    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService, BrandService $brandService, SupplierService $supplierService)
     {
         $this->service         = $service;
         $this->categoryService = $categoryService;
         $this->unitService     = $unitService;
         $this->brandService    = $brandService;
+        $this->supplierService    = $supplierService;
     }
 
     public function index(){
@@ -35,6 +38,7 @@ class ProductController extends Controller
             'categories'    => $this->categoryService->getCategories(),
             'units'         => $this->unitService->getUnits(),
             'brands'        => $this->brandService->getBrands(),
+            'suppliers'     => $this->supplierService->getSuppliers(),
         ];
         return view('admin.product.index')->with($data);
     }
@@ -46,6 +50,7 @@ class ProductController extends Controller
             'categories'    => $this->categoryService->getCategories(),
             'units'         => $this->unitService->getUnits(),
             'brands'        => $this->brandService->getBrands(),
+            'suppliers'     => $this->supplierService->getSuppliers(),
         ];
         return view('admin.product.add')->with($data    );
     }
@@ -74,6 +79,7 @@ class ProductController extends Controller
             'categories'    => $this->categoryService->getCategories(),
             'units'         => $this->unitService->getUnits(),
             'brands'        => $this->brandService->getBrands(),
+            'suppliers'     => $this->supplierService->getSuppliers(),
             'is_update'     => true
         ];
         return view('admin.product.add')->with($data);

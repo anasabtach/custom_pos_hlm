@@ -28,6 +28,7 @@ class Product extends Model
         'expiration',
         'color',
         'shopify_id',
+        'supplier_id',
     ];
 
     public function thumbnail(): MorphOne
@@ -57,5 +58,11 @@ class Product extends Model
 
     public function saleitems(){
         return $this->hasMany(SaleItem::class, 'product_id', 'id');
+    }
+
+    public function supplier(){
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id')->withDefault([
+            'name'  => ''
+        ]);
     }
 }

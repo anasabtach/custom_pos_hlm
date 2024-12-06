@@ -24,13 +24,15 @@ class SupplierRequest extends FormRequest
     {
         return [
             'country_id'    => ['required', 'string', 'max:50'],
-            'name'          => ['required', 'string', 'max:30'],
-            'email'         => ['required', 'string', 'max:30', Rule::unique('suppliers')->ignore((isset($this->supplier_id) ? hashid_decode($this->supplier_id) : NULL))],
-            'phone_no'      => ['required', 'string', 'max:20'],
-            'city'          => ['required', 'string', 'max:30'],
+            'name'          => ['required', 'string', 'max:500'],
+            'email'         => ['required', 'string', 'max:500', Rule::unique('suppliers')->ignore((isset($this->supplier_id) ? hashid_decode($this->supplier_id) : NULL))],
+            'phone_no'      => ['required', 'string', 'max:100'],
+            'city'          => ['required', 'string', 'max:500'],
             'address'       => ['required', 'string', 'max:500'],
             'note'          => ['nullable','string', 'max:5000'],
-            'supplier_id'   => ['nullable', 'string', 'max:50']
+            'supplier_id'   => ['nullable', 'string', 'max:50'],
+            'product_ids'   => ['nullable', 'array'],
+            'product_ids.*' => ['string', 'max:50']
         ];
     }
 }

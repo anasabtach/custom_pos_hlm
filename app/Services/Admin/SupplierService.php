@@ -19,8 +19,16 @@ class SupplierService{
         return $this->repository->getSuppliers();
     }
 
-    public function store(array $data){
-        return (isset($data['supplier_id'])) ? $this->repository->update($data) : $this->repository->store($data);
+    public function store(array $data)
+    {
+        $supplier = isset($data['supplier_id']) ? $this->repository->update($data) : $this->repository->store($data);
+    
+        $this->offeredProductsAttachmentAndDeattachment(
+            $data['supplier_id'] ?? $supplier->hashid, 
+            $data['product_ids']
+        );
+    
+        return $supplier;
     }
 
     public function edit($supplier_id){
@@ -37,5 +45,11 @@ class SupplierService{
 
     public function remarks($remark, $supplier_id){
         return $this->repository->remarks($remark, $supplier_id);
+    }
+
+    public function offeredProductsAttachmentAndDeattachment($supplier_id, $product_ids){
+       $supplier = $this->edit($supplier_id);
+       $supplier->offeredProducts()->detach();//detach all the products
+       $supplier->offeredProducts()->attach(array_map("hashid_decode", $product_ids));//attach all the products to supplier
     }
 }

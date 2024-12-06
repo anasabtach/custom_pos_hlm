@@ -58,6 +58,20 @@
                                             </select>
                                         </fieldset>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label>Supplier</label>
+                                        <fieldset class="form-group mb-3">
+                                            <select class="form-control round bg-transparent text-dark" name="supplier_id"
+                                                id="supplier_id">
+                                                <option value="">Select supplier</option>
+                                                @foreach ($suppliers as $supplier)
+                                                    <option value="{{ $supplier->hashid }}" @selected(($edit_product->supplier_id ?? null) == $unit->id)>
+                                                        {{ $supplier->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </fieldset>
+                                    </div>
                                 </div>
 
                                 <div class="row">

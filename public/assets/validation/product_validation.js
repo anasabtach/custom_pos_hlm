@@ -12,6 +12,10 @@ $('#product_form').validate({
             required: true,
             maxlength: 50
         },
+        supplier_id: {
+            required: true,
+            maxlength: 50
+        },
         product_name: {
             required: true,
             maxlength: 50

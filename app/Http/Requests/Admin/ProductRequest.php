@@ -38,6 +38,7 @@ class ProductRequest extends FormRequest
             'status'           => ['required', 'bool'],
             'product_thumbnail'=> ['required_without:product_id', 'mimes:jpg,jpeg,png', 'max:2048'], 
             'color'            => ['nullable', 'string', 'max:30'],
+            'supplier_id'      => ['required', 'string', 'max:50'],
             //variation validation
             'variation_sku'           => ['required_if:has_variation,1', 'array'],
             'variation_sku.*'         => ['required', 'string', 'min:1','max:30'],

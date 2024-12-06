@@ -6,20 +6,20 @@ $('#supplier_form').validate({
         },
         name:{
             required:true,
-            maxlength:30
+            maxlength:500
         },
         email:{
             required:true,
-            maxlength:30,
+            maxlength:500,
             email:true
         },
         phone_no:{
             required:true,
-            maxlength:20
+            maxlength:100
         },
         city:{
             required:true,
-            maxlength:30
+            maxlength:500
         },
         address:{
             required:true,

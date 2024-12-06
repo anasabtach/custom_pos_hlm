@@ -33,6 +33,17 @@
                                             </fieldset>
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Suppliers</label>
+                                            <fieldset class="form-group mb-3">
+                                                <select name="" id="supplierFilter" class="form-control">
+                                                    <option value="">All</option>
+                                                    @foreach ($suppliers as $supplier)
+                                                        <option value="{{ $supplier->name }}">{{ $supplier->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
                                             <label>Variations</label>
                                             <fieldset class="form-group mb-3">
                                                 <select name="" id="variationFilter" class="form-control">
@@ -130,6 +141,7 @@
                                                 <thead class="text-body">
                                                     <tr>
                                                         <th class="text-center">ID</th>
+                                                        <th class="text-center">Supplier</th>
                                                         <th class="text-center">Brand</th>
                                                         <th class="text-center">Category</th>
                                                         <th class="text-center">Unit</th>
@@ -151,6 +163,10 @@
                                                     @foreach ($products as $product)
                                                         <tr>
                                                             <td class="text-center">{{ $loop->iteration }}</td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    {{ $product->supplier->name }}</p>
+                                                            </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ @$product->brand->name }}</p>

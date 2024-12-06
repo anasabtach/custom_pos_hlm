@@ -19,7 +19,7 @@ class ProductRepository implements ProductInterface
 
     public function getProducts():Collection
     {
-        return $this->product->with(['category', 'unit', 'brand'])->latest()->get();
+        return $this->product->with(['category', 'unit', 'brand', 'supplier:id,name'])->latest()->get();
     }
 
     public function getDeletedProdcuts():Collection
@@ -28,7 +28,7 @@ class ProductRepository implements ProductInterface
     }
 
     public function storeProduct(array $arr):Product
-    {
+    {   
         return $this->product->create($arr);
     }
 
