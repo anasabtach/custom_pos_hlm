@@ -32,7 +32,8 @@ class SupplierRequest extends FormRequest
             'note'          => ['nullable','string', 'max:5000'],
             'supplier_id'   => ['nullable', 'string', 'max:50'],
             'product_ids'   => ['nullable', 'array'],
-            'product_ids.*' => ['string', 'max:50']
+            'product_ids.*' => ['string', 'max:50'],
+            'trn'           => ['nullable', 'string', 'max:100']
         ];
     }
 }

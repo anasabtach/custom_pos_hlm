@@ -26,12 +26,13 @@ class SupplierRepository implements SupplierInterface
             'city'          => $data['city'],
             'address'       => $data['address'],
             'note'          => $data['note'],
+            'trn'           => $data['trn'],
         ]);
     }
 
     public function getSuppliers(): Collection
     {
-        return $this->supplier->latest()->get();
+        return $this->supplier->with(['offeredProducts'])->latest()->get();
     }
 
     public function edit(string $supplier_id):Supplier
@@ -50,6 +51,7 @@ class SupplierRepository implements SupplierInterface
             'city'          => $arr['city'],
             'address'       => $arr['address'],
             'note'          => $arr['note'],
+            'trn'           => $arr['trn'],
         ]);
     }
 

@@ -79,6 +79,8 @@
                                                         <th class="text-center">City</th>
                                                         <th class="text-center">Address</th>
                                                         <th class="text-center">Note</th>
+                                                        <th class="text-center">Offered <br/>Products</th>
+                                                        <th class="text-center">TRN</th>
                                                         <th class="text-center">Created <br/>At</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
@@ -111,6 +113,15 @@
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {!! wordwrap($supplier->note, 100, "<br>\n", true) !!}
                                                                 </p>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    {!! $supplier->offeredProducts->pluck('name')->map(fn($name) => "<span class='badge bg-primary text-white'>$name</span>")->join(' ') !!}
+                                                                </p>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    {{ $supplier->trn }}</p>
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">

@@ -4,6 +4,7 @@ use App\Helpers\Hashid;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -61,6 +62,15 @@ Route::name('admin.')->group(function(){
             Route::post('/store', 'store')->name('store');
             Route::get('/edit/{brand_id}', 'edit')->name('edit');
             Route::get('/delete/{brand_id}', 'delete')->name('delete');
+            Route::get('/update-list', 'updateList')->name('update_list');
+        });
+
+        //colors rotues
+        Route::prefix('/colors')->name('colors.')->controller(ColorController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{color_id}', 'edit')->name('edit');
+            Route::get('/delete/{color_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
         });
         

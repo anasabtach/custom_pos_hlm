@@ -15,7 +15,7 @@ class Supplier extends Model
     protected $table = 'suppliers';
 
     protected $fillable = [
-        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'note'
+        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'note', 'trn'
     ];
 
     public function offeredProducts(){

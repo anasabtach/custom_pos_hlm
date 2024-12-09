@@ -29,5 +29,9 @@ $('#supplier_form').validate({
             required:false,
             maxlength:5000
         },
+        trn:{
+            required:false,
+            maxlength:100
+        },
     }
 });

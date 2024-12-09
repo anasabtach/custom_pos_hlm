@@ -44,7 +44,6 @@ class SupplierController extends Controller
             $this->service->store($req->validated());
             return to_route('admin.suppliers.index')->with('success',$msg);
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return to_route('admin.suppliers.index')->withInput()->with('error', __('error_messages.supplier_add_error'));
         }
     }

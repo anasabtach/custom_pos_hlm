@@ -19,6 +19,13 @@ return [
     'brand_add_error'           => 'Some error occured brand can not be add',
     'brand_delete_success'      => 'Brand deleted successfully',
 
+    //color messages
+    'color_update_success'      => 'Color updated successfully',
+    'color_delete_success'      => 'Color deleted successfully',
+    'color_add_success'         => 'Color added successfully',
+    'color_add_error'           => 'Some error occured color can not be add',
+    'color_delete_success'      => 'Color deleted successfully',
+
     //unit messages
     'unit_update_success'       => 'Unit updated successfully',
     'unit_delete_success'       => 'Unit deleted successfully',

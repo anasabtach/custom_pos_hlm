@@ -82,6 +82,13 @@
                                         </select>
                                     </fieldset>
                                 </div>
+                                <div class="col-md-6">
+                                    <label>TRN</label>
+                                    <fieldset class="form-group mb-3">
+                                        <input type="text" placeholder="Enter TRN" class="form-control round bg-transparent text-dark" 
+                                               value="{{ isset($is_update) ? $edit_supplier->trn : old('trn') }}" name="trn" id="trn">
+                                    </fieldset>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
