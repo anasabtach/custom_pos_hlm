@@ -25,7 +25,7 @@ class UnitRepository implements UnitInterface
 
     public function getUnits(): Collection
     {
-        return $this->unit->latest()->get();
+        return $this->unit->withTrashed()->latest()->get();
     }
 
     public function edit(string $unit_id):Unit

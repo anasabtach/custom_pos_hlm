@@ -99,6 +99,7 @@
                                                         <th class="text-center">Unit Name</th>
                                                         <th class="text-center">Short Hand</th>
                                                         <th class="text-center">Status</th>
+                                                        <th class="text-center">Deleted</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -126,6 +127,15 @@
                                                             </td>
 
 
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    @if($unit->trashed())
+                                                                        <span class="badge bg-danger text-white">yes</span>
+                                                                    @else 
+                                                                        <span class="badge bg-success text-white">no</span> 
+                                                                    @endif
+                                                                </p>
+                                                            </td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"

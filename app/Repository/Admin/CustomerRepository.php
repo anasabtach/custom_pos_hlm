@@ -32,7 +32,7 @@ class CustomerRepository implements CustomerInterface
 
     public function getCustomers(): Collection
     {
-        return $this->customer->latest()->get();
+        return $this->customer->withTrashed()->latest()->get();
     }
 
     public function edit(string $customer_id):Customer

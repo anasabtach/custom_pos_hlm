@@ -128,6 +128,7 @@
                                                 <tr>
                                                     <th class="text-center">ID</th>
                                                     <th class="text-center">Role</th>
+                                                    <th class="text-center">Deleted</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                                 </tr>
@@ -137,6 +138,15 @@
                                                     <tr>
                                                         <td class="text-center">{{ $loop->iteration }}</td>
                                                         <td class="text-center">{{ $role->name }}</td>
+                                                        <td class="text-center">
+                                                            <p class="text-sm font-weight-bold mb-0">
+                                                                @if($role->trashed())
+                                                                    <span class="badge bg-danger text-white">yes</span>
+                                                                @else 
+                                                                    <span class="badge bg-success text-white">no</span> 
+                                                                @endif
+                                                            </p>
+                                                        </td>
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"

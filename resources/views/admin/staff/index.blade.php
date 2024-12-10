@@ -54,6 +54,7 @@
                                                     <th class="text-center">Role</th>
                                                     <th class="text-center">Status</th>
                                                     <th>Resend<br/>Credentials</th>
+                                                    <th>Deletd</th>
                                                     <th class="text-center no-sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -84,6 +85,15 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <p class="text-sm font-weight-bold mb-0">
+                                                                @if($staff->trashed())
+                                                                    <span class="badge bg-danger text-white">yes</span>
+                                                                @else 
+                                                                    <span class="badge bg-success text-white">no</span> 
+                                                                @endif
+                                                            </p>
                                                         </td>
                                                         <td>
                                                             <div class="card-toolbar text-end">

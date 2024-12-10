@@ -81,6 +81,7 @@
                                                         <th class="text-center">Note</th>
                                                         <th class="text-center">Offered <br/>Products</th>
                                                         <th class="text-center">TRN</th>
+                                                        <th class="text-center">Deleted</th>
                                                         <th class="text-center">Created <br/>At</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
@@ -122,6 +123,17 @@
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ $supplier->trn }}</p>
+                                                            </td>
+                                                            
+
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    @if($supplier->trashed())
+                                                                        <span class="badge bg-danger text-white">yes</span>
+                                                                    @else 
+                                                                        <span class="badge bg-success text-white">no</span> 
+                                                                    @endif
+                                                                </p>
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">

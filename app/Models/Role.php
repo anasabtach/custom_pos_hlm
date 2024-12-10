@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
-    use HasFactory, HashidTrait;
+    use HasFactory, HashidTrait, SoftDeletes;
 
     protected $table = 'roles';
 

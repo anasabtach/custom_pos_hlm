@@ -26,7 +26,7 @@ class BrandRepository implements BrandInterface
 
     public function getBrands(): Collection
     {
-        return $this->brand->latest()->get();
+        return $this->brand->withTrashed()->latest()->get();
     }
 
     public function edit(string $brand_id):Brand

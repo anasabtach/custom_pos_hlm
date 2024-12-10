@@ -102,6 +102,7 @@
                                                         <th class="text-center">Batch No</th>
                                                         <th class="text-center">Supplier</th>
                                                         <th class="text-center">Date</th>
+                                                        <th class="text-center">Deleted</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -112,6 +113,15 @@
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ $purchase->batch_no }}</p></td>
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ $purchase->supplier->name }}</p></td>
                                                             <td class="text-center"><p class="text-sm font-weight-bold mb-0">{{ getCustomDate($purchase->date) }}</p></td>
+                                                            <td class="text-center">
+                                                                <p class="text-sm font-weight-bold mb-0">
+                                                                    @if($purchase->trashed())
+                                                                        <span class="badge bg-danger text-white">yes</span>
+                                                                    @else 
+                                                                        <span class="badge bg-success text-white">no</span> 
+                                                                    @endif
+                                                                </p>
+                                                            </td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
