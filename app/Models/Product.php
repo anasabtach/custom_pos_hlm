@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Helpers\CommonHelper;
+use App\Observers\ProductObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HashidTrait;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[ObservedBy([ProductObserver::class])]
 class Product extends Model
 {
     use HasFactory, HashidTrait, SoftDeletes;
@@ -30,6 +34,12 @@ class Product extends Model
         'shopify_id',
         'supplier_id',
     ];
+
+    public function scopeWithLog($query)
+    {
+        CommonHelper::createLog("viewed all products");
+        return $query;
+    }
 
     public function thumbnail(): MorphOne
     {

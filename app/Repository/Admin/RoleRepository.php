@@ -17,7 +17,7 @@ class RoleRepository implements RoleInterface
 
     public function getRoles():Collection
     {
-        return Role::withTrashed()->latest()->get();
+        return Role::withTrashed()->latest()->withLog()->get();
     }
 
     public function store(array $data):Role

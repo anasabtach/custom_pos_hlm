@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Log;
 use App\Models\Media;
 use App\Models\Notification;
 use Carbon\Carbon;
@@ -120,5 +121,12 @@ class CommonHelper
 
     public static function storeNotification($data){
         // Notification::create($data);
+    }
+    
+    public static function createLog($message){
+        Log::create([
+            'admin_id'  => auth()->id(),
+            'message'   => auth()->user()->full_name.' '.$message,
+        ]);
     }
 }

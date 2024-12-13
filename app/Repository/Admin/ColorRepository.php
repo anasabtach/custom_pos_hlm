@@ -27,7 +27,7 @@ class ColorRepository implements ColorInterface
 
     public function getColors(): Collection
     {
-        return $this->color->latest()->get();
+        return $this->color->latest()->withLog()->get();
     }
 
     public function edit(string $color_id):Color

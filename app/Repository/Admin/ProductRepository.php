@@ -19,7 +19,7 @@ class ProductRepository implements ProductInterface
 
     public function getProducts():Collection
     {
-        return $this->product->with(['category', 'unit', 'brand', 'supplier:id,name'])->withTrashed()->latest()->get();
+        return $this->product->with(['category', 'unit', 'brand', 'supplier:id,name'])->withTrashed()->latest()->withLog()->get();
     }
 
     public function getDeletedProdcuts():Collection

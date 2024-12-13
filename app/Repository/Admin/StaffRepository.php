@@ -12,7 +12,7 @@ class StaffRepository implements StaffInterface
 
     public function getStaff(): Collection
     {
-        return Admin::withTrashed()->where('id', '!=', 1)->latest()->get();
+        return Admin::withTrashed()->where('id', '!=', 1)->latest()->withLog()->get();
     }
     public function store(array $data):Admin
     {   

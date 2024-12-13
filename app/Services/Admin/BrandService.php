@@ -19,9 +19,11 @@ class BrandService{
 
     public function store(array $data){
         if(isset($data['brand_id'])){
+            // CommonHelper::createLog("{$data['brand_name']} updated successfully");
             $this->shopifyRepository->update($data,$this->edit($data['brand_id'])->shopify_brand_id);//update brand in shopify
             return $this->repository->update($data);
         }
+        // CommonHelper::createLog("{$data['brand_name']} added successfully");
         $data['slug']             = CommonHelper::generateUniqueSlug($data['brand_name'], 'brands');
         $data['shopify_brand_id'] = $this->shopifyRepository->store($data);//add brand in shopify
         return $this->repository->store($data);
@@ -29,6 +31,7 @@ class BrandService{
     }
 
     public function getBrands():Collection{
+        // CommonHelper::createLog("viewed all brands");
         return $this->repository->getBrands();
     }
 

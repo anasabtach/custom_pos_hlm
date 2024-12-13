@@ -10,7 +10,7 @@ class PurchaseRepository implements PurchaseInterface
 {   
     public function getPurchases():Collection
     {
-        return Purchase::with(['supplier'])->latest()->get();
+        return Purchase::with(['supplier'])->latest()->withLog()->get();
     }
 
     public function store(array $arr):Purchase

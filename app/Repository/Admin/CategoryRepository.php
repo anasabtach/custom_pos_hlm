@@ -29,7 +29,7 @@ class CategoryRepository implements CategoryInterface
 
     public function getCategories(): Collection
     {
-        return $this->category->withTrashed()->whereNull('parent_id')->latest()->get();
+        return $this->category->withTrashed()->whereNull('parent_id')->latest()->withLog()->get();
     }
 
     public function edit(string $category_id):Category

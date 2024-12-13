@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\CommonHelper;
+use App\Observers\StaffObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,9 +11,10 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Permissions\HasPermissionsTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 use App\Traits\HashidTrait;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy([StaffObserver::class])]
 class Admin extends Authenticatable
 {
     use HasFactory, HashidTrait, HasPermissionsTrait, SoftDeletes;
@@ -20,6 +23,12 @@ class Admin extends Authenticatable
 
     protected $casts = ['user_permissions'=>'object'];
 
+
+    public function scopeWithLog($query)
+    {
+        CommonHelper::createLog("viewed all staff");
+        return $query;
+    }
 
     protected function fullName(): Attribute
     {

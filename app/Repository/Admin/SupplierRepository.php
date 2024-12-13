@@ -32,7 +32,7 @@ class SupplierRepository implements SupplierInterface
 
     public function getSuppliers(): Collection
     {
-        return $this->supplier->with(['offeredProducts'])->withTrashed()->latest()->get();
+        return $this->supplier->with(['offeredProducts'])->withTrashed()->latest()->withLog()->get();
     }
 
     public function edit(string $supplier_id):Supplier
