@@ -16,4 +16,8 @@ class Log extends Model
     protected $fillable = [
         'admin_id', 'message',
     ];
+
+    public function staff(){
+        return $this->belongsTo(Admin::class, 'admin_id', 'id');
+    }
 }

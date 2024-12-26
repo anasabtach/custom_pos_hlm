@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
@@ -150,6 +151,11 @@ Route::name('admin.')->group(function(){
             Route::get('/delete/{id}', 'delete')->name('delete');
             Route::get('/update-status/{id}/{status}', 'updateStatus')->name('update_status');
             Route::get('/resend-credentials-email/{user_id}', 'resendCredentialsEmail')->name('resend_credentials_email');
+        });
+
+        //log routes
+        Route::prefix('logs')->name('logs.')->controller(LogController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
         });
     });
 
