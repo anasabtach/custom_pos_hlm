@@ -1,14 +1,6 @@
 <!DOCTYPE html>
-<!--
-   Template Name: Kundol Admin - Bootstrap 4 HTML Admin Dashboard Theme
-   Author: Themes-coder
-   Website: https://themes-coder.com/
-   Contact: sales@themes-coder.com
-   License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
-   -->
+
 <html lang="en">
-   <!--begin::Head-->
-   <!-- Mirrored from kundol.themes-coder.net/admin-demo/pos.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Oct 2024 18:19:23 GMT -->
    <head>
       <meta charset="utf-8" />
       <title>Admin | Dashboard</title>

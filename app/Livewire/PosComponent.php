@@ -142,6 +142,7 @@ class PosComponent extends Component
                         $sale = Sale::create($this->saleArr());
                     }
                     $sale->saleItems()->createMany($this->saleItemArr());
+                    $this->deductProductStock(collect($this->saleItemArr())->pluck('quantity', 'product_id'));
                     $this->resetProperties();
                     $this->dispatch('bill-generated', success:true, sale_id:$sale->hashid);
                     session()->forget('select_customer_error');
@@ -234,7 +235,12 @@ class PosComponent extends Component
             ];
     }
     
-
+    public function deductProductStock($arr){
+        foreach($arr AS $product_id=>$product_stock){
+            Product::findOrFail($product_id)->decrement('stock', $product_stock);
+        }
+    }
+    
     public function placeholder(array $params = [])
     {
         return view('livewire.placeholders.skeleton', $params);
