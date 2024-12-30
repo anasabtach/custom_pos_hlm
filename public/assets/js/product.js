@@ -1,5 +1,14 @@
 $(document).ready(function() {
-    var table = jQuery('#product_table').DataTable();
+    var table = jQuery('#product_table').DataTable({
+        dom: 'Bfrtip',  // This controls the placement of the buttons
+        buttons: [
+            'copy',        // Copy to clipboard
+            'csv',         // Export to CSV
+            'excel',       // Export to Excel
+            'pdf',         // Export to PDF
+            'print'        // Print the table
+        ]
+    });
 
     // Apply category filter
     jQuery('#brandFilter').on('change', function() {

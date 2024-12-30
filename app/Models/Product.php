@@ -51,7 +51,9 @@ class Product extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id')->withDefault([
+            'name'  => 'not found',
+        ]);
     }
     
     public function unit(){
@@ -74,5 +76,9 @@ class Product extends Model
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id')->withDefault([
             'name'  => ''
         ]);
+    }
+    public function suppliers()
+    {
+        return $this->belongsToMany(Supplier::class, 'supplier_products', 'product_id', 'supplier_id')->withTimestamps();
     }
 }

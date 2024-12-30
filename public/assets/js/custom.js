@@ -13,6 +13,49 @@ function singleImagePreview(inputId, previewImage){//image preview funciton
     }
  }
 
+ function createImagePreviews(inputId, previewContainerId) {
+    const inputElement = document.getElementById(inputId);
+    const previewContainer = document.getElementById(previewContainerId);
+
+    // Ensure the input element and preview container exist
+    if (!inputElement || !previewContainer) {
+      console.error('Invalid input or preview container ID.');
+      return;
+    }
+
+    // Clear previous previews
+    previewContainer.innerHTML = '';
+
+    // Access the files from the input element
+    const files = inputElement.files;
+
+    // Loop through selected files
+    Array.from(files).forEach(file => {
+      // Ensure it's an image
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          // Create image element
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = file.name;
+          img.classList.add('preview');
+            // Set height and width
+          img.style.width = '100px';
+          img.style.height = '100px';
+          // Append to the container
+          previewContainer.appendChild(img);
+        };
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(file);
+      } else {
+        alert(`${file.name} is not a valid image file.`);
+      }
+    });
+  }
+
  //show loader and disabled submit button when ever form gets submit
  $('form').submit(function(){
     let submitButton = $('button[type="submit"]', this);

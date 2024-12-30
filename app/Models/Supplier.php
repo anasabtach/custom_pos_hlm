@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\HashidTrait;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[ObservedBy([SupplierObserver::class])]
@@ -34,5 +35,10 @@ class Supplier extends Model
 
     public function getOfferedProductsIds(){
         return $this->offeredProducts->pluck('id')->toArray();
+    }
+
+    public function trnDocuments(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
     }
 }

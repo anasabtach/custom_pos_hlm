@@ -163,10 +163,16 @@
                                     <div class="col-md-6 hide_when_variation_is_set">
                                         <label>Color</label>
                                         <fieldset class="form-group mb-3">
-                                            <input type="text" placeholder="Enter color"
+                                            {{-- <input type="text" placeholder="Enter color"
                                                 class="form-control round bg-transparent text-dark"
                                                 value="{{ isset($is_update) ? $edit_product->color : old('color') }}"
-                                                name="color">
+                                                name="color"> --}}
+                                                <select name="color" id="color" class="form-control">
+                                                    <option value="">Select Colot</option>
+                                                    @foreach($colors AS $color)
+                                                        <option value="{{ $color->color  }}"  @selected(isset($is_update) ? $edit_product->color == $color->color : old('color') == 'some_value')>{{ $color->color }}</option>
+                                                    @endforeach
+                                                </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
@@ -348,7 +354,12 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="color" class="form-control-label">Color</label>
-                <input type="text" class="form-control shadow-sm rounded" name="variation_color[]" id="variation_color">
+                <select class="form-control shadow-sm rounded" name="variation_color[]" id="variation_color">
+                    <option value="">Select color</option>
+                    @foreach ($colors as $color)
+                    <option value="{{ $color->color }}">{{ $color->color }}</option>
+                    @endforeach
+                </select>            
             </div>
         </div>
         <!-- Image Upload with Preview -->

@@ -92,6 +92,7 @@ Route::name('admin.')->group(function(){
             Route::get('/edit/{supplier_id}', 'edit')->name('edit');
             Route::get('/delete/{supplier_id}', 'delete')->name('delete');
             Route::get('/update-list', 'updateList')->name('update_list');
+            Route::get('/delete-trx-documents/{supplier_id}/{document_id}', 'deleteTrxDocuments')->name('delete_trx_document');
         });
 
         //customer rotues
@@ -114,7 +115,7 @@ Route::name('admin.')->group(function(){
             Route::get('/search', 'searchProducts')->name('search');
             Route::get('/product-variation-row', 'productAndVariationRow')->name('product_and_variation_row');
             Route::get('/deleted-products', 'deletedProducts')->name('deleted_products');
-        });
+        }); 
 
         Route::prefix('/purchases')->name('purchases.')->controller(PurchaseController::class)->group(function(){
             Route::get('/', 'index')->name('index');

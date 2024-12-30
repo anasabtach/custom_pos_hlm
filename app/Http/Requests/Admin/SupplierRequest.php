@@ -33,7 +33,10 @@ class SupplierRequest extends FormRequest
             'supplier_id'   => ['nullable', 'string', 'max:50'],
             'product_ids'   => ['nullable', 'array'],
             'product_ids.*' => ['string', 'max:50'],
-            'trn'           => ['nullable', 'string', 'max:100']
+            'trn'           => ['nullable', 'string', 'max:100'],
+            'trn_documents' => ['nullable', 'array'],
+            'trn_documents.*' => ['nullable',  'mimes:jpg,jpeg,png', 'max:2048'],
+ 
         ];
     }
 }

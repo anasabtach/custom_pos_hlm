@@ -12,7 +12,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.suppliers.store') }}" method="POST" id="supplier_form">
+                        <form action="{{ route('admin.suppliers.store') }}" method="POST" id="supplier_form" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -74,10 +74,13 @@
                                     <label>Offered Products</label>
                                     <fieldset class="form-group mb-3">
                                         <select class="form-control multiple_select_2" name="product_ids[]" id="product_ids" multiple>
-                                            @foreach($products AS $product)
-                                            <option value="{{ $product->hashid }}" @selected(in_array($product->id, $offered_product_ids ?? []))>
-                                                {{ $product->name }}
-                                            </option>                                            
+                                            @foreach($products as $product)
+                                                @if(is_null($product->deleted_at))
+                                                    <option value="{{ $product->hashid }}" 
+                                                            @selected(in_array($product->id, $offered_product_ids ?? []))>
+                                                        {{ $product->name }}
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </fieldset>
@@ -89,6 +92,23 @@
                                                value="{{ isset($is_update) ? $edit_supplier->trn : old('trn') }}" name="trn" id="trn">
                                     </fieldset>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="example-text-input" class="form-control-label">TRN/Trade License </label>
+                                      <input type="file" id="imageUpload" multiple accept="image/*" class="form-control" name="trn_documents[]" onchange=" createImagePreviews('imageUpload','previewContainer');">
+                                      @if(isset($is_update))
+                                        @foreach($edit_supplier->trnDocuments AS $document)
+                                            <span>
+                                                <img src="{{ getImage($document->filename) }}" alt="" width="100px" width="100px" class="icon-text1" >
+                                            <i class="fa fa-times cross-icon delete_supplier_image" data-document-id="{{ $document->hashid }}" data-supplier-id={{ $edit_supplier->hashid }} style=""></i>
+                                            </span>
+                                        @endforeach
+                                      @endif
+                                      <div id="previewContainer" class="preview-container"></div>                                    
+                                    </div>
+                                  </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -111,4 +131,26 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/validation/supplier_validation.js') }}"></script>
+<script>
+    $('.delete_supplier_image').click(function(){
+        let document_id = $(this).data('document-id');
+        let supplier_id = $(this).data('supplier-id');
+        $(this).parent().remove();
+        $.ajax({
+            url: "{{ route('admin.suppliers.delete_trx_document', ['supplier_id' => ':supplier_id', 'document_id' => ':document_id']) }}".replace(':supplier_id', supplier_id).replace(':document_id', document_id),            method: "GET",
+            success: function(res) {
+                toastr.success('Image deleted succesfuly', 'Success', {
+                    positionClass: 'toast-top-right',
+                    timeOut: 3500
+                });
+            },
+            error: function(err) {
+                toastr.error('Some error occured', 'Success', {
+                    positionClass: 'toast-top-right',
+                    timeOut: 3500
+                });            }
+        });
+
+    });
+</script>
 @endsection

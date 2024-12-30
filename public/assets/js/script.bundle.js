@@ -645,7 +645,16 @@ jQuery('.kt_notes_panel_close').on("click", function(e){
 // } );
 
 jQuery(document).ready(function() {
-  var table = jQuery('#myTable').DataTable();
+  var table = jQuery('#myTable').DataTable({
+    dom: 'Bfrtip',  // This controls the placement of the buttons
+    buttons: [
+        'copy',        // Copy to clipboard
+        'csv',         // Export to CSV
+        'excel',       // Export to Excel
+        'pdf',         // Export to PDF
+        'print'        // Print the table
+    ]
+  });
 
   jQuery('#myTable tbody').on( 'click', 'tr', function () {
       jQuery(this).toggleClass('selected');

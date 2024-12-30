@@ -181,7 +181,16 @@
 <script>
     $(document).ready(function() {
 
-    var table = jQuery('#purchase_table').DataTable();
+    var table = jQuery('#purchase_table').DataTable({
+        dom: 'Bfrtip',  // This controls the placement of the buttons
+        buttons: [
+            'copy',        // Copy to clipboard
+            'csv',         // Export to CSV
+            'excel',       // Export to Excel
+            'pdf',         // Export to PDF
+            'print'        // Print the table
+        ]
+    });
     jQuery('#supplierFilter').on('change', function() {
         var selectedCategory = $(this).val();
         table.column(2).search(selectedCategory).draw();

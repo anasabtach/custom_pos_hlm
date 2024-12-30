@@ -22,6 +22,18 @@
                                                 </select>
                                             </fieldset>
                                         </div>
+                                        <div class="col-md-4">
+                                            <label>From Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="from_date">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>To Date</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="date" class="form-control" id="to_date">
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -105,6 +117,7 @@
                                                         <th class="no-sort text-end text-center">Return Amount</th>
                                                         <th class="no-sort text-end text-center">Discount</th>
                                                         <th class="no-sort text-end text-center">Total</th>
+                                                        <th class="no-sort text-end text-center">Created At</th>
                                                         <th class="no-sort text-end text-center">Action</th>
                                                     </tr>
                                                 </thead>
@@ -118,6 +131,7 @@
                                                         <td class="text-center">{{ number_format($sale->return_amount) }}</td>
                                                         <td class="text-center">{{ number_format($sale->discount) }}</td>
                                                         <td class="text-center">{{ number_format($sale->total) }}</td>
+                                                        <td class="text-center">{{ getCustomDate($sale->created_at) }}</td>
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"
@@ -173,10 +187,46 @@
 <script>
     $(document).ready(function() {
 
-    var table = jQuery('#sale_table').DataTable();
+    var table = jQuery('#sale_table').DataTable({
+        dom: 'Bfrtip',  // This controls the placement of the buttons
+        buttons: [
+            'copy',        // Copy to clipboard
+            'csv',         // Export to CSV
+            'excel',       // Export to Excel
+            'pdf',         // Export to PDF
+            'print'        // Print the table
+        ]
+    });
     jQuery('#customerFilter').on('change', function() {
         var selectedCustomer = $(this).val();
         table.column(2).search(selectedCustomer).draw();
+    });
+
+    // var table = jQuery('#sale_table').DataTable();
+
+    jQuery.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+        var fromDate = $('#from_date').val();
+        var toDate = $('#to_date').val();
+        var columnData = data[7]; // Adjust to your date column index
+
+        if (!fromDate && !toDate) {
+            return true; // Show all rows if no date filters are set
+        }
+
+        var rowDate = new Date(columnData);
+        if (fromDate && rowDate < new Date(fromDate)) {
+            return false;
+        }
+        if (toDate && rowDate > new Date(toDate)) {
+            return false;
+        }
+
+        return true;
+    });
+
+    $('#from_date, #to_date').on('change', function() {
+        table.draw(); // Redraw the table with the applied filters
     });
 });
 

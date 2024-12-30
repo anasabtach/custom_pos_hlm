@@ -2,6 +2,7 @@
 
 namespace App\Repository\Admin;
 
+use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\SupplierInterface;
 use App\Models\Country;
 use App\Models\Supplier;
@@ -15,6 +16,7 @@ class SupplierRepository implements SupplierInterface
     {
         $this->supplier = $supplier;    
     }
+
     public function store(array $data): Supplier
     {       
         return $this->supplier->create([
@@ -37,12 +39,14 @@ class SupplierRepository implements SupplierInterface
 
     public function edit(string $supplier_id):Supplier
     {   
-        return $this->supplier->findOrFail(hashid_decode($supplier_id));
+        return $this->supplier->with(['trnDocuments'])->findOrFail(hashid_decode($supplier_id));
     }
 
-    public function update(array $arr):bool
+    public function update(array $arr):Supplier
     {   
-        return $this->supplier->findOrFail(hashid_decode($arr['supplier_id']))->update([
+        $supplier = $this->supplier->findOrFail(hashid_decode($arr['supplier_id'])); // Find the supplier model
+
+        $supplier->update([ // Update the supplier model
             'admin_id'      => auth()->id(),
             'country_id'    => hashid_decode($arr['country_id']),
             'name'          => $arr['name'],
@@ -53,6 +57,8 @@ class SupplierRepository implements SupplierInterface
             'note'          => $arr['note'],
             'trn'           => $arr['trn'],
         ]);
+        
+        return $supplier; // Return the updated supplier model
     }
 
     public function delete(string $supplier_id):bool
@@ -74,4 +80,26 @@ class SupplierRepository implements SupplierInterface
     {
         return $this->supplier->where('id', hashid_decode($supplier_id))->update(['remarks'=>$remarks]);
     }
+
+    public function storeTrnDocuments(array $images, Supplier $supplier): void
+    {
+        if(!empty($images)){
+            foreach ($images as $image) {
+                $path = CommonHelper::uploadSingleImage($image, 'trn_documents', false);
+                $supplier->trnDocuments()->create([
+                    'filename' => $path['image'],
+                ]);
+            }
+        }
+    }
+
+    public function deleteTrxDocuments($supplier_id, $document_id):bool
+    {
+        return $this->supplier
+                ->findOrFail(hashid_decode($supplier_id))
+                ->trnDocuments()
+                ->where('id', hashid_decode($document_id))
+                ->delete();    
+    }
+
 }

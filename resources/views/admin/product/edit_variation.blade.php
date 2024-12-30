@@ -72,7 +72,10 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="color" class="form-control-label">Color</label>
-                            <input type="text" class="form-control shadow-sm rounded" name="variation_color[]" id="variation_color" value="{{ $variation->color }}">
+                            {{-- <input type="text" class="form-control shadow-sm rounded" name="variation_color[]" id="variation_color" value="{{ $variation->color }}"> --}}
+                            @foreach($colors AS $color)
+                                <option value="{{ $color->color  }}"  @selected($variation->color == $color->color)>{{ $color->color }}</option>
+                            @endforeach
                         </div>
                     </div>
 

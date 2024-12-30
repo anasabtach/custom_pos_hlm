@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ProductRequest;
 use App\Http\Requests\Admin\RemarkRequest;
 use App\Services\Admin\BrandService;
 use App\Services\Admin\CategoryService;
+use App\Services\Admin\ColorService;
 use App\Services\Admin\ProductService;
 use App\Services\Admin\SupplierService;
 use App\Services\Admin\UnitService;
@@ -20,14 +21,16 @@ class ProductController extends Controller
     protected $unitService;
     protected $brandService;
     protected $supplierService;
+    protected $colorService;
 
-    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService, BrandService $brandService, SupplierService $supplierService)
+    public function __construct(ProductService $service, CategoryService $categoryService, UnitService $unitService, BrandService $brandService, SupplierService $supplierService, ColorService $colorService)
     {
         $this->service         = $service;
         $this->categoryService = $categoryService;
         $this->unitService     = $unitService;
         $this->brandService    = $brandService;
-        $this->supplierService    = $supplierService;
+        $this->supplierService = $supplierService;
+        $this->colorService    = $colorService; 
     }
 
     public function index(){
@@ -51,12 +54,13 @@ class ProductController extends Controller
             'units'         => $this->unitService->getUnits(),
             'brands'        => $this->brandService->getBrands(),
             'suppliers'     => $this->supplierService->getSuppliers(),
+            'colors'        => $this->colorService->getColors(),
         ];
         return view('admin.product.add')->with($data    );
     }
 
     public function store(ProductRequest $req){ 
-        // try{
+        try{
             if(isset($req->product_id)){
                 $this->service->updateProduct($req->validated());
                 $msg = __('error_messages.product_update_success');
@@ -65,10 +69,9 @@ class ProductController extends Controller
                 $msg = __('error_messages.product_add_success');
             }
             return to_route('admin.products.index')->with('success',$msg);
-        // }catch(Exception $e){
-        //     dd($e->getMessage());
-        //     return redirect()->back()->withInput()->with('error', __('error_messages.product_add_error'));
-        // }
+        }catch(Exception $e){
+            return redirect()->back()->withInput()->with('error', __('error_messages.product_add_error'));
+        }
     }
 
     public function edit($product_id){
@@ -80,6 +83,7 @@ class ProductController extends Controller
             'units'         => $this->unitService->getUnits(),
             'brands'        => $this->brandService->getBrands(),
             'suppliers'     => $this->supplierService->getSuppliers(),
+            'colors'        => $this->colorService->getColors(),
             'is_update'     => true
         ];
         return view('admin.product.add')->with($data);

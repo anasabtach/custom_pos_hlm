@@ -23,8 +23,14 @@
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css"
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- DataTables Buttons CSS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.0/css/buttons.dataTables.min.css"> --}}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.0/css/buttons.dataTables.min.css">
+
+
 
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -216,7 +222,24 @@
 	<script src="{{ asset('assets/api/pace/pace.js') }}"></script>
 	<script src="{{ asset('assets/api/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 	<script src="{{ asset('assets/api/quill/quill.min.js') }}"></script>
-	<script src="{{ asset('assets/api/datatable/jquery.dataTables.min.js') }}"></script>
+	{{-- <script src="{{ asset('assets/api/datatable/jquery.dataTables.min.js') }}"></script> --}}
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+		<!-- DataTables Buttons JS -->
+	<script src="https://cdn.datatables.net/buttons/2.2.0/js/dataTables.buttons.min.js"></script>
+
+	<!-- JSZip (needed for Excel export) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+	<!-- PDFMake (needed for PDF export) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+	<!-- DataTables Buttons Export JS -->
+	<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.print.min.js"></script>
+
+
 	<script src="{{ asset('assets/js/script.bundle.js') }}"></script>
 	{{-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script> --}}
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
@@ -251,7 +274,7 @@
 	
 	
 	jQuery(document).ready( function () {
-		jQuery('#myTable').DataTable();
+		// jQuery('#myTable').DataTable();
 	} );
 	
 	$('.confirm-delete').click(function(e){

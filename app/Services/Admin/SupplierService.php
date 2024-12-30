@@ -2,10 +2,9 @@
 
 namespace App\Services\Admin;
 
-use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\SupplierInterface;
-
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class SupplierService{
     
@@ -20,15 +19,16 @@ class SupplierService{
     }
 
     public function store(array $data)
-    {
-        $supplier = isset($data['supplier_id']) ? $this->repository->update($data) : $this->repository->store($data);
-    
-        $this->offeredProductsAttachmentAndDeattachment(
-            $data['supplier_id'] ?? $supplier->hashid, 
-            $data['product_ids']
-        );
-    
-        return $supplier;
+    {   
+        return DB::transaction(function() use ($data){
+            $supplier = isset($data['supplier_id']) 
+                ? $this->repository->update($data) //update supplier
+                : $this->repository->store($data);//create supplier
+
+            $this->offeredProductsAttachmentAndDeattachment($data['supplier_id'] ?? $supplier->hashid, $data['product_ids'] ?? []);//store product attachments
+            $this->repository->storeTrnDocuments($data['trn_documents'] ?? [], $supplier);    //store trn documents
+            return $supplier;
+        });
     }
 
     public function edit($supplier_id){
@@ -51,5 +51,9 @@ class SupplierService{
        $supplier = $this->edit($supplier_id);
        $supplier->offeredProducts()->detach();//detach all the products
        $supplier->offeredProducts()->attach(array_map("hashid_decode", $product_ids));//attach all the products to supplier
+    }
+
+    public function deleteTrxDocuments($supplier_id, $document_id){
+        return $this->repository->deleteTrxDocuments($supplier_id, $document_id);
     }
 }

@@ -90,7 +90,7 @@
                                                 @foreach ($sale_detail->saleItems as $detail)
                                                     <tr>
                                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                                        <td class="text-center">{{ $detail->product->name }}  {{ (!is_null($detail->product_variation_id)) ? "| {$detail->productVariation->unit->name}" : '' }}</td>
+                                                        <td class="text-center">{{ @$detail->product->name }}  {{ (!is_null($detail->product_variation_id)) ? "| {$detail->productVariation->unit->name}" : '' }}</td>
                                                         <td class="text-center">{{ number_format($detail->price, 2) }}</td>
                                                         <td class="text-center">{{ number_format($detail->quantity, 2) }}</td>
                                                         <td class="text-center">{{ number_format($detail->discount, 2) }}</td>
