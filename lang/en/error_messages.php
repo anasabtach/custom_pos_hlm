@@ -65,4 +65,9 @@ return [
 
     'admin_update_profile_success'  => 'Profile updated successfully',
     'admin_update_profile_error'    => 'Profile not updated try again',
+
+    //material requistion
+    'material_requistion_add_success'=> 'Material requisiton added successully',
+    'material_requistion_update_success'=> 'Material requisiton updated successully',
+    'material_requistion_add_error'     => 'Some error occured material requistion can not be udpate',
 ];

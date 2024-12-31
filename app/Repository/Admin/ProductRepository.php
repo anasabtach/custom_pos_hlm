@@ -145,5 +145,10 @@ class ProductRepository implements ProductInterface
     {
         return $this->product->where('id', hashid_decode($product_id))->update(['remarks'=>$remarks]);
     }
+
+    public function getPurchaseProducts(): Collection
+    {
+        return $this->product->has('purchaseItems')->get();
+    }
     
 }

@@ -10,6 +10,7 @@ use App\Interfaces\Admin\ColorInterface;
 use App\Interfaces\Admin\CustomerInterface;
 use App\Interfaces\Admin\DashboardInterface;
 use App\Interfaces\Admin\LogInterface;
+use App\Interfaces\Admin\MaterialRequisitionInterface;
 use App\Interfaces\Admin\PosInterface;
 use App\Interfaces\Admin\ProductInterface;
 use App\Interfaces\Admin\PurchaseInterface;
@@ -26,6 +27,7 @@ use App\Repository\Admin\ColorRepository;
 use App\Repository\Admin\CustomerRepository;
 use App\Repository\Admin\DashboardRepository;
 use App\Repository\Admin\LogRepository;
+use App\Repository\Admin\MaterialRequisitionRepository;
 use App\Repository\Admin\PosRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Repository\Admin\PurchaseRepository;
@@ -59,6 +61,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(DashboardInterface::class, DashboardRepository::class);
         $this->app->bind(ColorInterface::class, ColorRepository::class);
         $this->app->bind(LogInterface::class, LogRepository::class);
+        $this->app->bind(MaterialRequisitionInterface::class, MaterialRequisitionRepository::class);
 
 
     }

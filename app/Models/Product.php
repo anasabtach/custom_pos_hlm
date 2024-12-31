@@ -81,4 +81,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Supplier::class, 'supplier_products', 'product_id', 'supplier_id')->withTimestamps();
     }
+
+    public function purchaseItems(){
+        return $this->hasMany(PurchaseItem::class, 'product_id', 'id');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LogController;
+use App\Http\Controllers\Admin\MaterialRequisitionController;
 use App\Http\Controllers\Admin\PosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
@@ -157,6 +158,12 @@ Route::name('admin.')->group(function(){
         //log routes
         Route::prefix('logs')->name('logs.')->controller(LogController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+        });
+
+        Route::prefix('material-requisition')->name('material_requisitions.')->controller(MaterialRequisitionController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
         });
     });
 

@@ -41,5 +41,7 @@ interface ProductInterface
 
     public function remarks($remarks, $product_id):bool;
 
+    public function getPurchaseProducts():Collection;
+
 
 }

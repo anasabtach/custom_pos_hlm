@@ -1,0 +1,52 @@
+$('#material_requisition').validate({
+    rules:{
+        category_id:{
+            required:true,
+            maxlength:50
+        },
+        supplier_id:{
+            required:true,
+            maxlength:50
+        },
+        product_id:{
+            required:true,
+            maxlength:50
+        },
+        brand_id:{
+            required:true,
+            maxlength:50
+        },
+        unit_id:{
+            required:true,
+            maxlength:50
+        },
+        temperature_control:{
+            required:true,
+        },
+        order_quantity:{
+            required:true,
+            number: true,
+            rangelength: [1, 10] 
+        },
+        sku:{
+            required:true,
+            maxlength:50
+        },
+        price:{
+            required:true,
+            number: true,
+            rangelength: [1, 10] 
+        },
+        payment_type:{
+            required:true,
+        },
+        payment_terms:{
+            required:true,
+            maxlength:6500
+        },
+        remarks:{
+            required:true,
+            maxlength:6500
+        },
+    }
+});
