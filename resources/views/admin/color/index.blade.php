@@ -67,16 +67,7 @@
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ $color->color }}</p>
                                                             </td>
-                                                            {{-- <td class="align-middle text-center text-sm">
-                                                                <div
-                                                                    class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
-                                                                    <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($brand->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'brands', 'column_name' => 'status', 'id' => $brand->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
-                                                                    <label
-                                                                        class="custom-control-label form-check-label me-1"
-                                                                        for="customSwitchcolor3">
-                                                                    </label>
-                                                                </div>
-                                                            </td> --}}
+
 
 
                                                             <td class="text-center">

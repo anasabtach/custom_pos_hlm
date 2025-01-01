@@ -12,6 +12,7 @@ use App\Services\Admin\ProductService;
 use App\Services\Admin\SupplierService;
 use App\Services\Admin\UnitService;
 use Exception;
+use Illuminate\Http\Request;
 
 class MaterialRequisitionController extends Controller
 {
@@ -51,6 +52,14 @@ class MaterialRequisitionController extends Controller
         return view('admin.material_requisition.index')->with($data);
     }
 
+    public function getAll(){
+        $data = [
+            'title'                 => 'All Material Requisition',
+            'material_requistions'  => $this->service->getAllMaterialRequisitions(),
+        ];
+        return view('admin.material_requisition.all')->with($data);
+    }
+
     public function create()
     {
         $data = [
@@ -66,7 +75,6 @@ class MaterialRequisitionController extends Controller
     }
 
     public function store(MaterialRequisitionRequest $req){
-
         try{
             if(isset($req->material_requisition_id)){
                 $this->service->create($req->all());
@@ -77,8 +85,45 @@ class MaterialRequisitionController extends Controller
             }
             return to_route('admin.material_requisitions.index')->with('success',$msg);
         }catch(Exception $e){
-            dd($e->getMessage());
             return redirect()->back()->withInput()->with('error', __('error_messages.material_requistion_add_error'));
         }
+    }
+
+    public function updateStatus(Request $req, $id, $status) {
+        try{
+            $this->service->updateStatus($id, $status, $req->remarks);
+            return redirect()->back()->withInput()->with('success', __('error_messages.material_requistion_status_sucess'));
+        }catch(Exception $e){
+            return redirect()->back()->withInput()->with('error', __('error_messages.material_requistion_status_error'));
+        }
+    }
+
+    public function lpo(){
+        $data = [
+            'title' => 'LPO',
+            'lpos'  => $this->service->getLpos(),
+        ];
+        return view('admin.material_requisition.lpo')->with($data);
+    }
+
+    public function editLpo($id){
+        $data = [
+            'title'     => 'Edit LPO',
+            'edit_lpo'  => $this->service->editLpo($id)
+        ];
+        return view('admin.material_requisition.edit_lpo')->with($data);
+    }
+
+    public function updateLpo(Request $req){
+        try{
+            $this->service->updateLpo($req->all());
+            return redirect()->back()->withInput()->with('success', __('error_messages.lpo_update_success'));
+        }catch(Exception $e){
+            return redirect()->back()->withInput()->with('success', __('error_messages.lpo_update_error'));
+        }
+    }
+
+    public function deleteLpoProductImage($id){
+        return $this->service->deleteLpoPorductImage($id);
     }
 }

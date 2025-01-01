@@ -17,11 +17,48 @@ class MaterialRequisitionService
     public function getMaterailRequistions(){
         return $this->repository->getMaterailRequistions();
     }
+    
+    public function getAllMaterialRequisitions(){
+        return $this->repository->getAllMaterialRequisitions();
+    }
 
     public function create($data){
         $this->repository->create($this->createArr($data));
     }
+
+    public function updateStatus($id, $status, $remarks){
+        return $this->repository->updateStatus($id, $status, $remarks);
+    }
+
+    public function getLpos(){
+        return $this->repository->getLpos();
+    }
     
+    public function editLpo($id){
+        return $this->repository->editLpo($id);
+    }
+    
+    public function updateLpo($arr){
+        $lpo = $this->repository->updateLpo($arr);
+        if(isset($arr['product_image'])){
+            $this->repository->storeLpoProductImages($arr['product_image'], $lpo);
+        }
+        if(isset($arr['invoice_document'])){
+            $this->updateProfile($arr['invoice_document'], $lpo);
+        }
+    }
+
+    public function updateProfile($data, $lpo){
+        CommonHelper::removeImage(@$lpo->invoiceImage->thumbnail);
+        CommonHelper::removeImage(@$lpo->invoiceImage->filename);
+        $data = CommonHelper::uploadSingleImage($data, 'lpo_invoice');
+        $this->repository->updateInvoiceImage($lpo, $data);
+    }
+
+    public function deleteLpoPorductImage(string $id){
+        return $this->repository->deleteLpoPorductImage($id);
+    }
+
     public function createArr($data){
         return [
             'reference_no'          => (!isset($data['material_requisiton_id'])) ? CommonHelper::generateId('material_requisitions', 'reference_no') : '',

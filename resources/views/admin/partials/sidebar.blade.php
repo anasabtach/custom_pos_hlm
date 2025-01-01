@@ -198,7 +198,7 @@
                     <span class="nav-text">Logs</span>
                 </a>
             </li>
-              <li class="nav-item {{ request()->routeIs('admin.material_requisition.*') ? 'active' : '' }}">
+              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.index') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
@@ -208,6 +208,30 @@
                         </svg>
                     </span>
                     <span class="nav-text">Material Requisition</span>
+                </a>
+            </li>
+              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.all') ? 'active' : '' }}">
+                <a href="{{ route('admin.material_requisitions.all') }}" class="nav-link">
+                    <span class="svg-icon nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">All Material Requisition</span>
+                </a>
+            </li>
+              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.lpo') ? 'active' : '' }}">
+                <a href="{{ route('admin.material_requisitions.lpo') }}" class="nav-link">
+                    <span class="svg-icon nav-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                        </svg>
+                    </span>
+                    <span class="nav-text">LPO</span>
                 </a>
             </li>
           </ul>

@@ -12,7 +12,7 @@
                     <div class="card card-custom gutter-b bg-white border-0">
                         <div class="card-header border-0 align-items-center">
                             <h3 class="card-label mb-0 font-weight-bold text-body">
-                                {{ isset($edit_staff) ? 'Update' : 'Add' }} Staff
+                                {{ isset($edit_staff) ? 'Update' : 'Add' }} Material Requisition
                             </h3>
                         </div>
                         <div class="card-body">
@@ -26,7 +26,7 @@
                                         <select class="form-control round bg-transparent text-dark" name="category_id"
                                             id="category_id">
                                             <option value="">Select Category</option>
-                                            @foreach ($categories as $category)
+                                            @foreach ($categories->whereNull('deleted_at') as $category)
                                                 <option value="{{ $category->hashid }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
@@ -36,9 +36,9 @@
                                         <select class="form-control round bg-transparent text-dark" name="supplier_id"
                                             id="supplier_id">
                                             <option value="">Select Supplier</option>
-                                            @foreach ($suppliers as $supplier)
-                                                <option value="{{ $supplier->hashid }}">{{ $supplier->name }}</option>
-                                            @endforeach
+                                            @foreach ($suppliers->whereNull('deleted_at') as $supplier)
+                                            <option value="{{ $supplier->hashid }}">{{ $supplier->name }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                         <select class="form-control round bg-transparent text-dark" name="brand_id"
                                             id="brand_id">
                                             <option value="">Select Brand</option>
-                                            @foreach ($brands as $brand)
+                                            @foreach ($brands->whereNull('deleted_at') as $brand)
                                                 <option value="{{ $brand->hashid }}">{{ $brand->name }}</option>
                                             @endforeach
                                         </select>
@@ -71,7 +71,7 @@
                                         <select class="form-control round bg-transparent text-dark" name="unit_id"
                                             id="unit_id">
                                             <option value="">Select Unit</option>
-                                            @foreach ($units as $unit)
+                                            @foreach ($units->whereNull('deleted_at') as $unit)
                                                 <option value="{{ $unit->hashid }}">{{ $unit->name }}</option>
                                             @endforeach
                                         </select>
@@ -88,14 +88,12 @@
                                 <div class="row d-none" id="color_row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Color</label>
-                                        <select class="form-control round bg-transparent text-dark" name="color"
+                                        {{-- <select class="form-control round bg-transparent text-dark" name="color"
                                             id="color">
-                                            {{-- @foreach ($colors as $color)
-                                                <option value="{{ $color->hashid }}">{{ $color->color }}</option>
-                                            @endforeach --}}
-                                            <input type="number" class="form-control" name="color"
-                                            id="color">
-                                        </select>
+
+                                        </select> --}}
+                                        
+                                        <input type="text" class="form-control" name="color" id="color">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -103,8 +101,8 @@
                                         <label for="user_type" class="form-control-label">Temperature Control</label>
                                         <select class="form-control round bg-transparent text-dark"
                                             name="temperature_control" id="temperature_control">
-                                            <option value="1">no</option>
-                                            <option value="0">yes</option>
+                                            <option value="0">no</option>
+                                            <option value="1">yes</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">

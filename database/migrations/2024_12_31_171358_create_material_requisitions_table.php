@@ -31,6 +31,12 @@ return new class extends Migration
             $table->enum('status', ['pending', 'approve', 'reject'])->default('pending');
             $table->text('status_remarks', 65000)->nullable();
             $table->timestamp('status_update_date')->nullable();
+            $table->unsignedBigInteger('delivered_quantity')->nullable();
+            $table->unsignedBigInteger('cost_price')->nullable();
+            $table->string('bactch_no')->nullable();
+            $table->string('foc')->nullable();
+            $table->string('invoice_no')->nullable();
+            $table->date('invoice_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

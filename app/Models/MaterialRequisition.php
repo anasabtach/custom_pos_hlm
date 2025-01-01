@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HashidTrait;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class MaterialRequisition extends Model
 {
-    use HasFactory;
+    use HasFactory,HashidTrait;
 
     protected $fillable = [
         'admin_id',
@@ -27,7 +30,13 @@ class MaterialRequisition extends Model
         'remarks',
         'status',
         'status_remarks',
-        'status_update_date'
+        'status_update_date',
+        'delivered_quantity',
+        'cost_price',
+        'batch_no',
+        'foc',
+        'invoice_no',
+        'invoice_date'
     ];
 
     public function admin(){
@@ -53,4 +62,18 @@ class MaterialRequisition extends Model
     public function unit(){
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
+
+    public function productImages(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
+    }
+
+    public function invoiceImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, 'mediable')->where('type', 'document')->withDefault([
+            'media_url' => null,
+        ]);
+    }
+
+    
 }

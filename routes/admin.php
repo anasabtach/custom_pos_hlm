@@ -162,8 +162,14 @@ Route::name('admin.')->group(function(){
 
         Route::prefix('material-requisition')->name('material_requisitions.')->controller(MaterialRequisitionController::class)->group(function(){
             Route::get('/', 'index')->name('index');
+            Route::get('/all', 'getAll')->name('all');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
+            Route::get('/uppate-status/{id}/{status}', 'updateStatus')->name('update_status');
+            Route::get('/lpo', 'lpo')->name('lpo');
+            Route::get('/edit-lpo/{id}', 'editLpo')->name('edit_lpo');
+            Route::post('/update-lpo', 'updateLpo')->name('update_lpo');
+            Route::get('/delete-lpo-product-image/{id}', 'deleteLpoProductImage')->name('deelte_lpo_product_image');
         });
     });
 

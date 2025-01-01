@@ -42,7 +42,7 @@
                     </div>
                     <div class="row"></div>
                     <div class="row">
-                        <div class="col-12  px-4">
+                        {{-- <div class="col-12  px-4">
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div class="row">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     <div class="row">
                         <div class="col-12  px-4">
                             <div class="card card-custom gutter-b bg-white border-0">
@@ -74,7 +74,7 @@
                                                     <tr>
                                                         <th class="text-center">ID</th>
                                                         <th class="text-center">Reference No</th>
-                                                        <th class="text-center">User</th>
+                                                        {{-- <th class="text-center">User</th> --}}
                                                         <th class="text-center">Category</th>
                                                         <th class="text-center">Product</th>
                                                         <th class="text-center">Supplier</th>
@@ -87,103 +87,41 @@
                                                         <th class="text-center">SKU</th>
                                                         <th class="text-center">Payment <br />Type</th>
                                                         <th class="text-center">Payment <br/> Terms</th>
+                                                        <th class="text-center">Remarks</th>
+                                                        <th class="text-center">Admin <br /> Remarks</th>
                                                         <th class="text-center">Created <br/>At</th>
-                                                        <th class="no-sort text-end">Action</th>
+                                                        <th class="no-sort text-end">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="kt-table-tbody text-dark">
-                                                    {{-- @foreach ($suppliers as $supplier)
+                                                    @foreach($material_requistions AS $requisition) 
                                                         <tr>
                                                             <td class="text-center">{{ $loop->iteration }}</td>
+                                                            <td class="text-center">{{ $requisition->reference_no }}</td>
+                                                            <td class="text-center">{{ $requisition->category->name }}</td>
+                                                            <td class="text-center">{{ $requisition->product->name }}</td>
+                                                            <td class="text-center">{{ @$requisition->supplier->name }}</td>
+                                                            <td class="text-center">{{ @$requisition->brand->name }}</td>
+                                                            <td class="text-center">{{ @$requisition->unit->name }}</td>
+                                                            <td class="text-center">{{ $requisition->temperature_control }}</td>
+                                                            <td class="text-center">{{ $requisition->color }}</td>
+                                                            <td class="text-center">{{ $requisition->quantity }}</td>
+                                                            <td class="text-center">{{ $requisition->price }}</td>
+                                                            <td class="text-center">{{ $requisition->sku }}</td>
+                                                            <td class="text-center">{{ $requisition->payment_type }}</td>
+                                                            <td class="text-center">{{ $requisition->payment_terms }}</td>
+                                                            <td class="text-center">{{ $requisition->remarks }}</td>
+                                                            <td class="text-center">{{ $requisition->status_remarks }}</td>
+                                                            <td class="text-center">{{ getCustomDate($requisition->created_at) }}</td>
                                                             <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->name }}</p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->email }}</p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->phone_no }}</p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->city }}</p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->address }}</p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {!! wordwrap($supplier->note, 100, "<br>\n", true) !!}
-                                                                </p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {!! $supplier->offeredProducts->pluck('name')->map(fn($name) => "<span class='badge bg-primary text-white'>$name</span>")->join(' ') !!}
-                                                                </p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->trn }}</p>
-                                                            </td>
-                                                            
-
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    @if($supplier->trashed())
-                                                                        <span class="badge bg-danger text-white">yes</span>
-                                                                    @else 
-                                                                        <span class="badge bg-success text-white">no</span> 
-                                                                    @endif
-                                                                </p>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ getCustomDate($supplier->created_at) }}
-                                                                </p>
-                                                            </td>
-
-
-                                                            <td>
-                                                                <div class="card-toolbar text-end">
-                                                                    <button class="btn p-0 shadow-none" type="button"
-                                                                        id="dropdowneditButton01" data-bs-toggle="dropdown"
-                                                                        aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="svg-icon">
-                                                                            <svg width="20px" height="20px"
-                                                                                viewBox="0 0 16 16"
-                                                                                class="bi bi-three-dots text-body"
-                                                                                fill="currentColor"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <path fill-rule="evenodd"
-                                                                                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
-                                                                                </path>
-                                                                            </svg>
-                                                                        </span>
-                                                                    </button>
-                                                                    <div class="dropdown-menu dropdown-menu-right"
-                                                                        aria-labelledby="dropdowneditButton01"
-                                                                        style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                                        @can('edit-supplier')
-                                                                            <a href="{{ route('admin.suppliers.edit', ['supplier_id' => $supplier->hashid]) }}"
-                                                                                class="dropdown-item click-edit"
-                                                                                id="click-edit2" data-bs-toggle="tooltip"
-                                                                                title="" data-bs-placement="right"
-                                                                                data-original-title="Check out more demos">Edit</a>
-                                                                        @endcan
-                                                                        @can('delete-supplier')
-                                                                            <a class="dropdown-item confirm-delete"
-                                                                                title="Delete"
-                                                                                href="{{ route('admin.suppliers.delete', ['supplier_id' => $supplier->hashid]) }}">Delete</a>
-                                                                        @endcan
-                                                                    </div>
-                                                                </div>
+                                                                @if($requisition->status == 'pending')
+                                                                    <span class="badge bg-danger text-white">Pending</span>
+                                                                @else
+                                                                    <span class="badge bg-success text-white">Approve</span>
+                                                                @endif
                                                             </td>
                                                         </tr>
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

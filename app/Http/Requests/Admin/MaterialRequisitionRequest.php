@@ -28,7 +28,7 @@ class MaterialRequisitionRequest extends FormRequest
             'brand_id'                  => ['required', 'string', 'max:50'],
             'unit_id'                   => ['required', 'string', 'max:50'],
             'is_color'                  => ['required', 'string', 'in:yes,no'],
-            'color'                     => ['nullable', 'string', 'in:yes,no'],
+            'color'                     => ['nullable', 'string'],
             'temperature_control'       => ['required', 'string', 'in:1,0'],
             'order_quantity'            => ['required', 'numeric'],
             'price'                     => ['required', 'numeric'],

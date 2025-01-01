@@ -70,4 +70,11 @@ return [
     'material_requistion_add_success'=> 'Material requisiton added successully',
     'material_requistion_update_success'=> 'Material requisiton updated successully',
     'material_requistion_add_error'     => 'Some error occured material requistion can not be udpate',
+    'material_requistion_status_sucess'     => 'Status udpated successfully',
+    'material_requistion_status_error'     => 'Some error occured status can not be update',
+     
+    //LPO
+    'lpo_update_success'     => 'Lpo updated successfully',
+    'lpo_update_error'     => 'Some error occured LPO can not be update',
+
 ];
