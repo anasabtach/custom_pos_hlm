@@ -43,5 +43,7 @@ interface ProductInterface
 
     public function getPurchaseProducts():Collection;
 
+    public function saveAsDraft(array $arr):void;
+
 
 }

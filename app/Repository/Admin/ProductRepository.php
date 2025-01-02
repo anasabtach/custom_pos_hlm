@@ -150,5 +150,12 @@ class ProductRepository implements ProductInterface
     {
         return $this->product->has('purchaseItems')->get();
     }
-    
+
+    public function saveAsDraft(array $arr):void
+    {   
+        $this->product->updateOrCreate([
+            'id'    => $arr['product_id'] ?? null,
+        ],$arr);
+    }
+
 }

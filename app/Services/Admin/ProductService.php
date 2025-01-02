@@ -6,6 +6,7 @@ use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\ProductInterface;
 use App\Models\Product;
 use App\Repository\Admin\ShopifyProductRepository;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class ProductService
@@ -113,6 +114,7 @@ class ProductService
             'supplier_id'    => isset($arr['supplier_id']) ? hashid_decode($arr['supplier_id']) : null,
             'status'         => $arr['status'],
             'color'          => $arr['color'],
+            'is_draft'       => '0',
         ];
     
         // Only add `shopify_id` if it's present in the array
@@ -130,10 +132,11 @@ class ProductService
 
     public function updateProduct($arr){
         $shopify_id =             $this->editProduct($arr['product_id']);
+
         // DB::transaction(function() use ($arr,$shopify_id){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
             $image_data = $this->updateThumbnail($product, @$arr['product_thumbnail']);
-            $this->shopifyRepository->update($arr, $shopify_id, $image_data);
+            // $this->shopifyRepository->update($arr, $shopify_id, $image_data);
             $this->repository->deleteProductVariations($product, $arr);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
@@ -187,5 +190,34 @@ class ProductService
 
     public function getPurchaseProducts(){
         return $this->repository->getPurchaseProducts();
+    }
+
+    public function saveAsDraft($arr){
+        $allNull = count(array_diff(collect($arr)->except(['_token', 'status', 'has_variation'])->toArray(), [null])) === 0;
+        if(!$allNull){
+           $arr = [
+            'admin_id'          => auth('admin')->id(),
+            'category_id'       => (isset($arr['category_id'])) ? hashid_decode($arr['category_id']) : null,
+            'brand_id'          => (isset($arr['brand_id'])) ? hashid_decode($arr['brand_id']) : null,
+            'unit_id'           => (isset($arr['unit_id'])) ? hashid_decode($arr['unit_id']) : null,
+            'supplier_id'       => (isset($arr['supplier_id'])) ? hashid_decode($arr['supplier_id']) : null,
+            'category_id'       => (isset($arr['category_id'])) ? hashid_decode($arr['category_id']) : null ,
+            'product_id'        => (isset($arr['product_id'])) ? hashid_decode($arr['product_id']) : null ,
+            'name'      => ($arr['product_name']) ?? null,
+            'sku'               => ($arr['sku']) ?? null,
+            'price'             => ($arr['price']) ?? null,
+            'stock'             => ($arr['stock']) ?? null,
+            'stock_alert'       => ($arr['stock_alert']) ?? null,
+            'expiration'        => ($arr['expiration']) ?? null,
+            'color'             => ($arr['color']) ?? null,
+            'description'       => ($arr['description']) ?? null,
+            'status'            => '0',
+            'has_variation'     => '0',
+            'is_draft'          => '1'
+           ];
+            $this->repository->saveAsDraft($arr);
+        }else{
+            throw new Exception('All fields are empty');
+        }
     }
 }

@@ -33,6 +33,7 @@ class Product extends Model
         'color',
         'shopify_id',
         'supplier_id',
+        'is_draft'
     ];
 
     public function scopeWithLog($query)

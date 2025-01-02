@@ -107,7 +107,6 @@ class ProductController extends Controller
     }
 
     public function productAndVariationRow(Request $req){
-        
         return response()->json([
             'html'  => view('admin.product.product_and_variation_row', [
                 'data' =>  $this->service->productAndVariationRow($req->product_id, $req->product_variation_id),
@@ -126,4 +125,13 @@ class ProductController extends Controller
         ];
         return view('admin.product.deleted_products')->with($data);
     }
+
+    public function saveAsDraft(Request $req){
+        try{
+            $this->service->saveAsDraft($req->all());
+            return to_route('admin.products.index')->with('success', __('error_messages.product_draft_success'));
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }    
 }

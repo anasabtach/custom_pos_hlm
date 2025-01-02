@@ -54,6 +54,7 @@ return [
     'product_add_error'            => 'Some error occured product can not be add',
     'product_delete_success'       => 'Product deleted successfully',
     'product_delete_error'         => 'Product could not be deleted',
+    'product_draft_success'        => 'Product saved as draft',
 
     //purchase messages
     'purchase_update_success'       => 'Purchase updated successfully',

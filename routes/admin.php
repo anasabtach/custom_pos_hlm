@@ -116,6 +116,7 @@ Route::name('admin.')->group(function(){
             Route::get('/search', 'searchProducts')->name('search');
             Route::get('/product-variation-row', 'productAndVariationRow')->name('product_and_variation_row');
             Route::get('/deleted-products', 'deletedProducts')->name('deleted_products');
+            Route::post('/save-as-draft', 'saveAsDraft')->name('save_as_draft');
         }); 
 
         Route::prefix('/purchases')->name('purchases.')->controller(PurchaseController::class)->group(function(){

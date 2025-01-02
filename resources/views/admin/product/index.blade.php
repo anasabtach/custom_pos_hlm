@@ -156,6 +156,7 @@
                                                         <th class="text-center">Color</th>
                                                         <th class="text-center">Image</th>
                                                         <th class="text-center">Created <br/>At</th>
+                                                        <th class="text-center">Draft</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -233,6 +234,13 @@
                                                             </td>
                                                             <td class="align-middle text-center text-sm">
                                                                 {{ getCustomDate($product->created_at) }}
+                                                            </td>
+                                                            <td>
+                                                                @if($product->is_draft == '1')
+                                                                    <span class="badge bg-danger text-white">yes</span>
+                                                                @else 
+                                                                    <span class="badge bg-success text-white">no</span>
+                                                                @endif
                                                             </td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
