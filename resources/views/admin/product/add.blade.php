@@ -23,9 +23,11 @@
                                                 id="category_id">
                                                 <option value="">Select category</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->hashid }}" @selected(isset($is_update) ? $edit_product->category_id == $category->id : false)>
-                                                        {{ $category->name }}
-                                                    </option>
+                                                    @if (is_null($category->deleted_at)) 
+                                                        <option value="{{ $category->hashid }}" @selected(isset($is_update) ? $edit_product->category_id == $category->id : false)>
+                                                            {{ $category->name }}
+                                                        </option>
+                                                        @endif
                                                 @endforeach
                                             </select>
                                         </fieldset>

@@ -137,8 +137,8 @@ class ProductRepository implements ProductInterface
     }
 
     public function updateProductShopifyId($product_id, $shopify_id):bool
-    {
-        return Product::findOrFail($product_id)->update(['shopify_id'=>$shopify_id]);
+    {   
+        return Product::findOrFail($product_id)->update(['wordpress_id'=>$shopify_id]);
     }
 
     public function remarks($remarks, $product_id):bool

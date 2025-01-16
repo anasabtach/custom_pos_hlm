@@ -40,6 +40,7 @@ class PurchaseController extends Controller
     }
     
     public function store(PurchaseRequest $req){
+        
         if(isset($req->purchase_id)){
             $success_msg = __('error_messages.purchase_update_success');
             $error_msg = __('error_messages.purchase_update_error');

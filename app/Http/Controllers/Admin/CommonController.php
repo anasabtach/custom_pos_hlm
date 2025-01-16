@@ -4,13 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Repository\Admin\WordPressProductRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPShopify\ShopifySDK;
 
 class CommonController extends Controller
-{
+{   
+    public $wordpressRepository;
+    
+    public function __construct(WordPressProductRepository $wordpressRepository)
+    {
+        $this->wordpressRepository = $wordpressRepository;
+    }
+
     public function updateStatus($table_name, $column, $id, $value){
         try{
             DB::table($table_name)->where('id', hashid_decode($id))->update([
@@ -19,12 +27,17 @@ class CommonController extends Controller
             if($table_name == 'products'){
                
                 $this->updateShopifyStatus($id, $value);
+                $this->wordpressRepository->updateStatus($id, $value);
             }
             return response()->json(['success'  => 'Status updated successfully']);
         }catch(Exception $e){
             return response()->json(['error'  => 'some error occured']);
         }
     }
+
+    // public function updateWordpressStatus($product_id, $status){
+
+    // }
 
     public function updateShopifyStatus($product_id, $status){
         // Shopify API credentials and configuration

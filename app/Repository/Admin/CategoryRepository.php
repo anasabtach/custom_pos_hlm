@@ -23,7 +23,7 @@ class CategoryRepository implements CategoryInterface
             'admin_id'      => auth()->id(),
             'slug'          => $data['slug'],
             'name'          => $data['category_name'],
-            'shopify_id'    => $data['shopify_id'] ?? null,
+            'wordpress_id'    => $data['wordpress_id'] ?? null,
         ]);
     }
 

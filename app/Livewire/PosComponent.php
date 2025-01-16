@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Repository\Admin\WordPressProductRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -236,8 +237,14 @@ class PosComponent extends Component
     }
     
     public function deductProductStock($arr){
+        $wordpressRepository = new WordPressProductRepository();
         foreach($arr AS $product_id=>$product_stock){
-            Product::findOrFail($product_id)->decrement('stock', $product_stock);
+            $product = Product::findOrFail($product_id);
+            $product->stock -= $product_stock; 
+            $product->save(); 
+            if(isset($product->wordpress_id)){
+                $wordpressRepository->updateSingleProductStock($product->wordpress_id, $product->stock);
+            }
         }
     }
     

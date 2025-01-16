@@ -32,6 +32,7 @@ class Product extends Model
         'expiration',
         'color',
         'shopify_id',
+        'wordpress_id',
         'supplier_id',
         'is_draft'
     ];

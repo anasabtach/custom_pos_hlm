@@ -23,9 +23,9 @@
                                         <div class="productCard">
                                                 <div class="productThumb">
                                                     @if(is_null($variation->thumbnail))
-                                                        <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
+                                                        <img class="img-fluid" src="{{ getImage($product->thumbnail->filename ?? null) }}" alt="ix">
                                                     @else 
-                                                        <img class="img-fluid" src="{{ getImage($variation->thumbnail) }}" alt="ix">
+                                                        <img class="img-fluid" src="{{ getImage($variation->thumbnail ?? null) }}" alt="ix">
                                                     @endif
                                                 </div>
                                                 <div class="productContent">
@@ -52,7 +52,7 @@
                                     <div class="col-xl-3 col-lg-2 col-md-2 col-sm-3 col-6" wire:click="addItems('{{ $product->name }}','{{ $product->sku }}', '{{ $product->hashid }}', '{{ $product->stock }}', '{{ $product->price }}','0',)">
                                         <div class="productCard">
                                             <div class="productThumb">
-                                                <img class="img-fluid" src="{{ getImage($product->thumbnail->filename) }}" alt="ix">
+                                                <img class="img-fluid" src="{{ getImage($product->thumbnail->filename ?? null) }}" alt="ix">
                                             </div>
                                             
                                             <div class="productContent">

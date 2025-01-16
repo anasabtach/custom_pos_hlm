@@ -36,6 +36,11 @@ return [
     'shopify_api_password'  => env('SHOPIFY_API_PASSWORD'),
     'shopify_access_token'  => env('SHOPIFY_ACCESS_TOKEN'),
 
+    'wordpress_api_url'            => env('WORDPRESS_API_URL'),
+    'wordpress_consumer_key'       => env('WORDPRESS_CONSUMER_KEY'),
+    'wordpress_consumer_secret'    => env('WORDPRESS_CONSUMER_SECRET'),
+    // 'wordpress_access_token'  => env('WORDPRESS_ACCESS_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

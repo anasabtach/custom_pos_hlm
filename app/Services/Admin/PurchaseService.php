@@ -7,17 +7,20 @@ use App\Interfaces\Admin\ProductInterface;
 use App\Interfaces\Admin\PurchaseInterface;
 use App\Models\Product;
 use App\Models\Purchase;
+use App\Repository\Admin\WordPressProductRepository;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseService
 {
     protected $repository;
     protected $productRepository;
+    protected $wordpressRepository;
 
-    public function __construct(PurchaseInterface $repository, ProductInterface $product)
+    public function __construct(PurchaseInterface $repository, ProductInterface $product, WordPressProductRepository $wordpressRepository)
     {
-        $this->repository        = $repository;
-        $this->productRepository = $product;
+        $this->repository           = $repository;
+        $this->productRepository    = $product;
+        $this->wordpressRepository  = $wordpressRepository;
     }
 
     public function getPurchases(){
@@ -25,12 +28,14 @@ class PurchaseService
     }
 
     public function store($arr){
+        
         DB::transaction(function() use ($arr){
             $slug              = CommonHelper::generateId('purchases', 'slug');
             $arr['slug']       = $slug;
             $purchase          = $this->repository->store($arr);//store purchase
             $purchase_item_arr = $this->createPurchaseItemArr($arr);//create purchase item array
             $this->repository->storePurchaseItems($purchase, $purchase_item_arr);//store purchase item array
+            $this->wordpressRepository->updateProductStock($arr, 'increment');//update stock in wordpress
         });
     }
 

@@ -6,6 +6,7 @@ use App\Helpers\CommonHelper;
 use App\Interfaces\Admin\ProductInterface;
 use App\Models\Product;
 use App\Repository\Admin\ShopifyProductRepository;
+use App\Repository\Admin\WordPressProductRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -13,11 +14,13 @@ class ProductService
 {
     protected $repository;
     protected $shopifyRepository;
+    protected $wordpressyRepository;
 
-    public function __construct(ProductInterface $repository, ShopifyProductRepository $shopifyRepository)
+    public function __construct(ProductInterface $repository, ShopifyProductRepository $shopifyRepository, WordPressProductRepository $wordpressyRepository)
     {
-        $this->repository        = $repository;
-        $this->shopifyRepository = $shopifyRepository;
+        $this->repository            = $repository;
+        $this->shopifyRepository     = $shopifyRepository;
+        $this->wordpressyRepository  = $wordpressyRepository;
     }
 
     public function getProdcuts(){//get all products
@@ -31,10 +34,12 @@ class ProductService
     public function store($arr){//store product
         DB::transaction(function() use ($arr){
             // $arr['shopify_id'] = $this->shopifyRepository->store($arr);
-            $product = $this->repository->storeProduct($this->createProductArr($arr));
+            $product    = $this->repository->storeProduct($this->createProductArr($arr));
             $image_data = $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
-            $shopify_id = $this->shopifyRepository->store($product, $image_data);
+            //$shopify_id = $this->shopifyRepository->store($product, $image_data);
+            $shopify_id = $this->wordpressyRepository->store($product, $image_data);
             $this->repository->updateProductShopifyId($product->id, $shopify_id);
+            
             if($arr['has_variation']){//if has variation
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);
@@ -131,12 +136,13 @@ class ProductService
     }
 
     public function updateProduct($arr){
-        $shopify_id =             $this->editProduct($arr['product_id']);
-
+            $shopify_id =             $this->editProduct($arr['product_id']);
+        
         // DB::transaction(function() use ($arr,$shopify_id){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
             $image_data = $this->updateThumbnail($product, @$arr['product_thumbnail']);
             // $this->shopifyRepository->update($arr, $shopify_id, $image_data);
+            $this->wordpressyRepository->update($product, $shopify_id->wordpress_id, $image_data);
             $this->repository->deleteProductVariations($product, $arr);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
@@ -146,7 +152,8 @@ class ProductService
     }
 
     public function delete($product_id){
-        $this->shopifyRepository->delete($this->repository->editProduct($product_id)->shopify_id);
+        //$this->shopifyRepository->delete($this->repository->editProduct($product_id)->shopify_id);
+        $this->wordpressyRepository->delete($this->repository->editProduct($product_id)->wordpress_id);
         return $this->repository->delete($product_id);
     }
 
@@ -203,7 +210,7 @@ class ProductService
             'supplier_id'       => (isset($arr['supplier_id'])) ? hashid_decode($arr['supplier_id']) : null,
             'category_id'       => (isset($arr['category_id'])) ? hashid_decode($arr['category_id']) : null ,
             'product_id'        => (isset($arr['product_id'])) ? hashid_decode($arr['product_id']) : null ,
-            'name'      => ($arr['product_name']) ?? null,
+            'name'              => ($arr['product_name']) ?? null,
             'sku'               => ($arr['sku']) ?? null,
             'price'             => ($arr['price']) ?? null,
             'stock'             => ($arr['stock']) ?? null,
