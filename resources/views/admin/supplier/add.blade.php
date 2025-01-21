@@ -41,7 +41,7 @@
                                 <div class="col-md-6">
                                     <label>Country</label>
                                     <fieldset class="form-group mb-3">
-                                        <select class="form-control round bg-transparent text-dark" name="country_id" id="country_id">
+                                        <select class="form-control round bg-transparent text-dark select_2" name="country_id" id="country_id">
                                             <option value="">Select country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{ $country->hashid }}" @selected((isset($is_update) ? $edit_supplier->country_id == $country->id : false))>

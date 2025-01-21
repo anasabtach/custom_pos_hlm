@@ -23,7 +23,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Categories</label>
-                                        <select class="form-control round bg-transparent text-dark" name="category_id"
+                                        <select class="form-control round bg-transparent text-dark select_2" name="category_id"
                                             id="category_id">
                                             <option value="">Select Category</option>
                                             @foreach ($categories->whereNull('deleted_at') as $category)
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Suppliers</label>
-                                        <select class="form-control round bg-transparent text-dark" name="supplier_id"
+                                        <select class="form-control round bg-transparent text-dark select_2" name="supplier_id"
                                             id="supplier_id">
                                             <option value="">Select Supplier</option>
                                             @foreach ($suppliers->whereNull('deleted_at') as $supplier)
@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Products</label>
-                                        <select class="form-control round bg-transparent text-dark" name="product_id"
+                                        <select class="form-control round bg-transparent text-dark select_2" name="product_id"
                                             id="product_id">
                                             <option value="">Select product</option>
                                             @foreach ($products as $product)
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Brands</label>
-                                        <select class="form-control round bg-transparent text-dark" name="brand_id"
+                                        <select class="form-control round bg-transparent text-dark select_2" name="brand_id"
                                             id="brand_id">
                                             <option value="">Select Brand</option>
                                             @foreach ($brands->whereNull('deleted_at') as $brand)
@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Unit</label>
-                                        <select class="form-control round bg-transparent text-dark" name="unit_id"
+                                        <select class="form-control round bg-transparent text-dark select_2" name="unit_id"
                                             id="unit_id">
                                             <option value="">Select Unit</option>
                                             @foreach ($units->whereNull('deleted_at') as $unit)

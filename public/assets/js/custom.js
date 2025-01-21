@@ -57,17 +57,17 @@ function singleImagePreview(inputId, previewImage){//image preview funciton
   }
 
  //show loader and disabled submit button when ever form gets submit
- $('form').submit(function(){
-    let submitButton = $('button[type="submit"]', this);
+//  $('form').submit(function(){
+//     let submitButton = $('button[type="submit"]', this);
 
-    if($(this).hasClass('validation')){
-        if(!$(this).valid()){
-            return false;
-        }
-    }
-    submitButton.prop('disabled', true);
-    submitButton.html('<i class="fa fa-spinner fa-spin"></i>Loading');
-});
+//     if($(this).hasClass('validation')){
+//         if(!$(this).valid()){
+//             return false;
+//         }
+//     }
+//     submitButton.prop('disabled', true);
+//     submitButton.html('<i class="fa fa-spinner fa-spin"></i>Loading');
+// });
 
 
 $('.status_toggle_btn').change(function(){
@@ -122,3 +122,22 @@ $('.status_toggle_btn').change(function(){
 // });
 
 $('.multiple_select_2').select2()
+$('.select_2').select2({
+  placeholder: 'Please select',
+  allowClear: true // This adds a clear button to remove the selection
+});
+
+
+ //show loader and disabled submit button when ever form gets submit
+ $('form').submit(function(e) {
+  let submitButton = $('button[type="submit"], input[type="submit"]', this);
+  if (!$(this).valid()) {
+      e.preventDefault();
+      return;
+  }else{
+    console.log('dbne');
+    submitButton.prop('disabled', true); // Disable the submit button
+    submitButton.html('<i class="fa fa-spinner fa-spin"></i>Loading');
+  }
+
+});

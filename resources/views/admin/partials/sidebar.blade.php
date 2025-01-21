@@ -198,7 +198,7 @@
                     <span class="nav-text">Logs</span>
                 </a>
             </li>
-              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.index') ? 'active' : '' }}">
+              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"

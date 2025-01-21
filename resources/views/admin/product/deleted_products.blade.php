@@ -13,7 +13,7 @@
                                         <div class="col-md-4">
                                             <label>Brands</label>
                                             <fieldset class="form-group mb-3">
-                                                <select name="" id="brandFilter" class="form-control">
+                                                <select name="" id="brandFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand->name }}">{{ $brand->name }}</option>
@@ -24,7 +24,7 @@
                                         <div class="col-md-4">
                                             <label>Categories</label>
                                             <fieldset class="form-group mb-3">
-                                                <select name="" id="categoryFilter" class="form-control">
+                                                <select name="" id="categoryFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->name }}">{{ $category->name }}</option>
@@ -45,7 +45,7 @@
                                         <div class="col-md-4">
                                             <label>Units</label>
                                             <fieldset class="form-group mb-3">
-                                                <select name="" id="unitFilter" class="form-control">
+                                                <select name="" id="unitFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach ($units as $unit)
                                                         <option value="{{ $unit->name }}">{{ $unit->name }}</option>

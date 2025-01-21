@@ -31,7 +31,7 @@
                                             <div class="col-md-6">
                                                 <label for="supplier_id" class="form-control-label">Suppliers</label>
                                                 <fieldset class="form-group mb-3">
-                                                    <select class="form-control round bg-transparent text-dark"
+                                                    <select class="form-control round bg-transparent text-dark select_2"
                                                             name="supplier_id" id="supplier_id">
                                                         <option value="">Select supplier</option>
                                                         @foreach ($suppliers as $supplier)

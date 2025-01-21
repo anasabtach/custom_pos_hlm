@@ -59,7 +59,7 @@
       <!--begin::Notifications-->
       <div class="dropdown">
 
-        <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
+        {{-- <div class="topbar-item" data-bs-toggle="dropdown" data-display="static">
           <div class="btn btn-icon btn-clean btn-dropdown me-1">
             <div class="svg-icon svg-icon-xl svg-icon-primary" title="Notification">
 
@@ -76,7 +76,7 @@
             </div>
             <span class="badge badge-pill badge-primary">5</span>
           </div>
-        </div>
+        </div> --}}
 
         <div class="dropdown-menu p-0 m-0 dropdown-menu-right w-300px">
           <form>

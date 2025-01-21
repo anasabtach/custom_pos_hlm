@@ -14,7 +14,7 @@
                                         <div class="col-md-4">
                                             <label>Customers</label>
                                             <fieldset class="form-group mb-3">
-                                                <select name="" id="customerFilter" class="form-control">
+                                                <select name="" id="customerFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach($customers AS $customer)
                                                         <option value="{{ $customer->name }}">{{ $customer->name}}</option>

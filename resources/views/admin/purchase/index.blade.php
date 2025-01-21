@@ -13,7 +13,7 @@
                                         <div class="col-md-4">
                                             <label>Suppliers</label>
                                             <fieldset class="form-group mb-3">
-                                                <select name="" id="supplierFilter" class="form-control">
+                                                <select name="" id="supplierFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach($suppliers AS $supplier)
                                                         <option value="{{ $supplier->name }}">{{ $supplier->name}}</option>

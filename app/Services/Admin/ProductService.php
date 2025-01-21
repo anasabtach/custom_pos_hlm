@@ -37,13 +37,15 @@ class ProductService
             $product    = $this->repository->storeProduct($this->createProductArr($arr));
             $image_data = $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image
             //$shopify_id = $this->shopifyRepository->store($product, $image_data);
-            $shopify_id = $this->wordpressyRepository->store($product, $image_data);
-            $this->repository->updateProductShopifyId($product->id, $shopify_id);
+            // $shopify_id = $this->wordpressyRepository->store($product, $image_data);
+            // $this->repository->updateProductShopifyId($product->id, $shopify_id);
             
             if($arr['has_variation']){//if has variation
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);
             }
+            $shopify_id = $this->wordpressyRepository->store($product, $image_data);
+            $this->repository->updateProductShopifyId($product->id, $shopify_id);
         });
 
     }
@@ -138,17 +140,17 @@ class ProductService
     public function updateProduct($arr){
             $shopify_id =             $this->editProduct($arr['product_id']);
         
-        // DB::transaction(function() use ($arr,$shopify_id){
+        DB::transaction(function() use ($arr,$shopify_id){
             $product = $this->repository->updateProduct($this->createProductArr($arr));//update the product
             $image_data = $this->updateThumbnail($product, @$arr['product_thumbnail']);
             // $this->shopifyRepository->update($arr, $shopify_id, $image_data);
-            $this->wordpressyRepository->update($product, $shopify_id->wordpress_id, $image_data);
             $this->repository->deleteProductVariations($product, $arr);//delete the variations (always delete the variation because if has_variaion not set on update we could leave the variations in table)
             if($arr['has_variation']){//if has variation then create the new variations
                 $variation_arr = $this->createProductVariationArr($arr);//create the variation array
                 $this->repository->storeProductVariation($product, $variation_arr);//store the variation
             }
-        //});
+            $this->wordpressyRepository->update($product, $shopify_id->wordpress_id, $image_data);
+        });
     }
 
     public function delete($product_id){

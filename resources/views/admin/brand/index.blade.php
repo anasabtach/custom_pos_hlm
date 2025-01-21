@@ -27,11 +27,11 @@
                                             </fieldset>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                         <input type="hidden" name="brand_id"
                                             value="{{ isset($is_update) ? $edit_brand->hashid : '' }}">
-                                        <input type="submit" class="btn btn-primary mt-4"
-                                            value="{{ isset($is_update) ? 'Update' : 'Add' }}">
+                                        <button type="submit" class="btn btn-primary mt-4 btn24" value="{{ isset($is_update) ? 'Update' : 'Add' }}">Add
+                                        </button>
                                     </div>
                                 </form>
 

@@ -243,8 +243,8 @@
 	<script src="{{ asset('assets/js/script.bundle.js') }}"></script>
 	{{-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script> --}}
 	<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
- 	<script src="{{ asset('assets/js/custom.js') }}"></script>
- 	<script src="{{ asset('assets/validation/custom_validation_rules.js') }}"></script>
+	<script src="{{ asset('assets/validation/custom_validation_rules.js') }}"></script>
+	<script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <script>
         @if ($errors->any())
