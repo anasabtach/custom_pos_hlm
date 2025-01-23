@@ -27,6 +27,8 @@ class CustomerRepository implements CustomerInterface
             'address'       => $data['address'],
             // 'note'          => $data['note'],
             'dob'          => $data['dob'] ?? now(),
+            'country_code' => $data['country_code'],
+
         ]);
     }
 

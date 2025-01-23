@@ -15,7 +15,7 @@ $('#supplier_form').validate({
         },
         phone_no:{
             required:true,
-            maxlength:100
+            maxlength:20
         },
         city:{
             required:true,

@@ -42,11 +42,12 @@
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center">
                                         <input type="hidden" name="role_id" value="{{ $edit_role->hashid ?? '' }}">
-                                        @include('admin.components.button', [
+                                        {{-- @include('admin.components.button', [
                                             'class' => 'btn-primary',
                                             'type' => 'submit',
                                             'name' => isset($is_edit) ? 'Update' : 'Add',
-                                        ])
+                                        ]) --}}
+                                        <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                     </div>
                                 </div>
                             </form>

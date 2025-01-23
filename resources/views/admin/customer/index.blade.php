@@ -58,6 +58,7 @@
                                                         <th class="text-center">Address</th>
                                                         <th>Status</th>
                                                         <th class="text-center">Deleted</th>
+                                                        <th class="text-center">Remarks</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -75,7 +76,7 @@
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $customer->phone_no }}</p>
+                                                                    {{ $customer->country_code }}{{ $customer->phone_no }}</p>
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
@@ -110,6 +111,7 @@
                                                                     @endif
                                                                 </p>
                                                             </td>
+                                                            <td class="text-center">{{ $customer->remarks }}</td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"

@@ -102,8 +102,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <input type="hidden" name="purchase_id" value="{{ isset($is_update) ? $edit_purchase->hashid : '' }}">
-                                                <input type="submit" class="btn btn-primary mt-4 float-end"
-                                                       value="{{ isset($is_update) ? 'Update' : 'Add' }}">
+                                                {{-- <input type="submit" class="btn btn-primary mt-4 float-end"
+                                                       value="{{ isset($is_update) ? 'Update' : 'Add' }}"> --}}
+                                                       <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                             </div>
                                         </div>
                                     </div>

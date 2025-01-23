@@ -27,11 +27,10 @@
                                             </fieldset>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                         <input type="hidden" name="category_id"
                                             value="{{ isset($is_update) ? $edit_category->hashid : '' }}">
-                                        <input type="submit" class="btn btn-primary mt-4"
-                                            value="{{ isset($is_update) ? 'Update' : 'Add' }}">
+                                            <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                     </div>
                                 </form>
 
@@ -73,6 +72,7 @@
                                                         <th class="text-center">Name</th>
                                                         <th class="text-center">Status</th>
                                                         <th class="text-center">Deleted</th>
+                                                        <th class="text-center">Remarks</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
@@ -104,6 +104,7 @@
                                                                     @endif
                                                                 </p>
                                                             </td>
+                                                            <td class="text-center">{{ $category->remarks }}</td>
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"

@@ -29,6 +29,7 @@ class SupplierRepository implements SupplierInterface
             'address'       => $data['address'],
             'note'          => $data['note'],
             'trn'           => $data['trn'],
+            'country_code'  => $data['country_code'],
         ]);
     }
 

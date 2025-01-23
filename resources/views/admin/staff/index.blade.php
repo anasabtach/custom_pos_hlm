@@ -55,6 +55,7 @@
                                                     <th class="text-center">Status</th>
                                                     <th>Resend<br/>Credentials</th>
                                                     <th>Deletd</th>
+                                                    <th>Remarks</th>
                                                     <th class="text-center no-sort">Action</th>
                                                 </tr>
                                             </thead>
@@ -95,6 +96,7 @@
                                                                 @endif
                                                             </p>
                                                         </td>
+                                                        <td class="text-center">{{ $staff->remarks }}</td>
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"

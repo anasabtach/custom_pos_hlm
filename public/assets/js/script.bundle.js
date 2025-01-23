@@ -646,14 +646,16 @@ jQuery('.kt_notes_panel_close').on("click", function(e){
 
 jQuery(document).ready(function() {
   var table = jQuery('#myTable').DataTable({
-    dom: 'Bfrtip',  // This controls the placement of the buttons
+    dom: '<"top"lfB>rt<"bottom"ip><"clear">', // Includes length menu and buttons
     buttons: [
         'copy',        // Copy to clipboard
         'csv',         // Export to CSV
         'excel',       // Export to Excel
         'pdf',         // Export to PDF
         'print'        // Print the table
-    ]
+    ],
+    lengthMenu: [10, 25, 50, 100], // Options for the number of rows to display
+    pageLength: 10                  // Default number of rows to display
   });
 
   jQuery('#myTable tbody').on( 'click', 'tr', function () {
@@ -964,9 +966,9 @@ jQuery(document).ready(function() {
 // } );
 
 // for data tables
-jQuery(document).ready( function () {
-	jQuery('#myTable').DataTable();
-});
+// jQuery(document).ready( function () {
+// 	jQuery('#myTable').DataTable();
+// });
 
 
 (function($){

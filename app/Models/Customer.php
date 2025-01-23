@@ -18,7 +18,7 @@ class Customer extends Model
     protected $table = 'customers';
 
     protected $fillable = [
-        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'dob',
+        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'dob','country_code'
     ];
 
     public function scopeWithLog($query)

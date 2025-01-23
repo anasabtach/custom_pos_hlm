@@ -20,7 +20,7 @@ class Supplier extends Model
     protected $table = 'suppliers';
 
     protected $fillable = [
-        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'note', 'trn'
+        'admin_id', 'country_id', 'name', 'email', 'phone_no', 'city', 'country', 'address', 'note', 'trn', 'country_code'
     ];
 
     public function scopeWithLog($query)

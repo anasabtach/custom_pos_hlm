@@ -82,7 +82,8 @@
                                 <!-- Submit Button -->
                                 <div class="col-md-12">
                                     <input type="hidden" name="staff_id" value="{{ @$edit_staff->hashid }}">
-                                    <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($edit_staff) ? 'Update' : 'Add' }}">
+                                    {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($edit_staff) ? 'Update' : 'Add' }}"> --}}
+                                    <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                 </div>
                             </div>
                         </form>

@@ -82,6 +82,7 @@
                                                         <th class="text-center">Offered <br/>Products</th>
                                                         <th class="text-center">TRN</th>
                                                         <th class="text-center">Deleted</th>
+                                                        <th class="text-center">Remarks</th>
                                                         <th class="text-center">Created <br/>At</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
@@ -100,7 +101,7 @@
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
-                                                                    {{ $supplier->phone_no }}</p>
+                                                                    {{ $supplier->country_code }}{{ $supplier->phone_no }}</p>
                                                             </td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
@@ -135,6 +136,7 @@
                                                                     @endif
                                                                 </p>
                                                             </td>
+                                                            <td class="text-center">{{ $supplier->remarks }}</td>
                                                             <td class="text-center">
                                                                 <p class="text-sm font-weight-bold mb-0">
                                                                     {{ getCustomDate($supplier->created_at) }}

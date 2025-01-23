@@ -32,11 +32,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Phone No</label>
-                                    <fieldset class="form-group mb-3">
-                                        <input type="text" placeholder="Enter phone no" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_customer->phone_no : old('phone_no') }}" name="phone_no">
-                                    </fieldset>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <label>Phone</label>
+                                            <fieldset class="form-group mb-3">
+                                                <select name="country_code" id="" class="numtext1">
+                                                    @foreach (config('country_codes') as $cc)
+                                                        <option value="{{ $cc['code'] }}"
+                                                            @selected(isset($is_update) ? $edit_customer->country_code == $cc['code'] : false)>{{ $cc['code'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <label style="margin-left:-20px;">No</label>
+                                            <fieldset class="form-group mb-3">
+                                                <input type="number" placeholder="Enter phone no"
+                                                    class="form-control round bg-transparent text-dark numtext22"
+                                                    value="{{ isset($is_update) ? $edit_customer->phone_no : old('phone_no') }}"
+                                                    name="phone_no" id="phone_no">
+                                            </fieldset>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Country</label>
@@ -87,7 +104,8 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <input type="hidden" name="customer_id" value="{{ isset($is_update) ? $edit_customer->hashid : '' }}">
-                                <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}">
+                                {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}"> --}}
+                                <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                             </div>
                         </form>
                     </div>

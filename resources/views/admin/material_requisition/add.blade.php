@@ -115,11 +115,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Price</label>
-                                        <input type="number" class="form-control" name="price" id="price">
+                                        <input type="number" class="form-control" placeholder="Enter price" ="price" id="price">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">SKU</label>
-                                        <input type="text" class="form-control" name="sku" id="sku">
+                                        <input type="text" class="form-control" placeholder="Enter SKU" name="sku" id="sku">
                                     </div>
                                 </div>
 
@@ -136,14 +136,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Payment Terms</label>
-                                        <textarea name="payment_terms" id="payment_terms" class="form-control" cols="30" rows="3"></textarea>
+                                        <textarea name="payment_terms" id="payment_terms" class="form-control" placeholder="Enter payment terms" cols="30" rows="3"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="user_type" class="form-control-label">Remarks</label>
-                                        <textarea name="remarks" id="remarks" class="form-control" cols="30" rows="3"></textarea>
+                                        <textarea name="remarks" id="remarks" class="form-control" placeholder="Enter remarks" cols="30" rows="3"></textarea>
                                     </div>
                                 </div>
                         </div>
@@ -153,8 +153,9 @@
                             <!-- Submit Button -->
                             <div class="col-md-12">
                                 <input type="hidden" name="material_requisition_id" value="{{ @$edit_staff->hashid }}">
-                                <input type="submit" class="btn btn-primary mt-4 float-end"
-                                    value="{{ isset($edit_staff) ? 'Update' : 'Add' }}">
+                                {{-- <input type="submit" class="btn btn-primary mt-4 float-end"
+                                    value="{{ isset($edit_staff) ? 'Update' : 'Add' }}"> --}}
+                                    <button type="submit" class="btn btn-primary mt-4 mb-1 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                             </div>
                         </div>
                         </form>

@@ -26,8 +26,8 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
                               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                               stroke-linejoin="round">
-                              <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
-                          </svg>
+                              <path d="M12 2L2 7v6c0 5.5 3.8 10.7 10 13 6.2-2.3 10-7.5 10-13V7l-10-5z"/>
+                            </svg>
                       </span>
                       <span class="nav-text">Brands</span>
                   </a>
@@ -52,8 +52,8 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
                               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                               stroke-linejoin="round">
-                              <path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"></path>
-                          </svg>
+                              <path d="M20 6H10l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"></path> <!-- Folder icon -->
+                            </svg>
                       </span>
                       <span class="nav-text">Categories</span>
                   </a>
@@ -103,14 +103,14 @@
               </li>
               @endcan
               @can('view-product')
-              <li class="nav-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
-                  <a href="{{ route('admin.products.index') }}" class="nav-link">
+              <li class="nav-item {{ request()->routeIs('admin.products.index', 'admin.products.create') ? 'active' : '' }}">
+                <a href="{{ route('admin.products.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M12 2L2 7v15h20V7l-10-5zm0 15h-2v-2h2v2zm0-4h-2v-2h2v2z"></path>
-                          </svg>
+                              <path d="M4 2H20a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path> <!-- Box shape -->
+                            </svg>
                       </span>
                       <span class="nav-text">Products</span>
                   </a>
@@ -123,7 +123,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M12 2L2 7v15h20V7l-10-5zm0 15h-2v-2h2v2zm0-4h-2v-2h2v2z"></path>
+                              <path d="M6 2L4 6h16l-2-4h-8zm12 4H6l1 14h10l1-14z"></path> <!-- Shopping bag icon -->
                           </svg>
                       </span>
                       <span class="nav-text">Deleted Products</span>
@@ -137,8 +137,10 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
-                          </svg>
+                              <path d="M6 6h12l-1.5 9H7.5z"></path> <!-- Cart Body -->
+                              <circle cx="9" cy="19" r="2"></circle> <!-- Left Wheel -->
+                              <circle cx="15" cy="19" r="2"></circle> <!-- Right Wheel -->
+                            </svg>
                       </span>
                       <span class="nav-text">Purchases</span>
                   </a>
@@ -151,7 +153,9 @@
                           <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                              <path d="M12 2v20M5 12h14"></path> <!-- Cross Shape -->
+                              <circle cx="12" cy="12" r="8" /> <!-- Circle Around Dollar -->
+                              <path d="M12 9c-1.5 0-2 1-2 2s0 2 2 2c1 0 2-.5 2-2s-1-2-2-2z"></path> <!-- Dollar Sign Shape -->
                           </svg>
                       </span>
                       <span class="nav-text">Sales</span>
@@ -198,7 +202,7 @@
                     <span class="nav-text">Logs</span>
                 </a>
             </li>
-              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.*') ? 'active' : '' }}">
+              <li class="nav-item {{ request()->routeIs('admin.material_requisitions.index', 'admin.material_requisitions.create') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"

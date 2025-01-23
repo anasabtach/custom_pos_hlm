@@ -153,8 +153,8 @@
                                         <fieldset class="form-group mb-3">
                                             <select class="form-control round bg-transparent text-dark" name="status"
                                                 id="has_variation">
-                                                <option value="0" @selected(@$edit_product->status == 0 ?? null)>Disable</option>
-                                                <option value="1" @selected(@$edit_product->status == 1 ?? null)>Enable</option>
+                                                <option value="1" @selected(isset($edit_product) && $edit_product->status == 1 ?? null)>Enable</option>
+                                                <option value="0" @selected(isset($edit_product) && $edit_product->status == 0 ?? null)>Disable</option>
                                             </select>
                                         </fieldset>
                                     </div>
@@ -203,8 +203,9 @@
                                     <div class="col-md-12">
                                         <input type="hidden" name="product_id"
                                             value="{{ isset($is_update) ? $edit_product->hashid : '' }}">
-                                        <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}">
-                                        <input type="button" class="btn btn-success mt-4 float-end mx-3" value="save as draft" id="save_as_draft">
+                                        {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}"> --}}
+                                        <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
+                                        <input type="button" class="btn btn-success mt-4 float-end mx-3 btn24" value="save as draft" id="save_as_draft">
                                     </div>
                                 </div>
                             </form>

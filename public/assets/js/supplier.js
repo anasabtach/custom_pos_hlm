@@ -14,7 +14,7 @@ $(document).ready(function() {
         function (settings, data, dataIndex) {
         var fromDate = $('#from_date').val();
         var toDate = $('#to_date').val();
-        var columnData = data[10]; // Adjust to your date column index
+        var columnData = data[11]; // Adjust to your date column index
 
         if (!fromDate && !toDate) {
             return true; // Show all rows if no date filters are set
