@@ -141,3 +141,20 @@ $('.select_2').select2({
   }
 
 });
+
+$('.show_password').click(function () {
+  // Select both password inputs
+  var passwordInput = $('#password'); // First password field
+  var confirmPasswordInput = $('input[name="password_confirmation"]'); // Confirm password field
+
+  // Toggle input types for both fields
+  if (passwordInput.attr('type') === 'password' && confirmPasswordInput.attr('type') === 'password') {
+    passwordInput.attr('type', 'text');
+    confirmPasswordInput.attr('type', 'text');
+    $('.show_password').removeClass('fa-eye').addClass('fa-eye-slash'); // Update all icons
+  } else {
+    passwordInput.attr('type', 'password');
+    confirmPasswordInput.attr('type', 'password');
+    $('.show_password').removeClass('fa-eye-slash').addClass('fa-eye'); // Update all icons
+  }
+});

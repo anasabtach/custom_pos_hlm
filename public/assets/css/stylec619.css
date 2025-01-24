@@ -14016,13 +14016,14 @@ readers do not read off random characters that represent icons */
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-color: #fff; }
+  background-color: #0000003d; }
   .se-pre-con .pre-loader {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100%;
+    background-color: none !important;
     width: 100%; }
     .se-pre-con .pre-loader p {
       margin-top: 5px; }
@@ -14831,7 +14832,10 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
       position: relative;
       outline: none;
       border-radius: 0.25rem;
-      color: var(--artical-color-dark-secondary); }
+      /* color: var(--artical-color-dark-secondary); */
+    
+    
+    }
       .aside .aside-menu .nav-item .nav-link .nav-text {
         display: flex;
         align-items: center;
@@ -17458,13 +17462,50 @@ a {
   margin-right: 20px;
   border-style: solid;
   border-width: 01px 0px 1px 01px;
-  border-color: #e9ecef !important;
+  border-color: #6a6a6a8f !important;
   border-radius: 2px;
-  height: 31px;
+  height: 40px;
 }
 .numtext22{
   border-style: solid;
   border-width: 01px 1px 1px 0px;
-  border-color: #e9ecef !important;
+  border-color: #6a6a6a8f !important;
   border-radius: 2px;
+}
+.col-md-6 {
+  margin-bottom: 15px;
+}
+
+.form-control, .select2-container--default .select2-selection--single, .select2-selection.select2-selection--multiple{
+border-color:#6a6a6a8f !important;
+height: 40px;
+}
+.form-control[type="file"]:not(:disabled):not([readonly]) {
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+/* button.dt-button.buttons-copy.buttons-html5, button.dt-button.buttons-csv.buttons-html5, button.dt-button.buttons-excel.buttons-html5, button.dt-button.buttons-pdf.buttons-html5, button.dt-button.buttons-print{  
+  background-color: #388cb8 !important;
+  color: white;
+  border: none;
+  animation: none;
+} */
+button.dt-button, div.dt-button, a.dt-button, input.dt-button{
+  background-color: #388cb8 !important;
+  color:white !important;
+  border:none !important;
+  margin-left: 20px;
+}
+
+.text-input5 {
+  float: right;
+  margin-top: -26px;
+  margin-right: 10px;
+}
+img#preview {
+  padding-top: 10px;
+}
+.rounded1{
+  border-radius: 50px;
 }

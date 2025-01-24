@@ -48,8 +48,8 @@ class RoleRepository implements RoleInterface
     }
 
     public function updateStaffPermissions(string $role, array $permissions):bool|null
-    {
-        return Admin::where('user_type',$role)->first()?->update(['user_permissions'=>$permissions]);
+    {   
+        return Admin::where('user_type',$role)->update(['user_permissions'=>$permissions]);
     }
 
     public function remarks($remarks, $role_id):bool

@@ -18,6 +18,7 @@ class SaleController extends Controller
     }
 
     public function index(){
+        rights('sales');
         $data = [
             'title'     => 'Sales',
             'sales'     => Sale::with(['customer'])->latest()->get(),
@@ -27,6 +28,7 @@ class SaleController extends Controller
     }
 
     public function details($id){
+        rights('sales');
         $data = [
             'title' => 'Sale Detail',
             'sale_detail'   => $this->service->saleDetail($id),

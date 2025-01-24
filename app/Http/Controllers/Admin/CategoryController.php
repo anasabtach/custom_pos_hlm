@@ -16,7 +16,7 @@ class CategoryController extends Controller
     }
 
     public function index(){
-        rights('view-category');
+        rights('categories');
         $data = array(
             'title'         => "Categories",
             'categories'    => $this->categoryService->getCategories()
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     }
 
     public function edit($category_id){
-        rights('edit-category');
+        rights('categories');
         $data = array(
             'title'         => "Categories",
             'categories'    => $this->categoryService->getCategories(),
@@ -47,7 +47,7 @@ class CategoryController extends Controller
     }
 
     public function delete(RemarkRequest $req, $category_id){
-        rights('delete-category');
+        rights('categories');
         $this->categoryService->remarks($req->remarks, $category_id);
         $this->categoryService->delete($category_id);
         return to_route('admin.categories.index')->with('success', __('error_messages.category_delete_success'));

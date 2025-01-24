@@ -105,7 +105,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
-                                        @can('add-product')
+                                    @can('products')
                                             <a href="{{ route('admin.products.create') }}" class="btn ms-2 p-0"
                                                 id="kt_notes_panel_toggle" data-bs-toggle="tooltip" title=""
                                                 data-bs-placement="right" data-original-title="Check out more demos">
@@ -262,11 +262,11 @@
                                                                     </button>
                                                                     <div class="dropdown-menu dropdown-menu-right"
                                                                         aria-labelledby="dropdowneditButton01">
-                                                                        @can('edit-product')
+                                                                        @can('products')
                                                                             <a href="{{ route('admin.products.edit', ['product_id' => $product->hashid]) }}"
                                                                                 class="dropdown-item click-edit">Edit</a>
                                                                         @endcan
-                                                                        @can('delete-product')
+                                                                        @can('products')
                                                                             <a class="dropdown-item confirm-delete"
                                                                                 href="{{ route('admin.products.delete', ['product_id' => $product->hashid]) }}">Delete</a>
         

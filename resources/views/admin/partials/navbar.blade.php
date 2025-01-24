@@ -220,13 +220,14 @@
             <span class="text-dark-50 font-size-base d-none d-xl-inline me-3">{{ auth()->user()->full_name }}</span>
             <span class="symbol symbol-35 symbol-light-success">
               <span class="symbol-label font-size-h5 ">
-                <svg width="20px" height="20px" viewBox="0 0 16 16"
+                <img src="{{ getImage(auth()->user()->profileImage->filename) ?? null }}" class="rounded1" alt="" height="50px" width="50px">
+                {{-- <svg width="20px" height="20px" viewBox="0 0 16 16"
                   class="bi bi-person-fill" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"
                     d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 </svg>
-              </span>
+              </span> --}}
             </span>
           </div>
         </div>

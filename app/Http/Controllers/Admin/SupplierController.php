@@ -21,7 +21,7 @@ class SupplierController extends Controller
     }
 
     public function index(){
-        rights('view-supplier');
+        rights('suppliers');
         $data = array(
             'title'         => "Suppliers",
             'suppliers'     => $this->service->getSuppliers(),
@@ -30,7 +30,7 @@ class SupplierController extends Controller
     }
 
     public function create(){
-        rights('add-supplier');
+        rights('suppliers');
         $data = [
             'title' => 'Create Supplier',
             'countries'     => $this->service->getCountries(),
@@ -50,7 +50,7 @@ class SupplierController extends Controller
     }
 
     public function edit($supplier_id){
-        rights('edit-supplier');
+        rights('suppliers');
         $data = array(
             'title'         => "Edit Supplier",
             'countries'     => $this->service->getCountries(),
@@ -63,7 +63,7 @@ class SupplierController extends Controller
     }
 
     public function delete(RemarkRequest $req, $supplier_id){
-        rights('delete-supplier');
+        rights('suppliers');
         $this->service->remarks($req->remarks, $supplier_id);
         $this->service->delete($supplier_id);
         return to_route('admin.suppliers.index')->with('success', __('error_messages.supplier_delete_success'));

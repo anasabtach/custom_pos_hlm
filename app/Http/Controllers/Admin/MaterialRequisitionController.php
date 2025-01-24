@@ -44,7 +44,8 @@ class MaterialRequisitionController extends Controller
     }
 
     public function index()
-    {
+    {   
+        rights('material-requistions');
         $data = [
             'title'                 => 'Material Requisition',
             'material_requistions'  => $this->service->getMaterailRequistions(),
@@ -53,6 +54,7 @@ class MaterialRequisitionController extends Controller
     }
 
     public function getAll(){
+        rights('material-requistions');
         $data = [
             'title'                 => 'All Material Requisition',
             'material_requistions'  => $this->service->getAllMaterialRequisitions(),
@@ -61,7 +63,8 @@ class MaterialRequisitionController extends Controller
     }
 
     public function create()
-    {
+    {   
+        rights('material-requistions');
         $data = [
             'title'         => 'Material Requisition',
             'categories'    => $this->categoryService->getCategories(),
@@ -99,6 +102,7 @@ class MaterialRequisitionController extends Controller
     }
 
     public function lpo(){
+        rights('lpo');
         $data = [
             'title' => 'LPO',
             'lpos'  => $this->service->getLpos(),
@@ -107,6 +111,7 @@ class MaterialRequisitionController extends Controller
     }
 
     public function editLpo($id){
+        rights('material-requistions');
         $data = [
             'title'     => 'Edit LPO',
             'edit_lpo'  => $this->service->editLpo($id)

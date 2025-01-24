@@ -36,7 +36,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
-                                        @can('add-purchase')
+                                        @can('purchases')
                                         <a href="{{ route('admin.purchases.create') }}" class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
                                             title="" data-bs-placement="right"
                                             data-original-title="Check out more demos">
@@ -118,14 +118,14 @@
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Details</a>
-                                                                        @can('edit-purchase')
+                                                                        @can('purchases')
                                                                         <a href="{{ route('admin.purchases.edit', ['purchase_id' => $purchase->hashid]) }}"
                                                                             class="dropdown-item click-edit"
                                                                             id="click-edit2" data-bs-toggle="tooltip"
                                                                             title="" data-bs-placement="right"
                                                                             data-original-title="Check out more demos">Edit</a>
                                                                         @endcan
-                                                                        @can('delete-purchase')
+                                                                        @can('purchases')
                                                                         <a class="dropdown-item confirm-delete"
                                                                             title="Delete"
                                                                             href="{{ route('admin.purchases.delete', ['purchase_id' => $purchase->hashid]) }}">Delete</a>

@@ -15,7 +15,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
-                                        @can('add-supplier')
+                                        @can('suppliers')
                                             <a href="{{ route('admin.suppliers.create') }}" class="btn ms-2 p-0"
                                                 id="kt_notes_panel_toggle" data-bs-toggle="tooltip" title=""
                                                 data-bs-placement="right" data-original-title="Check out more demos">
@@ -164,14 +164,14 @@
                                                                     <div class="dropdown-menu dropdown-menu-right"
                                                                         aria-labelledby="dropdowneditButton01"
                                                                         style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                                        @can('edit-supplier')
+                                                                        @can('suppliers')
                                                                             <a href="{{ route('admin.suppliers.edit', ['supplier_id' => $supplier->hashid]) }}"
                                                                                 class="dropdown-item click-edit"
                                                                                 id="click-edit2" data-bs-toggle="tooltip"
                                                                                 title="" data-bs-placement="right"
                                                                                 data-original-title="Check out more demos">Edit</a>
                                                                         @endcan
-                                                                        @can('delete-supplier')
+                                                                        @can('suppliers')
                                                                             <a class="dropdown-item confirm-delete"
                                                                                 title="Delete"
                                                                                 href="{{ route('admin.suppliers.delete', ['supplier_id' => $supplier->hashid]) }}">Delete</a>

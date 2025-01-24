@@ -19,7 +19,7 @@
                   </a>
               </li>
 
-              @can('view-brand')
+              @can('brands')
               <li class="nav-item {{ request()->routeIs('admin.brands.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.brands.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -33,6 +33,7 @@
                   </a>
               </li>
               @endcan
+              @can('colors')
               <li class="nav-item {{ request()->routeIs('admin.colors.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.colors.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
@@ -45,7 +46,8 @@
                     <span class="nav-text">Colors</span>
                 </a>
             </li>
-              @can('view-category')
+            @endcan
+              @can('categories')
               <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.categories.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -59,7 +61,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-unit')
+              @can('units')
               <li class="nav-item {{ request()->routeIs('admin.units.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.units.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -73,7 +75,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-supplier')
+              @can('suppliers')
               <li class="nav-item {{ request()->routeIs('admin.suppliers.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.suppliers.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -87,7 +89,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-customer')
+              @can('customers')
               <li class="nav-item {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.customers.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -102,7 +104,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-product')
+              @can('products')
               <li class="nav-item {{ request()->routeIs('admin.products.index', 'admin.products.create') ? 'active' : '' }}">
                 <a href="{{ route('admin.products.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -116,7 +118,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-product')
+              @can('deleted-products')
               <li class="nav-item {{ request()->routeIs('admin.products.deleted_products') ? 'active' : '' }}">
                   <a href="{{ route('admin.products.deleted_products') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -130,7 +132,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-purchase')
+              @can('purchases')
               <li class="nav-item {{ request()->routeIs('admin.purchases.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.purchases.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -146,7 +148,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-sale')
+              @can('sales')
               <li class="nav-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.sales.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -162,7 +164,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-role')
+              @can('roles')
               <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.roles.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -176,7 +178,7 @@
                   </a>
               </li>
               @endcan
-              @can('view-staff')
+              @can('staff')
               <li class="nav-item {{ request()->routeIs('admin.staffs.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.staffs.index') }}" class="nav-link">
                       <span class="svg-icon nav-icon">
@@ -190,6 +192,7 @@
                   </a>
               </li>
               @endcan
+              @can('logs')
               <li class="nav-item {{ request()->routeIs('admin.logs.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.logs.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
@@ -202,6 +205,8 @@
                     <span class="nav-text">Logs</span>
                 </a>
             </li>
+            @endcan
+            @can('material-requistions')
               <li class="nav-item {{ request()->routeIs('admin.material_requisitions.index', 'admin.material_requisitions.create') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.index') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
@@ -214,6 +219,8 @@
                     <span class="nav-text">Material Requisition</span>
                 </a>
             </li>
+            @endcan
+            @can('material-requistions')
               <li class="nav-item {{ request()->routeIs('admin.material_requisitions.all') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.all') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
@@ -226,6 +233,8 @@
                     <span class="nav-text">All Material Requisition</span>
                 </a>
             </li>
+            @endcan
+            @can('lpo')
               <li class="nav-item {{ request()->routeIs('admin.material_requisitions.lpo') ? 'active' : '' }}">
                 <a href="{{ route('admin.material_requisitions.lpo') }}" class="nav-link">
                     <span class="svg-icon nav-icon">
@@ -238,6 +247,7 @@
                     <span class="nav-text">LPO</span>
                 </a>
             </li>
+            @endcan
           </ul>
       </div>
       <!--end::Menu Nav-->

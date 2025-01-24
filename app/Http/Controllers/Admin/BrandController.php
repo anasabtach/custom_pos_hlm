@@ -17,7 +17,7 @@ class BrandController extends Controller
     }
 
     public function index(){
-        rights('view-brand');
+        rights('brands');
         $data = array(
             'title'         => "Brands",
             'brands'    => $this->service->getBrands()
@@ -36,7 +36,7 @@ class BrandController extends Controller
     }
 
     public function edit($brand_d){
-        rights('edit-brand');
+        rights('brands');
         $data = array(
             'title'         => "Brands",
             'brands'    => $this->service->getBrands(),
@@ -47,7 +47,7 @@ class BrandController extends Controller
     }
 
     public function delete(RemarkRequest $req, $brand_d){
-        rights('delete-brand');
+        rights('brands');
         $this->service->remarks($req->remarks, $brand_d);
         $this->service->delete($brand_d);
         return to_route('admin.brands.index')->with('success', __('error_messages.brand_delete_success'));

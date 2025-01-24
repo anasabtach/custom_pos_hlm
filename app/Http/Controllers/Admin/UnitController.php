@@ -16,7 +16,7 @@ class UnitController extends Controller
     }
 
     public function index(){
-        rights('view-unit');
+        rights('units');
         $data = array(
             'title'         => "Units",
             'units'    => $this->service->getUnits(),
@@ -35,7 +35,7 @@ class UnitController extends Controller
     }
 
     public function edit($unit_id){
-        rights('edit-unit');
+        rights('units');
         $data = array(
             'title'         => "Brands",
             'units'    => $this->service->getUnits(),
@@ -46,7 +46,7 @@ class UnitController extends Controller
     }
 
     public function delete(RemarkRequest $req, $unit_id){
-        rights('delete-unit');
+        rights('units');
         $this->service->remarks($req->remarks, $unit_id);
         $this->service->delete($unit_id);
         return to_route('admin.units.index')->with('success', __('error_messages.unit_delete_success'));

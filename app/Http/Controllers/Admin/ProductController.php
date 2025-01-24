@@ -34,7 +34,7 @@ class ProductController extends Controller
     }
 
     public function index(){
-        rights('view-product');
+        rights('products');
         $data = [
             'title'         => 'Products',
             'products'      => $this->service->getProdcuts(),
@@ -47,7 +47,7 @@ class ProductController extends Controller
     }
 
     public function add(){
-        rights('add-product');
+        rights('products');
         $data = [
             'title' => 'Add Product',
             'categories'    => $this->categoryService->getCategories(),
@@ -76,7 +76,7 @@ class ProductController extends Controller
     }
 
     public function edit($product_id){
-        rights('edit-product');
+        rights('products');
         $data = [
             'title'         => 'Edit Product',
             'edit_product'  => $this->service->editProduct($product_id),
@@ -91,6 +91,7 @@ class ProductController extends Controller
     }
 
     public function delete(RemarkRequest $req, $product_id){
+        rights('products');
         try{
             $this->service->remarks($req->remarks, $product_id);
             $this->service->delete($product_id);
@@ -116,7 +117,7 @@ class ProductController extends Controller
     }
 
     public function deletedProducts(){
-        rights('view-product');
+        rights('deleted-products');
         $data = [
             'title'         => 'Products',
             'products'      => $this->service->getDeletedProdcuts(),

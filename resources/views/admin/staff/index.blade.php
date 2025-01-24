@@ -117,7 +117,7 @@
                                                                 <div class="dropdown-menu dropdown-menu-right"
                                                                     aria-labelledby="dropdowneditButton01"
                                                                     style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                                    @can('edit-staff')
+                                                                    @can('staff')
 
                                                                     <a href="{{ route('admin.staffs.edit', ['id' => $staff->hashid]) }}"
                                                                         class="dropdown-item click-edit"
@@ -125,7 +125,7 @@
                                                                         title="" data-bs-placement="right"
                                                                         data-original-title="Check out more demos">Edit</a>
                                                                     @endcan
-                                                                    @can('delete-staff')
+                                                                    @can('staff')
                                                                     <a class="dropdown-item confirm-delete"
                                                                         title="Delete"
                                                                         href="{{ route('admin.staffs.delete', ['id' => $staff->hashid]) }}">Delete</a>

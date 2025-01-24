@@ -56,12 +56,15 @@
                                 <div class="col-md-6">
                                     <label for="password" class="form-control-label">Password</label>
                                     <input type="password" class="form-control round bg-transparent text-dark" placeholder="Enter password" name="password" id="password">
+                                    <i class="fa-regular fa-eye text-input5 show_password"></i>
                                 </div>
                                 
                                 <!-- Confirm Password -->
                                 <div class="col-md-6">
                                     <label for="password_confirmation" class="form-control-label">Confirm Password</label>
                                     <input type="password" class="form-control round bg-transparent text-dark" placeholder="Enter confirm password" name="password_confirmation">
+                                    <i class="fa-regular fa-eye show_password text-input5"></i>
+                               
                                 </div>
                             </div>
                             
@@ -99,7 +102,7 @@
 <script>
     let is_edit = "{{ isset($is_edit) ? true : false }}";
 </script>
-<script src="{{ asset('assets/admin/validation/staff.js') }}"></script>
+<script src="{{ asset('assets/validation/staff.js') }}"></script>
 <script>
     // setTimeout(function() {
     //     $(".preloader").show();

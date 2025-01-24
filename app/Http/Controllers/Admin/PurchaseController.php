@@ -21,7 +21,7 @@ class PurchaseController extends Controller
     }
 
     public function index(){
-        rights('view-purchase');
+        rights('purchases');
         $data = [
             'title'     => 'Purchases',
             'purchases' => $this->service->getPurchases(),
@@ -31,7 +31,7 @@ class PurchaseController extends Controller
     }
 
     public function create(){
-        rights('add-purchase');
+        rights('purchases');
         $data = [
             'title' => 'Add Purchase',
             'suppliers' => $this->supplierService->getSuppliers(),
@@ -65,7 +65,7 @@ class PurchaseController extends Controller
     }
 
     public function edit($purchase_id){
-        rights('edit-purchase');
+        rights('purchases');
         $data = [
             'title'            => 'Edit Product',
             'edit_purchase'    => $this->service->edit($purchase_id),
@@ -76,7 +76,7 @@ class PurchaseController extends Controller
     }
 
     public function delete(RemarkRequest $req, $purchase_id){
-        rights('delete-purchase');
+        rights('purchases');
         $this->service->remarks($req->remarks, $purchase_id);
         $this->service->delete($purchase_id);
         return to_route('admin.purchases.index')->with('success',__('error_messages.purchase_delete_success'));
