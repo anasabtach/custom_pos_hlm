@@ -17,6 +17,11 @@
                                 <form action="{{ route('admin.units.store') }}" method="POST" id="unit_form">
                                     @csrf
                                     <div class="form-group row">
+                                        @if(isset($is_update))
+                                        <div class="alert alert-success" role="alert">
+                                        Please update the unit name
+                                      </div>
+                                    @endif
                                         <div class="col-md-6">
                                             <label> {{ isset($is_update) ? 'Update' : 'Add' }}  Unit Name</label>
                                             <fieldset class="form-group mb-3">
@@ -51,38 +56,6 @@
             <div class="row">
                 <div class="col-12 px-4">
                     <div class="row">
-                        {{-- <div class="col-lg-12 col-xl-12 px-4">
-                            <div class="card card-custom gutter-b bg-transparent shadow-none border-0">
-                                <div class="card-header align-items-center  border-bottom-dark px-0">
-                                    <div class="card-title mb-0">
-                                        <h3 class="card-label mb-0 font-weight-bold text-body">Units
-                                        </h3>
-                                    </div>
-                                    <div class="icons d-flex">
-                                        <button class="btn ms-2 p-0" id="kt_notes_panel_toggle" data-bs-toggle="tooltip"
-                                            title="" data-bs-placement="right"
-                                            data-original-title="Check out more demos">
-                                            <span
-                                                class="bg-secondary h-30px font-size-h5 w-30px d-flex align-items-center justify-content-center  rounded-circle shadow-sm ">
-
-                                                <svg width="25px" height="25px" viewBox="0 0 16 16"
-                                                    class="bi bi-plus white" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                </svg>
-                                            </span>
-
-                                        </button>
-
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div> --}}
                     </div>
                     <div class="row">
                         <div class="col-12  px-4">
@@ -137,6 +110,7 @@
                                                                 </p>
                                                             </td>
                                                             <td class="text-center">{{ $unit->remarks }}</td>
+                                                            @if(is_null($unit->deleted_at))
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -172,6 +146,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            @else 
+                                                            <td></td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

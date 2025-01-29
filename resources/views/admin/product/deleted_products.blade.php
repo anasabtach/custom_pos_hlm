@@ -79,7 +79,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class=" table-responsive table_container" id="printableTable">
                                             <table id="product_table" class="display">
                                                 <thead class="text-body">
                                                     <tr>
@@ -95,7 +95,7 @@
                                                         <th class="text-center">Expiration</th>
                                                         <th class="text-center">Variations</th>
                                                         <th class="text-center">Color</th>
-                                                        <th class="text-center">Color</th>
+                                                        {{-- <th class="text-center">Color</th> --}}
                                                         <th class="text-center">Image</th>
                                                     </tr>
                                                 </thead>

@@ -45,7 +45,7 @@
                             <div class="card card-custom gutter-b bg-white border-0 theme-circle theme-circle-success">
 
                                 <div class="card-body">
-                                    <h3 class="text-body font-weight-bold">All Untis</h3>
+                                    <h3 class="text-body font-weight-bold">All Units</h3>
                                     <div class="mt-3">
                                         <div class="d-flex align-items-center">
                                             <span class="text-dark font-weight-bold font-size-h1 me-3"><span class=""

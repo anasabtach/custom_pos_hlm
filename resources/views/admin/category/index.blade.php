@@ -18,6 +18,11 @@
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                             <label>{{ isset($is_update) ? 'Update' : 'Add' }} Category</label>
+                                            @if(isset($is_update))
+                                                <div class="alert alert-success" role="alert">
+                                                    Please update the category name
+                                                </div>
+                                            @endif
                                             <fieldset class="form-group mb-3">
                                                 <input type="text" placeholder="Enter category name"
                                                     class="form-control round bg-transparent text-dark"
@@ -105,6 +110,7 @@
                                                                 </p>
                                                             </td>
                                                             <td class="text-center">{{ $category->remarks }}</td>
+                                                            @if(is_null($category->deleted_at))
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -140,6 +146,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            @else 
+                                                            <td></td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

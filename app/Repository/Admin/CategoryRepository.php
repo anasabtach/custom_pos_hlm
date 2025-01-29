@@ -34,12 +34,12 @@ class CategoryRepository implements CategoryInterface
 
     public function edit(string $category_id):Category
     {
-        return $this->category->findOrFail(hashid_decode($category_id));
+        return $this->category->withTrashed()->findOrFail(hashid_decode($category_id));
     }
 
     public function update(array $arr):bool
     {
-        return $this->category->findOrFail(hashid_decode($arr['category_id']))->update([
+        return $this->category->withTrashed()->findOrFail(hashid_decode($arr['category_id']))->update([
             'name'        => $arr['category_name'],
         ]);
     }

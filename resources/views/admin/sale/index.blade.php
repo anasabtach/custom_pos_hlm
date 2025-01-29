@@ -59,7 +59,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class=" table-responsive table_container" id="printableTable">
                                             <table id="sale_table" class="display ">
 
                                                 <thead class="text-body">
@@ -140,51 +140,6 @@
     </div>
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
+<script src="{{ asset('assets/js/sale.js') }}"></script>
 
-    var table = jQuery('#sale_table').DataTable({
-        dom: 'Bfrtip',  // This controls the placement of the buttons
-        buttons: [
-            'copy',        // Copy to clipboard
-            'csv',         // Export to CSV
-            'excel',       // Export to Excel
-            'pdf',         // Export to PDF
-            'print'        // Print the table
-        ]
-    });
-    jQuery('#customerFilter').on('change', function() {
-        var selectedCustomer = $(this).val();
-        table.column(2).search(selectedCustomer).draw();
-    });
-
-    // var table = jQuery('#sale_table').DataTable();
-
-    jQuery.fn.dataTable.ext.search.push(
-        function (settings, data, dataIndex) {
-        var fromDate = $('#from_date').val();
-        var toDate = $('#to_date').val();
-        var columnData = data[7]; // Adjust to your date column index
-
-        if (!fromDate && !toDate) {
-            return true; // Show all rows if no date filters are set
-        }
-
-        var rowDate = new Date(columnData);
-        if (fromDate && rowDate < new Date(fromDate)) {
-            return false;
-        }
-        if (toDate && rowDate > new Date(toDate)) {
-            return false;
-        }
-
-        return true;
-    });
-
-    $('#from_date, #to_date').on('change', function() {
-        table.draw(); // Redraw the table with the applied filters
-    });
-});
-
-</script>
 @endsection

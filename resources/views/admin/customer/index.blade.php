@@ -44,7 +44,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class=" table-responsive table_container" id="printableTable">
                                             <table id="myTable" class="display ">
 
                                                 <thead class="text-body">
@@ -112,6 +112,7 @@
                                                                 </p>
                                                             </td>
                                                             <td class="text-center">{{ $customer->remarks }}</td>
+                                                            @if(is_null($customer->deleted_at))
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -147,6 +148,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            @else 
+                                                            <td></td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

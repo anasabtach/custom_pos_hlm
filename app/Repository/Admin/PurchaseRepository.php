@@ -10,7 +10,7 @@ class PurchaseRepository implements PurchaseInterface
 {   
     public function getPurchases():Collection
     {
-        return Purchase::with(['supplier'])->latest()->withLog()->get();
+        return Purchase::with(['supplier'])->withTrashed()->latest()->withLog()->get();
     }
 
     public function store(array $arr):Purchase
@@ -36,12 +36,12 @@ class PurchaseRepository implements PurchaseInterface
 
     public function edit(string $purchase_id):Purchase
     {
-        return Purchase::with('items')->findOrFail(hashid_decode($purchase_id));
+        return Purchase::with('items')->withTrashed()->findOrFail(hashid_decode($purchase_id));
     }
 
     public function update(array $arr):Purchase
     {   
-       $purchase =   Purchase::findOrFail(hashid_decode($arr['purchase_id']));
+       $purchase =   Purchase::withTrashed()->findOrFail(hashid_decode($arr['purchase_id']));
        $purchase->update(
         [
             'admin_id'      => auth()->id(),
@@ -58,7 +58,7 @@ class PurchaseRepository implements PurchaseInterface
     }
 
     public function delete(string $purchase_id):bool
-    {
+    {   
         return Purchase::destroy(hashid_decode($purchase_id));
     }
 

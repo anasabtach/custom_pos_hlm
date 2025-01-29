@@ -105,7 +105,7 @@
                                         </h3>
                                     </div>
                                     <div class="icons d-flex">
-                                    @can('products')
+                                        @can('products')
                                             <a href="{{ route('admin.products.create') }}" class="btn ms-2 p-0"
                                                 id="kt_notes_panel_toggle" data-bs-toggle="tooltip" title=""
                                                 data-bs-placement="right" data-original-title="Check out more demos">
@@ -136,7 +136,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class=" table-responsive table_container" id="printableTable">
                                             <table id="product_table" class="display">
                                                 <thead class="text-body">
                                                     <tr>
@@ -155,13 +155,14 @@
                                                         <th class="text-center">Status</th>
                                                         <th class="text-center">Color</th>
                                                         <th class="text-center">Image</th>
-                                                        <th class="text-center">Created <br/>At</th>
+                                                        <th class="text-center">Created <br />At</th>
                                                         <th class="text-center">Draft</th>
                                                         <th class="no-sort text-end">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="kt-table-tbody text-dark">
                                                     @foreach ($products as $product)
+                                                    @if(is_null($product->deleted_at))
                                                         <tr>
                                                             <td class="text-center">{{ $loop->iteration }}</td>
                                                             <td class="text-center">
@@ -217,7 +218,11 @@
                                                             <td class="align-middle text-center text-sm">
                                                                 <div
                                                                     class="custom-control switch custom-switch-info custom-switch custom-control-inline form-check form-switch me-0">
-                                                                    <input type="checkbox" class="custom-control-input form-check-input status_toggle_btn"  @checked($product->status) data-route="{{ route('admin.common.update_status', ['table_name' => 'products', 'column_name' => 'status', 'id' => $product->hashid, 'value' => ':value']) }}" id="customSwitchcolor3">
+                                                                    <input type="checkbox"
+                                                                        class="custom-control-input form-check-input status_toggle_btn"
+                                                                        @checked($product->status)
+                                                                        data-route="{{ route('admin.common.update_status', ['table_name' => 'products', 'column_name' => 'status', 'id' => $product->hashid, 'value' => ':value']) }}"
+                                                                        id="customSwitchcolor3">
                                                                     <label
                                                                         class="custom-control-label form-check-label me-1"
                                                                         for="customSwitchcolor3">
@@ -236,12 +241,13 @@
                                                                 {{ getCustomDate($product->created_at) }}
                                                             </td>
                                                             <td>
-                                                                @if($product->is_draft == '1')
+                                                                @if ($product->is_draft == '1')
                                                                     <span class="badge bg-danger text-white">yes</span>
-                                                                @else 
+                                                                @else
                                                                     <span class="badge bg-success text-white">no</span>
                                                                 @endif
                                                             </td>
+                                                            @if(is_null($product->deleted_at))
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -269,13 +275,15 @@
                                                                         @can('products')
                                                                             <a class="dropdown-item confirm-delete"
                                                                                 href="{{ route('admin.products.delete', ['product_id' => $product->hashid]) }}">Delete</a>
-        
-                                                                                  
-                                                                                @endcan
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            @else 
+                                                            <td></td>
+                                                            @endif
                                                         </tr>
+                                                        @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>

@@ -67,7 +67,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class="table-responsive table_container" id="printableTable">
                                             <table id="supplier_datatable" class="display ">
 
                                                 <thead class="text-body">
@@ -143,42 +143,45 @@
                                                                 </p>
                                                             </td>
 
-
-                                                            <td>
-                                                                <div class="card-toolbar text-end">
-                                                                    <button class="btn p-0 shadow-none" type="button"
-                                                                        id="dropdowneditButton01" data-bs-toggle="dropdown"
-                                                                        aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="svg-icon">
-                                                                            <svg width="20px" height="20px"
-                                                                                viewBox="0 0 16 16"
-                                                                                class="bi bi-three-dots text-body"
-                                                                                fill="currentColor"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <path fill-rule="evenodd"
-                                                                                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
-                                                                                </path>
-                                                                            </svg>
-                                                                        </span>
-                                                                    </button>
-                                                                    <div class="dropdown-menu dropdown-menu-right"
-                                                                        aria-labelledby="dropdowneditButton01"
-                                                                        style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                                        @can('suppliers')
-                                                                            <a href="{{ route('admin.suppliers.edit', ['supplier_id' => $supplier->hashid]) }}"
-                                                                                class="dropdown-item click-edit"
-                                                                                id="click-edit2" data-bs-toggle="tooltip"
-                                                                                title="" data-bs-placement="right"
-                                                                                data-original-title="Check out more demos">Edit</a>
-                                                                        @endcan
-                                                                        @can('suppliers')
-                                                                            <a class="dropdown-item confirm-delete"
-                                                                                title="Delete"
-                                                                                href="{{ route('admin.suppliers.delete', ['supplier_id' => $supplier->hashid]) }}">Delete</a>
-                                                                        @endcan
+                                                            @if(is_null($supplier->deleted_at))
+                                                                <td>
+                                                                    <div class="card-toolbar text-end">
+                                                                        <button class="btn p-0 shadow-none" type="button"
+                                                                            id="dropdowneditButton01" data-bs-toggle="dropdown"
+                                                                            aria-haspopup="true" aria-expanded="false">
+                                                                            <span class="svg-icon">
+                                                                                <svg width="20px" height="20px"
+                                                                                    viewBox="0 0 16 16"
+                                                                                    class="bi bi-three-dots text-body"
+                                                                                    fill="currentColor"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path fill-rule="evenodd"
+                                                                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </button>
+                                                                        <div class="dropdown-menu dropdown-menu-right"
+                                                                            aria-labelledby="dropdowneditButton01"
+                                                                            style="position: absolute; transform: translate3d(1001px, 111px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                                            @can('suppliers')
+                                                                                <a href="{{ route('admin.suppliers.edit', ['supplier_id' => $supplier->hashid]) }}"
+                                                                                    class="dropdown-item click-edit"
+                                                                                    id="click-edit2" data-bs-toggle="tooltip"
+                                                                                    title="" data-bs-placement="right"
+                                                                                    data-original-title="Check out more demos">Edit</a>
+                                                                            @endcan
+                                                                            @can('suppliers')
+                                                                                <a class="dropdown-item confirm-delete"
+                                                                                    title="Delete"
+                                                                                    href="{{ route('admin.suppliers.delete', ['supplier_id' => $supplier->hashid]) }}">Delete</a>
+                                                                            @endcan
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
+                                                                </td>
+                                                            @else 
+                                                            <td></td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

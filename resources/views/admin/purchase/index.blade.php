@@ -62,7 +62,7 @@
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
                                     <div>
-                                        <div class=" table-responsive" id="printableTable">
+                                        <div class=" table-responsive table_container" id="printableTable">
                                             <table id="purchase_table" class="display ">
 
                                                 <thead class="text-body">
@@ -93,6 +93,7 @@
                                                                 </p>
                                                             </td>
                                                             <td class="text-center">{{ $purchase->remarks }}</td>
+                                                            @if(is_null($purchase->deleted_at))
                                                             <td>
                                                                 <div class="card-toolbar text-end">
                                                                     <button class="btn p-0 shadow-none" type="button"
@@ -133,6 +134,9 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
+                                                            @else 
+                                                                <td></td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -149,24 +153,5 @@
     </div>
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
-
-    var table = jQuery('#purchase_table').DataTable({
-        dom: 'Bfrtip',  // This controls the placement of the buttons
-        buttons: [
-            'copy',        // Copy to clipboard
-            'csv',         // Export to CSV
-            'excel',       // Export to Excel
-            'pdf',         // Export to PDF
-            'print'        // Print the table
-        ]
-    });
-    jQuery('#supplierFilter').on('change', function() {
-        var selectedCategory = $(this).val();
-        table.column(2).search(selectedCategory).draw();
-    });
-});
-
-</script>
+<script src="{{ asset('assets/js/purchase.js') }}"></script>
 @endsection

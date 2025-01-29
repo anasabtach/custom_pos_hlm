@@ -1,13 +1,16 @@
 $(document).ready(function() {
     var table = jQuery('#supplier_datatable').DataTable({
-        dom: 'Bfrtip',  // This controls the placement of the buttons
+        // dom: 'Bfrtip',  // This controls the placement of the buttons
+        dom: '<"top"lfB>rt<"bottom"ip><"clear">', // Includes length menu and buttons
         buttons: [
             'copy',        // Copy to clipboard
             'csv',         // Export to CSV
             'excel',       // Export to Excel
             'pdf',         // Export to PDF
             'print'        // Print the table
-        ]
+        ],
+        lengthMenu: [10, 25, 50, 100], // Options for the number of rows to display
+        pageLength: 10,                  // Default number of rows to display
     });
 
     jQuery.fn.dataTable.ext.search.push(

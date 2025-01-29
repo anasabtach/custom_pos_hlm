@@ -30,12 +30,12 @@ class UnitRepository implements UnitInterface
 
     public function edit(string $unit_id):Unit
     {   
-        return $this->unit->findOrFail(hashid_decode($unit_id));
+        return $this->unit->withTrashed()->findOrFail(hashid_decode($unit_id));
     }
 
     public function update(array $arr):bool
     {   
-        return $this->unit->findOrFail(hashid_decode($arr['unit_id']))->update([
+        return $this->unit->withTrashed()->findOrFail(hashid_decode($arr['unit_id']))->update([
             'name'  => $arr['unit_name'],
         ]);
     }

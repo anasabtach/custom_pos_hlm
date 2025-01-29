@@ -25,18 +25,18 @@ class BrandRepository implements BrandInterface
     }
 
     public function getBrands(): Collection
-    {
+    {   
         return  $this->brand->withTrashed()->latest()->withLog()->get();
     }
 
     public function edit(string $brand_id):Brand
-    {   
-        return $this->brand->findOrFail(hashid_decode($brand_id));
+    {      
+        return $this->brand->withTrashed()->findOrFail(hashid_decode($brand_id));
     }
 
     public function update(array $arr):bool
     {   
-        return $this->brand->findOrFail(hashid_decode($arr['brand_id']))->update([
+        return $this->brand->withTrashed()->findOrFail(hashid_decode($arr['brand_id']))->update([
             'name'  => $arr['brand_name'],
         ]);
     }

@@ -144,6 +144,26 @@ class WordPressProductRepository
     public function store($arr, $image_data)
     {   
         // Initialize the product data array
+        // $productData = [
+        //     'name'              => $arr->name,
+        //     'type'              => !empty($arr->variations) ? 'variable' : 'simple', // Use 'variable' if variations exist
+        //     'regular_price'     => empty($arr->variations) ? $arr->price : null, // Regular price only for simple products
+        //     'description'       => $arr->notes ?? '',
+        //     'sku'               => $arr->sku ?? '',
+        //     'stock_quantity'    => empty($arr->variations) ? ($arr->stock ?? 0) : null, // Stock for simple products
+        //     'manage_stock'      => true,
+        //     'status'            => $arr->status == 1 ? 'publish' : 'draft',
+        //     // 'images' => [
+        //     //     [
+        //     //         'src' => asset($image_data['image']),
+        //     //     ],
+        //     // ],
+        //     'categories' => [
+        //         [
+        //             'id' => $arr->category->wordpress_id ?? null,
+        //         ],
+        //     ],
+        // ];
         $productData = [
             'name'              => $arr->name,
             'type'              => !empty($arr->variations) ? 'variable' : 'simple', // Use 'variable' if variations exist
@@ -153,17 +173,16 @@ class WordPressProductRepository
             'stock_quantity'    => empty($arr->variations) ? ($arr->stock ?? 0) : null, // Stock for simple products
             'manage_stock'      => true,
             'status'            => $arr->status == 1 ? 'publish' : 'draft',
-            // 'images' => [
-            //     [
-            //         'src' => asset($image_data['image']),
-            //     ],
-            // ],
-            'categories' => [
-                [
-                    'id' => $arr->category->wordpress_id ?? null,
-                ],
-            ],
         ];
+        
+        // Add categories only if wordpress_id is not null
+        if (!empty($arr->category->wordpress_id)) {
+            $productData['categories'] = [
+                [
+                    'id' => $arr->category->wordpress_id,
+                ],
+            ];
+        }
 
         // Prepare attributes conditionally
         $attributes = [];
@@ -222,7 +241,7 @@ class WordPressProductRepository
         // Make the API request to create the product
         $response = Http::withBasicAuth($this->consumerKey, $this->consumerSecret)
             ->post("{$this->baseUrl}/products", $productData);
-
+   
         // Check if the request was successful
         if (!$response->successful()) {
             throw new \Exception('Failed to create product: ' . $response->body());
@@ -379,6 +398,25 @@ class WordPressProductRepository
     {      
         if (!is_null($wordpressId)) {
             // Prepare product data for update
+            // $productData = [
+            //     'name'           => $arr->product_name,
+            //     'regular_price'  => empty($arr->variations) ? $arr->price : null, // Price for simple products
+            //     'description'    => $arr->notes ?? '',
+            //     'sku'            => $arr->sku ?? '',
+            //     'stock_quantity' => empty($arr->variations) ? $arr->stock ?? 0 : null, // Stock for simple products
+            //     'manage_stock'   => true,
+            //     'status'         => $arr->status == 1 ? 'publish' : 'draft',
+            //     // 'images'         => [
+            //     //     [
+            //     //         'src' => asset($image_data['image']),
+            //     //     ],
+            //     // ],
+            //     'categories' => [
+            //         [
+            //             'id' => $arr->category->wordpress_id ?? null,
+            //         ],
+            //     ],
+            // ];
             $productData = [
                 'name'           => $arr->product_name,
                 'regular_price'  => empty($arr->variations) ? $arr->price : null, // Price for simple products
@@ -387,17 +425,18 @@ class WordPressProductRepository
                 'stock_quantity' => empty($arr->variations) ? $arr->stock ?? 0 : null, // Stock for simple products
                 'manage_stock'   => true,
                 'status'         => $arr->status == 1 ? 'publish' : 'draft',
-                // 'images'         => [
-                //     [
-                //         'src' => asset($image_data['image']),
-                //     ],
-                // ],
-                'categories' => [
-                    [
-                        'id' => $arr->category->wordpress_id ?? null,
-                    ],
-                ],
             ];
+            
+            // Add categories only if wordpress_id is not null
+            if (!empty($arr->category->wordpress_id)) {
+                $productData['categories'] = [
+                    [
+                        'id' => $arr->category->wordpress_id,
+                    ],
+                ];
+            }
+
+            
     
             // Prepare attributes (supplier_id, unit_id, color) conditionally
             $attributes = [];

@@ -19,6 +19,11 @@
                             <form action="{{ route('admin.roles.store') }}" method="POST" id="role_form" class="validation">
                                 @csrf
                                 <div class="form-group row">
+                                    @if(isset($is_update))
+                                    <div class="alert alert-success" role="alert">
+                                    Please update the Role and permissions
+                                  </div>
+                                @endif
                                     <div class="col-md-5">
                                         <label>Role Name</label>
                                         <input type="text" placeholder="Role Name"
@@ -104,6 +109,7 @@
                                                                 @endif
                                                             </p>
                                                         </td>
+                                                        @if(is_null($role->deleted_at))
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"
@@ -138,6 +144,9 @@
                                                                 </div>
                                                             </div>
                                                         </td>
+                                                        @else 
+                                                        <td></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>

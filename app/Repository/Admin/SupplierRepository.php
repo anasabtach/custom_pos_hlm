@@ -40,12 +40,12 @@ class SupplierRepository implements SupplierInterface
 
     public function edit(string $supplier_id):Supplier
     {   
-        return $this->supplier->with(['trnDocuments'])->findOrFail(hashid_decode($supplier_id));
+        return $this->supplier->with(['trnDocuments'])->withTrashed()->findOrFail(hashid_decode($supplier_id));
     }
 
     public function update(array $arr):Supplier
     {   
-        $supplier = $this->supplier->findOrFail(hashid_decode($arr['supplier_id'])); // Find the supplier model
+        $supplier = $this->supplier->withTrashed()->findOrFail(hashid_decode($arr['supplier_id'])); // Find the supplier model
 
         $supplier->update([ // Update the supplier model
             'admin_id'      => auth()->id(),

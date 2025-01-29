@@ -60,7 +60,7 @@ class ProductRepository implements ProductInterface
     
     public function editProduct(string $product_id):Product
     {
-        return $this->product->with(['variations'])->findOrFail(hashid_decode($product_id));
+        return $this->product->with(['variations'])->withTrashed()->findOrFail(hashid_decode($product_id));
     }
 
     public function delete(string $product_id):bool
@@ -69,8 +69,8 @@ class ProductRepository implements ProductInterface
     }
 
     public function updateProduct(array $arr):Product
-    {  
-        $product = $this->product->findOrFaiL($arr['product_id']);
+    {   
+        $product = $this->product->withTrashed()->findOrFaiL($arr['product_id']);
         $product->update($arr);
         return $product;
     }

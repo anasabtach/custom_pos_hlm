@@ -44,7 +44,7 @@
                         <div class="col-12 px-4">
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive table_container">
                                         <table id="myTable" class="table table-bordered display">
                                             <thead class="text-body">
                                                 <tr>
@@ -97,6 +97,7 @@
                                                             </p>
                                                         </td>
                                                         <td class="text-center">{{ $staff->remarks }}</td>
+                                                        @if(is_null($staff->deleted_at))
                                                         <td>
                                                             <div class="card-toolbar text-end">
                                                                 <button class="btn p-0 shadow-none" type="button"
@@ -133,6 +134,9 @@
                                                                 </div>
                                                             </div>
                                                         </td>
+                                                        @else 
+                                                        <td></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>

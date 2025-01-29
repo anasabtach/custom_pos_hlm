@@ -33,7 +33,7 @@
                         <div class="col-12 px-4">
                             <div class="card card-custom gutter-b bg-white border-0">
                                 <div class="card-body">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive table_container">
                                         <table id="myTable" class="table table-bordered display">
                                             <thead class="text-body">
                                                 <tr>

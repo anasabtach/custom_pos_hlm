@@ -36,12 +36,12 @@ class StaffRepository implements StaffInterface
 
     public function edit(string $id):Admin
     {   
-        return Admin::findOrFail(hashid_decode($id));
+        return Admin::withTrashed()->findOrFail(hashid_decode($id));
     }
 
     public function update(array $data):Admin
     {   
-        $admin = Admin::findOrFail(hashid_decode($data['staff_id']));
+        $admin = Admin::withTrashed()->findOrFail(hashid_decode($data['staff_id']));
         $admin->update($data);
         return $admin;
     }

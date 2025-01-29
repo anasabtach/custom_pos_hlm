@@ -28,12 +28,12 @@ class RoleRepository implements RoleInterface
     }
 
     public function edit(string $id):Role{
-        return Role::with(['permissions'])->findOrFail(hashid_decode($id));
+        return Role::with(['permissions'])->withTrashed()->findOrFail(hashid_decode($id));
     }
 
     public function update($data):Role
     {   
-        $role = Role::findOrFail(hashid_decode($data['role_id']));
+        $role = Role::withTrashed()->findOrFail(hashid_decode($data['role_id']));
         $role->name = $data['name'];
         $role->permissions()->sync($data['permission_ids']);
         $role->save();
@@ -41,7 +41,7 @@ class RoleRepository implements RoleInterface
     }
 
     public function delete(string $id):bool
-    {
+    {    
         $role = Role::findOrFail(hashid_decode($id));
         $role->permissions()->detach();
         return $role->delete();

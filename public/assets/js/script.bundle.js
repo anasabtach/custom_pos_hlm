@@ -655,7 +655,8 @@ jQuery(document).ready(function() {
         'print'        // Print the table
     ],
     lengthMenu: [10, 25, 50, 100], // Options for the number of rows to display
-    pageLength: 10                  // Default number of rows to display
+    pageLength: 10,                  // Default number of rows to display
+    
   });
 
   jQuery('#myTable tbody').on( 'click', 'tr', function () {
@@ -665,8 +666,28 @@ jQuery(document).ready(function() {
 
   jQuery('#button').click( function () {
       alert( table.rows('.selected').data().length +' row(s) selected' );
-  } );
-} );
+  });
+});
+
+var elementScroll = document.querySelector('.table_container');
+var mx = 0;
+
+elementScroll.addEventListener("mousedown", function(e){
+  this.sx = this.scrollLeft;
+  mx = e.pageX - this.offsetLeft;
+
+  this.addEventListener("mousemove", mouseMoveFunction);
+});
+
+elementScroll.addEventListener("mouseup", function(e){
+  this.removeEventListener("mousemove", mouseMoveFunction);
+  mx = 0;
+});
+
+function mouseMoveFunction(e){
+  var mx2 = e.pageX - this.offsetLeft;
+  if(mx) this.scrollLeft = this.sx + mx - mx2;
+}
 
 jQuery(document).ready(function() {
   jQuery(".pin-click").click(function(e) {

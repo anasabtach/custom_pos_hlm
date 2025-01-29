@@ -20,6 +20,8 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assetss/backend/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         /* .bg-gradient-primary {
     background-image: linear-gradient(310deg, #388cb8 0%, #388cb8 100%) !important;
@@ -34,6 +36,25 @@ img.text9c {
 }
 button.btn.btn-lg.btn-primary.btn-lg.w-100.mt-4.mb-0 {
     background-color: #388cb8 !important;
+}
+/* i.fa-regular.fa-eye.show_password.text-input51 {
+    position: absolute;
+    left: 357px;
+    top: 197px;
+}
+@media only screen and (max-width: 600px) {
+    i.fa-regular.fa-eye.show_password.text-input51 {
+    position: absolute;
+    left: 309px;
+    top: 197px;
+}
+} */
+i.fa-regular.show_password.text-input51 {
+    margin-top: 16px;
+    margin-left: -20px;
+}
+.form-control-lg, .form-upset1{
+    width: 361px !important;
 }
     </style>
 </head>
@@ -61,9 +82,19 @@ button.btn.btn-lg.btn-primary.btn-lg.w-100.mt-4.mb-0 {
                                             <input type="email" class="form-control form-control-lg"
                                                 placeholder="Email" aria-label="Email" name="email" id="email">
                                         </div>
-                                        <div class="mb-3">
-                                            <input type="password" class="form-control form-control-lg"
-                                                placeholder="Password" aria-label="Password" name="password" id="password">
+                                        <div class="mb-31">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <input type="password" class="form-control form-control-lg form-upset1"
+                                                    placeholder="Password" aria-label="Password" name="password" id="password">
+                                                   
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <i class="fa-regular fa-eye show_password text-input51"></i>
+                                                </div>
+                                            </div>
+                                          
+                                               
                                         </div>
                                         {{-- <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="rememberMe">
@@ -119,7 +150,22 @@ button.btn.btn-lg.btn-primary.btn-lg.w-100.mt-4.mb-0 {
     
     </script>
     <script src="{{ asset('assets/backend/js/toast-error.js') }}"></script>
+    <script>
+        $('.show_password').click(function () {
+        // Select both password inputs
+        var passwordInput = $('#password'); // First password field
+        // var confirmPasswordInput = $('input[name="password_confirmation"]'); // Confirm password field
 
+        // Toggle input types for both fields
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            $('.show_password').removeClass('fa-eye').addClass('fa-eye-slash'); // Update all icons
+        } else {
+            passwordInput.attr('type', 'password');
+            $('.show_password').removeClass('fa-eye-slash').addClass('fa-eye'); // Update all icons
+        }
+        });
+    </script>
 </body>
 
 </html>

@@ -16,3 +16,11 @@ $.validator.addMethod("boolean", function(value, element) {//check boolean
 //     return 
 //     return this.optional(element) || $(param).val() == "1";
 // }, "This field is required");
+
+$.validator.addMethod("lessThanOrEqual", function(value, element, param) {
+    var target = $(param); // The element you want to compare with
+    if (this.optional(element)) {
+        return true; // If the field is optional, validation passes
+    }
+    return parseFloat(value) <= parseFloat(target.val()); // Compare the values
+}, "Value must be less than or equal to the specified value.");

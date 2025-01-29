@@ -39,12 +39,12 @@ class CustomerRepository implements CustomerInterface
 
     public function edit(string $customer_id):Customer
     {   
-        return $this->customer->findOrFail(hashid_decode($customer_id));
+        return $this->customer->withTrashed()->findOrFail(hashid_decode($customer_id));
     }
 
     public function update(array $arr):bool
     {   
-        return $this->customer->findOrFail(hashid_decode($arr['customer_id']))->update([
+        return $this->customer->withTrashed()->findOrFail(hashid_decode($arr['customer_id']))->update([
             'admin_id'      => auth()->id(),
             'country_id'    => hashid_decode($arr['country_id']),
             'name'          => $arr['name'],

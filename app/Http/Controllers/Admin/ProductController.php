@@ -117,7 +117,7 @@ class ProductController extends Controller
     }
 
     public function deletedProducts(){
-        rights('deleted-products');
+        rights('products');
         $data = [
             'title'         => 'Products',
             'products'      => $this->service->getDeletedProdcuts(),

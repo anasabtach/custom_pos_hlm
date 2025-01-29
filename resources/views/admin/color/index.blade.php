@@ -18,6 +18,11 @@
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                             <label>{{ isset($is_update) ? 'Update' : 'Add' }} color</label>
+                                            @if(isset($is_update))
+                                                <div class="alert alert-success" role="alert">
+                                                    Please update the color name
+                                                </div>
+                                            @endif
                                             <fieldset class="form-group mb-3">
                                                 <input type="text" placeholder="Enter color name"
                                                     class="form-control round bg-transparent text-dark"
