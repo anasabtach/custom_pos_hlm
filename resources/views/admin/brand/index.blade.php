@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="hidden" name="brand_id"
+                                        <input type="hidden" name="brand_id" id="brand_id"
                                             value="{{ isset($is_update) ? $edit_brand->hashid : '' }}">
                                         <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                     </div>

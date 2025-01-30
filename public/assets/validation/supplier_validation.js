@@ -11,7 +11,21 @@ $('#supplier_form').validate({
         email:{
             required:true,
             maxlength:500,
-            email:true
+            email:true,
+            remote : {
+                url : '/admin/common/check-value-exists',
+                type : "GET",
+                data:{
+                    table_name  : 'suppliers',
+                    column_name : 'email',
+                    value: function() {
+                        return $('#email').val();
+                    },
+                    id: function() {
+                        return $('#supplier_id').val();
+                    }
+                }
+            }
         },
         phone_no:{
             required:true,
@@ -33,5 +47,13 @@ $('#supplier_form').validate({
             required:false,
             maxlength:100
         },
+    },
+    messages:{
+        email:{
+            remote: "This email already exists."
+        },
     }
+});
+$('#email').keyup(function() {
+    $('#supplier_form').validate().element('#email');  // Manually trigger validation for the color field
 });

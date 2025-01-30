@@ -13,7 +13,21 @@ $('#profile_form').validate({
         email:{
             required:true,
             minlength:5,
-            maxlength:50
+            maxlength:50,
+            remote : {
+                url : '/admin/common/check-value-exists',
+                type : "GET",
+                data:{
+                    table_name  : 'admins',
+                    column_name : 'email',
+                    value: function() {
+                        return $('#email').val();
+                    },
+                    id: function() {
+                        return $('#staff_id').val();
+                    }
+                }
+            }
         },
         user_type:{
             required:true,
@@ -37,6 +51,12 @@ $('#profile_form').validate({
     messages:{
         password_confirmation:{
             equalTo:"Please enter the same password again"
-        }
+        },
+        email:{
+            remote: "This email already exists."
+        },
     }
+});
+$('#email').keyup(function() {
+    $('#profile_form').validate().element('#email');  // Manually trigger validation for the color field
 });

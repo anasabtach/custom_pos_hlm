@@ -13,7 +13,7 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.colors.store') }}" method="POST" id="brand_form">
+                                <form action="{{ route('admin.colors.store') }}" method="POST" id="color_form">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-12">
@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="hidden" name="color_id"
+                                        <input type="hidden" name="color_id" id="color_id"
                                             value="{{ isset($is_update) ? $edit_color->hashid : '' }}">
                                             <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>                                            
                                     </div>
@@ -125,7 +125,7 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ asset('assets/validation/brands_validation.js') }}"></script>
+    <script src="{{ asset('assets/validation/color_validation.js') }}"></script>
     <script>
 
     </script>

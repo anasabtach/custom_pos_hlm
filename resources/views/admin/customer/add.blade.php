@@ -26,7 +26,7 @@
                                     <label>Email</label>
                                     <fieldset class="form-group mb-3">
                                         <input type="email" placeholder="Enter email address" class="form-control round bg-transparent text-dark" 
-                                               value="{{ isset($is_update) ? $edit_customer->email : old('email') }}" name="email">
+                                               value="{{ isset($is_update) ? $edit_customer->email : old('email') }}" name="email" id="email">
                                     </fieldset>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                 </div>
                             </div> --}}
                             <div class="col-md-12">
-                                <input type="hidden" name="customer_id" value="{{ isset($is_update) ? $edit_customer->hashid : '' }}">
+                                <input type="hidden" name="customer_id" id="customer_id" value="{{ isset($is_update) ? $edit_customer->hashid : '' }}">
                                 {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}"> --}}
                                 <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                             </div>

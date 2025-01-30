@@ -16,7 +16,9 @@
                                                 <select name="" id="supplierFilter" class="form-control select_2">
                                                     <option value="">All</option>
                                                     @foreach($suppliers AS $supplier)
-                                                        <option value="{{ $supplier->name }}">{{ $supplier->name}}</option>
+                                                        @if(is_null($supplier->created_at))
+                                                            <option value="{{ $supplier->name }}">{{ $supplier->name}}</option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                             </fieldset>

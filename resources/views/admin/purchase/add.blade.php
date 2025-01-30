@@ -12,7 +12,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.purchases.store') }}" method="POST">
+                        <form action="{{ route('admin.purchases.store') }}" method="POST" id="role_form">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -122,6 +122,7 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('assets/validation/purchase_validation.js') }}"></script>
     <script>
         $(document).ready(function() {
             // Select2 for product search with AJAX
@@ -176,6 +177,7 @@
                     },
                     success: function(res) {
                         $('tbody').append(res.html);
+                        updateInputNames();
                     }
                 });
             }
@@ -184,15 +186,24 @@
         // Remove product row
         $(document).on('click', '.delete_product_row', function() {
             $(this).parent().parent().remove();
+            updateInputNames();
         });
 
         // Update subtotal when quantity changes
-        $(document).on('keyup', '.qty', function() {
+        $(document).on('keyup', '.qty, .cost', function() {
             var $row = $(this).closest('tr');
             var price = parseFloat($row.find('.cost').val()) || 0;
             var quantity = parseFloat($(this).val()) || 0;
             var subtotal = price * quantity;
             $row.find('.subtotal').text(subtotal.toFixed(2));
         });
+
+        function updateInputNames() {
+            $('.dynamic_row').each(function(index) {
+                // Update input names with the current index
+                $(this).find('input[name="qty[]"]').attr('name', 'qty[' + index + ']');
+                $(this).find('input[name="cost[]"]').attr('name', 'cost[' + index + ']');
+            });
+        }
     </script>
 @endsection

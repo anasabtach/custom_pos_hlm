@@ -1,8 +1,8 @@
 @extends('admin.partials.master')
 @section('style')
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
-    <link href="{{ asset('assets/admin/css/menu.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+    {{-- <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('assets/admin/css/menu.css') }}" rel="stylesheet"> --}}
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css"> --}}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -27,7 +27,7 @@
                                     <div class="col-md-5">
                                         <label>Role Name</label>
                                         <input type="text" placeholder="Role Name"
-                                            class="form-control round bg-transparent text-dark" name="name"
+                                            class="form-control round bg-transparent text-dark" name="name" id="name"
                                             value="{{ $edit_role->name ?? '' }}" required>
                                     </div>
                                     <div class="col-md-5">
@@ -46,7 +46,7 @@
 
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center">
-                                        <input type="hidden" name="role_id" value="{{ $edit_role->hashid ?? '' }}">
+                                        <input type="hidden" name="role_id" id="role_id" value="{{ $edit_role->hashid ?? '' }}">
                                         {{-- @include('admin.components.button', [
                                             'class' => 'btn-primary',
                                             'type' => 'submit',
@@ -162,6 +162,8 @@
     </div>
 @endsection
 @section('script')
+<script src="{{ asset('assets/validation/role_validation.js') }}"></script>
+
 <script>
     $(document).ready(function () {
         $('.fav_clr').select2({

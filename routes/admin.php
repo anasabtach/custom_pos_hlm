@@ -177,5 +177,6 @@ Route::name('admin.')->group(function(){
     //commonr routes
     Route::prefix('common')->name('common.')->controller(CommonController::class)->group(function(){
         Route::get('/update-status/{table_name}/{column_name}/{id}/{value}','updateStatus')->name('update_status');
+        Route::get('/check-value-exists', 'checkValueExists')->name('check_value_exists');
     });
 });

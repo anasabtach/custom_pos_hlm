@@ -67,4 +67,11 @@ class CommonController extends Controller
         $response = $shopify->Product($product->shopify_id)->put($productData);
     }
     
+
+    public function checkValueExists(Request $req){
+        $exists =  DB::table($req->table_name)->where($req->column_name, $req->value)->when(!is_null($req->id), function($query)use($req){
+                $query->where('id', '!=', hashid_decode($req->id));
+            })->exists();
+        return ($exists) ? "false" : "true";
+    }
 }

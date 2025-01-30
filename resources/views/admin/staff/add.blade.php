@@ -36,7 +36,7 @@
                                 <!-- Email -->
                                 <div class="col-md-6">
                                     <label for="email" class="form-control-label">Email</label>
-                                    <input type="text" class="form-control round bg-transparent text-dark" placeholder="Enter email" name="email" value="{{ @$edit_staff->email }}">
+                                    <input type="text" class="form-control round bg-transparent text-dark" placeholder="Enter email" name="email" id="email" value="{{ @$edit_staff->email }}">
                                 </div>
                                 
                                 <!-- Role -->
@@ -84,7 +84,7 @@
                             <div class="row mt-5">
                                 <!-- Submit Button -->
                                 <div class="col-md-12">
-                                    <input type="hidden" name="staff_id" value="{{ @$edit_staff->hashid }}">
+                                    <input type="hidden" name="staff_id" id="staff_id" value="{{ @$edit_staff->hashid }}">
                                     {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($edit_staff) ? 'Update' : 'Add' }}"> --}}
                                     <button type="submit" class="btn btn-primary mt-4 btn24" >{{ isset($is_update) ? 'Update' : 'Add' }}</button>
                                 </div>

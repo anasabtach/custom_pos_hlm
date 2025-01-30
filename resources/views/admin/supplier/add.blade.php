@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="hidden" name="supplier_id"
+                                    <input type="hidden" name="supplier_id" id="supplier_id"
                                         value="{{ isset($is_update) ? $edit_supplier->hashid : '' }}">
                                     {{-- <input type="submit" class="btn btn-primary mt-4 float-end" value="{{ isset($is_update) ? 'Update' : 'Add' }}"> --}}
                                     <button type="submit"

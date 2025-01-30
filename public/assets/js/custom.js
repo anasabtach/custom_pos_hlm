@@ -139,7 +139,6 @@ $('.select_2').select2({
     submitButton.prop('disabled', true); // Disable the submit button
     submitButton.html('<i class="fa fa-spinner fa-spin"></i>Loading');
   }
-
 });
 
 $('.show_password').click(function () {

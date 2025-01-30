@@ -1,31 +1,34 @@
-$('#category_form').validate({
+$('#role_form').validate({
     rules:{
-        category_name:{
+        name:{
             required:true,
             maxlength:50,
             remote : {
                 url : '/admin/common/check-value-exists',
                 type : "GET",
                 data:{
-                    table_name  : 'categories',
+                    table_name  : 'roles',
                     column_name : 'name',
                     value: function() {
-                        return $('#category_name').val();
+                        return $('#name').val();
                     },
                     id: function() {
-                        return $('#category_id').val();
+                        return $('#brand_id').val();
                     }
                 }
             }
+        },
+        'permissions[]':{
+            required:true,
         }
     },
     messages:{
-        category_name:{
-            remote: "This category name already exists."
+        name:{
+            remote: "This role name already exists."
         },
     }
 });
 
-$('#category_name').keyup(function() {
-    $('#category_form').validate().element('#category_name');  // Manually trigger validation for the color field
+$('#name').keyup(function() {
+    $('#role_form').validate().element('#name');  // Manually trigger validation for the color field
 });

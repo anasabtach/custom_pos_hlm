@@ -18,11 +18,40 @@ $('#product_form').validate({
         },
         product_name: {
             required: true,
-            maxlength: 50
+            maxlength: 50,
+            remote : {
+                url : '/admin/common/check-value-exists',
+                type : "GET",
+                data:{
+                    table_name  : 'products',
+                    column_name : 'name',
+                    value: function() {
+                        // Ensure that you're using the correct selector for your product name input field
+                        return $('#product_name').val();  // Get the value of the input
+                    },
+                    id: function() {
+                        return $('#product_id').val();
+                    }
+                }
+            }
         },
         sku: {
             required: true,
-            maxlength: 30
+            maxlength: 30,
+            remote : {
+                url : '/admin/common/check-value-exists',
+                type : "GET",
+                data:{
+                    table_name  : 'products',
+                    column_name : 'sku',
+                    value: function() {
+                        return $('#sku').val();
+                    },
+                    id: function() {
+                        return $('#product_id').val();
+                    }
+                }
+            }
         },
         price: {
             min: 1,
@@ -55,11 +84,16 @@ $('#product_form').validate({
             required: true,
             boolean: true 
         },
+        product_thumbnail: {
+            required: function () {
+              return is_edit ? false : true; // No need for `== true`
+            },
+            extension: "jpg|jpeg|png",
+            filesize: 2097152 // 2MB
+        },
         // Arrays
         'variation_sku[]': {
-            required:function(element){
-                return $('#has_variation').val() ==1;
-            }, 
+            required:true,
             maxlength: 30
         },
         'variation_unit_id[]': {
@@ -100,6 +134,11 @@ $('#product_form').validate({
             maxlength: 50
         },
     },
+    errorElement: 'span',
+    errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+    },
     messages: {
         // Optional: Define custom error messages for clarity
         category_id: {
@@ -137,6 +176,16 @@ $('#product_form').validate({
         has_variation: {
             required: "Please specify if there are variations.",
             boolean: "Invalid value for variations."
+        },
+        product_thumbnail: {
+            accept: "Only JPEG, JPG, and PNG files are allowed.",
+            filesize: "File size must be less than 2MB."
+        },
+        product_name:{
+            remote: "This product name already exists."
+        },
+        sku:{
+            remote: "This SKU name already exists."
         }
     },
 });
