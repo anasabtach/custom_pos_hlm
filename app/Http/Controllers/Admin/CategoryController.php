@@ -53,7 +53,4 @@ class CategoryController extends Controller
         return to_route('admin.categories.index')->with('success', __('error_messages.category_delete_success'));
     }
 
-    // public function updateList(Request $req):bool{
-    //     return $this->categoryService->updateList($req->data);
-    // }
 }

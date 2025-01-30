@@ -35,9 +35,6 @@ class CommonController extends Controller
         }
     }
 
-    // public function updateWordpressStatus($product_id, $status){
-
-    // }
 
     public function updateShopifyStatus($product_id, $status){
         // Shopify API credentials and configuration

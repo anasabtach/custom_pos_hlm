@@ -34,7 +34,6 @@ class ShopifyBrandRepository implements ShopifyBrandInterface
         
         $response = $this->shopify->CustomCollection->post($brandData);
         return $response['id'];
-        // $this->latest()->first()->update(['shopify_id' => $response['id']]);
     }
 
     

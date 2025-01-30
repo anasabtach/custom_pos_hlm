@@ -32,31 +32,21 @@ class ProductRepository implements ProductInterface
         return $this->product->create($arr);
     }
 
-    // public function storeProductVariation(Product $product, array $arr):void
-    // {   
-    //     // return $product->variations()->createMany($arr);
-    //     foreach ($arr as $variation) {
-    //         $product->variations()->updateOrCreate(
-    //             ['id' => $variation['id']], 
-    //             $variation                     
-    //         );
-    //     }
-    // }
     public function storeProductVariation(Product $product, array $arr): void
-{
-    foreach ($arr as $variation) {
-        if (isset($variation['id']) && !empty($variation['id'])) {
-            // Update the existing variation
-            $product->variations()->updateOrCreate(
-                ['id' => $variation['id']],
-                $variation
-            );
-        } else {
-            // Create a new variation
-            $product->variations()->create($variation);
+    {
+        foreach ($arr as $variation) {
+            if (isset($variation['id']) && !empty($variation['id'])) {
+                // Update the existing variation
+                $product->variations()->updateOrCreate(
+                    ['id' => $variation['id']],
+                    $variation
+                );
+            } else {
+                // Create a new variation
+                $product->variations()->create($variation);
+            }
         }
     }
-}
     
     public function editProduct(string $product_id):Product
     {
@@ -122,12 +112,7 @@ class ProductRepository implements ProductInterface
 
     public function productSalesChart():SupportCollection
     {
-        return  Product::with('saleitems')->get()->map(function($product){
-            // $quantitySum = ; // Sum of all quantities
-            // $totalSum = $product->sales->sum(function($sale) {
-            //     return $sale->quantity * $sale->price; // Total sum (quantity * price)
-            // });
-            
+        return  Product::with('saleitems')->get()->map(function($product){            
             return [
                 'product_name' => $product->name,
                 'quantity_sum' => $product->saleitems->sum('quantity'),   

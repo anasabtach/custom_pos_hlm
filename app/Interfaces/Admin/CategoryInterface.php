@@ -21,5 +21,4 @@ interface CategoryInterface
 
     public function remarks($remarks, $category_id):bool;
 
-    // public function updateList(array $data):bool;
 }

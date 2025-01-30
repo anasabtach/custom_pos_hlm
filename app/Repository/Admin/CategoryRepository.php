@@ -49,19 +49,6 @@ class CategoryRepository implements CategoryInterface
         return $this->category->destroy(hashid_decode($category_id));
     }
 
-    // public function updateList(array $data):bool
-    // {   
-    //     return DB::transaction(function () use ($data):bool {
-    //         collect($data)->each(function ($item) {
-    //             $this->category->findOrFail($item['id'])->update([
-    //                 'parent_id' => $item['parent_id'] ?? NULL,
-    //                 'order_by' => $item['order'] ?? 0
-    //             ]);
-    //         });
-    //         return true;
-    //     });
-    // }
-
     public function categoriesCount():int
     {
         return $this->category->count();

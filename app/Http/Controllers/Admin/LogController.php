@@ -20,6 +20,4 @@ class LogController extends Controller
         ];
         return view('admin.logs.index')->with($data);
     }
-
-    // Your controller methods here
 }

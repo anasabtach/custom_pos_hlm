@@ -30,7 +30,6 @@ class DashboardController extends Controller
             'product_sale_chart'=> $this->service->productSalesChart(),
             'customer_growth_chart'=> $this->service->customerGrowtChart(),
         );
-        // dd($data['all_sales_sum']);
         return view('admin.dashboard.index')->with($data);
     }
 }

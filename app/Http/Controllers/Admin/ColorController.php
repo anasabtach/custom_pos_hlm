@@ -48,7 +48,6 @@ class ColorController extends Controller
 
     public function delete(RemarkRequest $req, $color_id){
         rights('delete-brand');
-        // $this->service->remarks($req->remarks, $color_id);
         $this->service->delete($color_id);
         return to_route('admin.colors.index')->with('success', __('error_messages.color_delete_success'));
     }

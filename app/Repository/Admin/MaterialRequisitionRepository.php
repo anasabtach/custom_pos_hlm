@@ -16,7 +16,7 @@ class MaterialRequisitionRepository implements MaterialRequisitionInterface
     }
 
     public function getMaterailRequistions():Collection
-    {   //dd($this->model->with(['admin', 'category', 'product', 'supplier', 'brand', 'unit'])->where('admin_id', auth('admin')->id())->latest()->get());
+    {  
         return $this->model->with(['admin', 'category', 'product', 'supplier', 'brand', 'unit'])->where('admin_id', auth('admin')->id())->latest()->get();
     }
 

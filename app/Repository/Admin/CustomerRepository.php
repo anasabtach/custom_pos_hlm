@@ -25,7 +25,6 @@ class CustomerRepository implements CustomerInterface
             'phone_no'      => $data['phone_no'],
             'city'          => $data['city'],
             'address'       => $data['address'],
-            // 'note'          => $data['note'],
             'dob'          => $data['dob'] ?? now(),
             'country_code' => $data['country_code'],
 
@@ -52,7 +51,6 @@ class CustomerRepository implements CustomerInterface
             'phone_no'      => $arr['phone_no'],
             'city'          => $arr['city'],
             'address'       => $arr['address'],
-            // 'note'          => $arr['note'],
             'dob'          => $arr['dob'],
         ]);
     }
