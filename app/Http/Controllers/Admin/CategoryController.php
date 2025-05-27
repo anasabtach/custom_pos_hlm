@@ -31,6 +31,7 @@ class CategoryController extends Controller
             $this->categoryService->store($req->validated());
             return to_route('admin.categories.index')->with('success',$msg);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return to_route('admin.categories.index')->withInput()->with('error', __('error_messages.store_category_error'));
         }
     }

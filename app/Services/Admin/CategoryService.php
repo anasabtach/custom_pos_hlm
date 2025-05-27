@@ -22,14 +22,15 @@ class CategoryService{
     }
 
     public function store(array $data){
+        // dd($this->edit($data['category_id'])->wordpress_id);
         if(isset($data['category_id'])){
             $this->wordpressRepository->update($data, $this->edit($data['category_id'])->wordpress_id);
             // $this->shopifyRepository->update($data, $this->edit($data['category_id'])->shopify_id);
             return $this->categoryRepository->update($data);
         }
         // $data['shopify_id'] = $this->shopifyRepository->store($data);
-        $data['wordpress_id'] = $this->wordpressRepository->store($data);
         $data['slug'] = CommonHelper::generateUniqueSlug($data['category_name'], 'categories');
+        $data['wordpress_id'] = $this->wordpressRepository->store($data);
         return $this->categoryRepository->store($data);
         //return $this->wordpressRepository->store($data);
         

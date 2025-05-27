@@ -17,7 +17,7 @@ class Brand extends Model
     
     protected $table = 'brands';
 
-    protected $fillable = ['name', 'admin_id', 'slug', 'status', 'order_by', 'shopify_brand_id'];
+    protected $fillable = ['name', 'admin_id', 'slug', 'status', 'order_by', 'shopify_brand_id', 'wordpress_brand_id'];
 
     public function scopeWithLog($query)
     {

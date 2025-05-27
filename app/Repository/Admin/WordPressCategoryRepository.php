@@ -34,10 +34,10 @@ class WordPressCategoryRepository implements WordPressCategoryInterface
      * Create a new category in WordPress.
      */
     public function store($arr)
-    {   
+    {  
         $categoryData = [
             'name' => $arr['category_name'],
-            'description' => $arr['description'] ?? '',
+            'description' => $arr['description'] ?? ' no description',
             'slug' => $arr['slug'] ?? '',
         ];
         
@@ -58,12 +58,11 @@ class WordPressCategoryRepository implements WordPressCategoryInterface
         if (!is_null($categoryId)) {
             $categoryData = [
                 'name' => $arr['category_name'], // The updated category name
-                'description' => $arr['description'] ?? '', // Optional updated description
-                'slug' => $arr['slug'] ?? '', // Optional updated slug
+                'description' => $arr['description'] ?? 'no dsecription', // Optional updated description
+                // 'slug' => $arr['slug'] ?? '', // Optional updated slug
             ];
 
             $response = Http::withBasicAuth( $this->consumerKey,$this->consumerSecret)->post("{$this->baseUrl}/products/categories/{$categoryId}", $categoryData + $this->getAuthParams());
-            
             if ($response->successful()) {
                 return $response->json(); // Return the updated category data
             }
@@ -73,6 +72,7 @@ class WordPressCategoryRepository implements WordPressCategoryInterface
 
     public function delete($category_id){
         $response = Http::withBasicAuth($this->consumerKey, $this->consumerSecret)->delete("{$this->baseUrl}/products/categories/{$category_id}", ['force' => true]);        
+        // dd($response->json());
         if ($response->successful()) {
             return $response->json(); // Return the updated category data
         }

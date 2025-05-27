@@ -283,7 +283,7 @@ class WordPressProductRepository
     
             // Create the variation in WordPress using the parent product ID
             $response = Http::withBasicAuth($this->consumerKey, $this->consumerSecret)->post("{$this->baseUrl}/products/{$productId}/variations", $variationData);
-
+            
             // Handle response and update Laravel database
             if ($response->successful()) {
                 $wordpressVariationId = $response->json()['id'];

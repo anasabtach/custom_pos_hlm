@@ -33,6 +33,7 @@ class ProductService
 
     public function store($arr){//store product
         DB::transaction(function() use ($arr){
+          
             // $arr['shopify_id'] = $this->shopifyRepository->store($arr);
             $product    = $this->repository->storeProduct($this->createProductArr($arr));
             $image_data = $this->updateThumbnail($product, $arr['product_thumbnail']);//store product thumbnail image

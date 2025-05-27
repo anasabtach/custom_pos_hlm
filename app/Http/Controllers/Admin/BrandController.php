@@ -31,6 +31,7 @@ class BrandController extends Controller
             $this->service->store($req->validated());
             return to_route('admin.brands.index')->with('success',$msg);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return to_route('admin.brands.index')->withInput()->with('error', __('error_messages.brand_add_error'));
         }
     }
