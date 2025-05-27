@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main  # Trigger only on push to main branch
+      - main  # Trigger only on push to main branch 
 
 name: 🚀 Deploy website on push
 
