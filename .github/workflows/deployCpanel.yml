@@ -9,6 +9,7 @@ jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 30  # ⏱️ Increase timeout to 30 minutes
 
     steps:
       - name: 🚚 Get latest code
